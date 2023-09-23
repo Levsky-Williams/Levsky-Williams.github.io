@@ -1,3 +1,8 @@
+http://example.com/2023/09/23/skill1/
 http://example.com/2023/09/18/hello-world/
 http://example.com/2023/09/20/Introduction/
 http://example.com/
+http://example.com/tags/syncthing/
+http://example.com/tags/synctrayzor/
+http://example.com/tags/%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/
+http://example.com/tags/%E4%B8%8D%E5%88%A0%E9%99%A4/

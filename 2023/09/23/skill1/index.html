@@ -13,7 +13,7 @@
     
     
     
-    <title>Hello World | Levsky的博客</title>
+    <title>syncthing/SyncTrayzor如何同步而不删除 | Levsky的博客</title>
     <!-- inject:style -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <!-- endinject -->
@@ -165,36 +165,49 @@
     <div class="cube-content">
         <div class="cube-left">
             <div class="cube-article">
-    <h1 class="title">Hello World</h1>
+    <h1 class="title">syncthing/SyncTrayzor如何同步而不删除</h1>
     
     <div class="cube-article-header">
         <div class="cube-article-date">
             <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
             <!-- moment.js对象 -->
-            2023-09-18
+            2023-09-23
         </div>
         <div class="cube-article-tags">
     <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/syncthing/">#syncthing</a>
+    
+    <a href="/tags/synctrayzor/">#synctrayzor</a>
+    
+    <a href="/tags/%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/">#增量同步</a>
+    
+    <a href="/tags/%E4%B8%8D%E5%88%A0%E9%99%A4/">#不删除</a>
     
 </div>
     </div>
     
     <div class="cube-article-content cube-markdown">
         
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><span id="more"></span>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>之间在用syncthing同步笔记的时候，总是担心一个设备的文件被删除后所有的设备一同删除。<br>结果，真的发生了。<br>好在通过一些手段，把数据找回来了。</p>
+<p>在网上找了很久，终于找到了解决方法。<br>下面出图文教程</p>
+<span id="more"></span>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>（感谢这篇<a target="_blank" rel="noopener" href="https://jaycechant.info/2016/backup-tips-about-syncthing/">博客</a>的介绍）</p>
+<p>操作-&gt;高级</p>
+<center>
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231851158.png" alt="操作->高级" style="width:40%;" />
+</center>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上。</p>
+<center>
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231854281.png" alt="选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上" style="width:50%;" />
+</center>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<center>
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231857391.png" alt="选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上" style="width:50%;" />
+</center>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
     </div>
 </div>
@@ -202,13 +215,13 @@
 <div class="cube-article-nav">
     <ul>
         
-        <li class="prev">
+        
+        <li class="next">
             <a href="/2023/09/20/Introduction/">
-                <i class="cube-icon cube-prev" aria-hidden="true"></i>
                 Introduction
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
             </a>
         </li>
-        
         
     </ul>
 </div>
@@ -348,17 +361,17 @@
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/tags/synctrayzor/">#synctrayzor</a>
         </div>
         
         
-        <div class="cube-box-bg ">
+        <div class="cube-box ">
             <a href="/tags/%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5/">#增量同步</a>
         </div>
         
         
-        <div class="cube-box ">
+        <div class="cube-box-bg ">
             <a href="/tags/%E4%B8%8D%E5%88%A0%E9%99%A4/">#不删除</a>
         </div>
         
