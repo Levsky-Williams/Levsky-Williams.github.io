@@ -16,25 +16,23 @@
   <meta name="author" content="Levski-Williams">
   <meta name="keywords" content="python">
   
-    <meta name="description" content="如标题">
+    <meta name="description" content="长期更新中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c语言中fork,exec和system函数的理解">
-<meta property="og:url" content="https://levsky-williams.top/posts/30fb7a59/index.html">
+<meta property="og:title" content="linux下常见的环境变量对应的目录">
+<meta property="og:url" content="https://levsky-williams.top/posts/1df8ddf2/index.html">
 <meta property="og:site_name" content="Levsky的博客">
-<meta property="og:description" content="如标题">
+<meta property="og:description" content="长期更新中">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404281552465.png">
-<meta property="article:published_time" content="2024-04-28T12:18:08.354Z">
-<meta property="article:modified_time" content="2024-04-28T12:18:08.354Z">
+<meta property="article:published_time" content="2024-04-13T13:37:00.000Z">
+<meta property="article:modified_time" content="2024-04-28T13:27:14.263Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="linux">
-<meta property="article:tag" content="C">
+<meta property="article:tag" content="tips">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404281552465.png">
   
   
   
-  <title>c语言中fork,exec和system函数的理解 - Levsky的博客</title>
+  <title>linux下常见的环境变量对应的目录 - Levsky的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="c语言中fork,exec和system函数的理解"></span>
+            <span id="subtitle" data-typed-text="linux下常见的环境变量对应的目录"></span>
           
         </div>
 
@@ -230,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-28 20:18" pubdate>
-          2024年4月28日 晚上
+        <time datetime="2024-04-13 21:37" pubdate>
+          2024年4月13日 晚上
         </time>
       </span>
     
@@ -242,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          441 字
+          680 字
         
       </span>
     
@@ -253,7 +251,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -290,70 +288,38 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">c语言中fork,exec和system函数的理解</h1>
+            <h1 id="seo-header">linux下常见的环境变量对应的目录</h1>
             
             
               <div class="markdown-body">
                 
-                <h1><span id="fork">fork</span></h1><p>用于创建子进程。</p>
-<p>由fork创建的新进程被称为子进程（child process）。fork函数被调用一次，但返回两次。</p>
-<ol>
-<li>在父进程中，fork返回新创建子进程的进程ID。</li>
-<li>在子进程中，fork返回0。</li>
-<li>如果出现错误，fork返回一个负值。</li>
-</ol>
-<p>包含在<code>&lt;unistd.h&gt;</code>中，是Unix系统特有的文件(Mac os并不太清楚)，因此需要用<strong>gnu标准</strong>进行编译。</p>
-<p>fork的作用是创建一个子进程。网上有不少博客，但其中有相当一部分并没有点明fork之后会怎么样。
-实验证明：fork之后的子进程不是重新运行整个程序，而是<strong>从fork处接着向后运行</strong>。
-比如下面的程序：</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>i<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> cmd<span class="token punctuation">[</span><span class="token number">1023</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ch<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> cnt<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> status<span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"before fork\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>cnt<span class="token operator">&lt;=</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token class-name">pid_t</span> id<span class="token operator">=</span><span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"father: id=%d, cnt=%d\n"</span><span class="token punctuation">,</span>id<span class="token punctuation">,</span>cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\e[33mSon\e[0m\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        cnt<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\e[31mafter fork\e[0m\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// printf("finally: id=%d\n",id);</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-<p>其结果应该如下：(父进程和子进程之间没有固定的先后顺序，看运气)
-<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404281552465.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>如果画个进程运行图，应该是这样：</p>
-<pre><code class="mermaid">%%&#123; init: &#123; 'flowchart': &#123; 'curve': 'linear' &#125; &#125; &#125;%%
-flowchart LR
-	classDef main fill:#f96
-	classDef sub1 fill:#56b800
-	classDef sub2 fill:#7abceb
-	classDef sub3 fill:#ebe01a
-    root(root):::main-->a(fork)
-    a:::main-->c((dad)):::main
-	c-->d(fork):::main
-	d-->e((dad)):::main
-    a-->b((son)):::sub1
-	d-->f((son)):::sub2
-	b-->g(fork):::sub1
-	g-->h((subdad)):::sub1
-	g-->i((son)):::sub3</code></pre>
-<p>流程如下：</p>
-<ol>
-<li>程序从main进入，此时的身份我们假设为<font color="orange"><b>root</b></font>。</li>
-<li>当运行到<code>fork</code>时，产生一个子进程<font color="#56b800"><b>sub1</b></font>(此时<code>cnt=1</code>)。
-两个进程都向后运行。父进程无其它输出，子进程输出<code>Son</code></li>
-<li><font color="orange"><b>root</b></font>和<font color="#56b800"><b>sub1</b></font>都进入下一轮循环，
-此时<code>cnt=2</code>。这意味着<font color="orange"><b>root</b></font>和<font color="#56b800"><b>sub1</b></font>都会进行一次<code>fork</code>，
-分别产生<font color="#ebe01a"><b>sub2</b></font>和<font color="#7abceb"><b>sub3</b></font>。</li>
-</ol>
+                <h1><span id="环境变量作用">环境变量作用</span></h1><ul>
+<li><code>ACLOCAL</code>：在GNU automake套件中起作用。对应各个软件里的<code>share/aclocal</code>目录</li>
+<li><code>PATH</code>：可执行程序的目录。</li>
+<li><code>PKG_CONFIG_PATH</code>，作用见后文，对应软件里的<code>lib/pkgconfig</code>或<code>share/pkgconfig</code>目录</li>
+<li><code>LD_LIBRARY_PATH</code>：主要是用于指定动态链接器（ld）查找ELF可执行文件运行时所依赖的动态库（so）的路径。</li>
+<li>即用于在程序运行期间查找动态链接库时，指定除了系统默认路径(/usr/lib)之外的路径。对应<code>lib</code>目录</li>
+<li><code>LIBRARY_PATH</code>：在程序编译期间查找动态链接库时指定的查找共享库的路径。指定gcc编译需要链接动态链接库的目录。</li>
+</ul>
+<p><code>PKG-CONFIG</code>用来检索系统中安装库文件的信息。典型的是用作库的编译和连接。
+一般来说，如果库的头文件不在/usr/include目录中，那么在编译的时候需要用<code>-I</code>参数指定其路径。
+由于同一个库在不同系统上可能位于不同的目录下，用户安装库的时候也可以将库安装在不同的目录下，
+所以即使使用同一个库，由于库的路径的不同，
+造成了用<code>-I</code>参数指定的头文件的路径和在连接时使用<code>-L</code>参数指定lib库的路径都可能不同，
+其结果就是造成了编译命令界面的不统一。可能由于编译，连接的不一致，
+造成同一份程序从一台机器copy到另一台机器时就可能会出现问题。</p>
+<p><code>PKG-CONFIG</code>就是用来解决编译连接界面不统一问题的一个工具。
+它的基本思想：<code>PKG-CONFIG</code>是通过库提供的一个<code>.pc</code>文件获得库的各种必要信息，
+包括版本信息、编译和连接需要的参数等。
+需要的时候可以通过pkg-config提供的参数(–cflags, –libs)，将所需信息提取出来供编译和连接使用。
+这样，不管库文件安装在哪，通过库对应的.pc文件就可以准确定位，
+可以使用相同的编译和连接命令，使得编译和连接界面统一。</p>
+<p>它提供的主要功能有:</p>
+<p><1> 检查库的版本号。如果所需库的版本不满足要求，打印出错误信息，避免连接错误版本的库文件。</1></p>
+<p><2> 获得编译预处理参数，如宏定义，头文件的路径。</2></p>
+<p><3> 获得编译参数，如库及其依赖的其他库的位置，文件名及其他一些连接参数。</3></p>
+<p><4> 自动加入所依赖的其他库的设置。</4></p>
+<h1><span id="参考文献">参考文献</span></h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36182852/article/details/109680418">【Linux】PKG_CONFIG_PATH: https://blog.csdn.net/qq_36182852/article/details/109680418</a></p>
 
                 
               </div>
@@ -372,7 +338,7 @@ flowchart LR
     
       <span class="category-chain">
         
-  <a href="/categories/article/" class="category-chain-item">article</a>
+  <a href="/categories/notes/" class="category-chain-item">notes</a>
   
   
 
@@ -389,7 +355,7 @@ flowchart LR
       
         <a href="/tags/linux/" class="print-no-link">#linux</a>
       
-        <a href="/tags/C/" class="print-no-link">#C</a>
+        <a href="/tags/tips/" class="print-no-link">#tips</a>
       
     </div>
   
@@ -401,8 +367,8 @@ flowchart LR
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>c语言中fork,exec和system函数的理解</div>
-      <div>https://levsky-williams.top/posts/30fb7a59/</div>
+      <div>linux下常见的环境变量对应的目录</div>
+      <div>https://levsky-williams.top/posts/1df8ddf2/</div>
     </div>
     <div class="license-meta">
       
@@ -414,7 +380,7 @@ flowchart LR
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月28日</div>
+          <div>2024年4月13日</div>
         </div>
       
       
@@ -446,12 +412,18 @@ flowchart LR
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/posts/321f/" title="c语言中fork,exec和system函数的理解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">c语言中fork,exec和system函数的理解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/undefined/" title="PRESTO的配置（高算版）">
-                        <span class="hidden-mobile">PRESTO的配置（高算版）</span>
+                      <a href="/posts/5d529438/" title="从源码安装Tmux">
+                        <span class="hidden-mobile">从源码安装Tmux</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -783,6 +755,21 @@ flowchart LR
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
