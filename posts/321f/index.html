@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="c语言中fork,exec和system函数的理解">
 <meta property="og:url" content="https://levsky-williams.top/posts/321f/index.html">
-<meta property="og:site_name" content="Levsky的博客">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
 <meta property="og:description" content="如标题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404282133477.png">
@@ -34,7 +34,7 @@
   
   
   
-  <title>c语言中fork,exec和system函数的理解 - Levsky的博客</title>
+  <title>c语言中fork,exec和system函数的理解 - Левский Уильямс の 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -91,7 +91,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Levsky的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Левский Уильямс の 博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -332,10 +332,10 @@
 <p>如果画个进程运行图，应该是这样：</p>
 <pre><code class="mermaid">%%&#123; init: &#123; 'flowchart': &#123; 'curve': 'linear' &#125; &#125; &#125;%%
 flowchart LR
-	classDef main fill:#f96
-	classDef sub1 fill:#56b800
-	classDef sub2 fill:#7abceb
-	classDef sub3 fill:#ebe01a
+	classDef main <span class="token property">fill:#f96</span>
+	classDef sub1 <span class="token property">fill:#56b800</span>
+	classDef sub2 <span class="token property">fill:#7abceb</span>
+	classDef sub3 <span class="token property">fill:#ebe01a</span>
     root(root):::main-->a(fork)
     a:::main-->c((dad)):::main
 	c-->d(fork):::main
@@ -425,9 +425,21 @@ flowchart LR
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
                   </span>
                 </a>
               

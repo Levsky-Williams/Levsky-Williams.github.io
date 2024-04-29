@@ -18,9 +18,9 @@
   
     <meta name="description" content="欢迎访问我的博客">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Levsky的博客">
+<meta property="og:title" content="Левский Уильямс の 博客">
 <meta property="og:url" content="https://levsky-williams.top/index.html">
-<meta property="og:site_name" content="Levsky的博客">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
 <meta property="og:description" content="欢迎访问我的博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Levski-Williams">
@@ -29,7 +29,7 @@
   
   
   
-  <title>Levsky的博客</title>
+  <title>Левский Уильямс の 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -78,7 +78,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Levsky的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="Левский Уильямс の 博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -200,13 +200,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/Minimalist/wp7113145-evening-minimal-wallpapers.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Левский Уильямс の 博客"></span>
+            <span id="subtitle" data-typed-text="『丢掉幻想，准备斗争』"></span>
           
         </div>
 
@@ -978,7 +978,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'shd',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = ''.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request shd:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>
