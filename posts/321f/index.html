@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404282133477.png">
 <meta property="article:published_time" content="2024-04-28T07:33:00.000Z">
-<meta property="article:modified_time" content="2024-04-29T11:36:30.705Z">
+<meta property="article:modified_time" content="2024-04-29T11:45:07.325Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="C">
@@ -332,10 +332,10 @@
 <p>如果画个进程运行图，应该是这样：</p>
 <pre><code class="mermaid">%%&#123; init: &#123; 'flowchart': &#123; 'curve': 'linear' &#125; &#125; &#125;%%
 flowchart LR
-	classDef main <span class="token property">fill:#f96</span>
-	classDef sub1 <span class="token property">fill:#56b800</span>
-	classDef sub2 <span class="token property">fill:#7abceb</span>
-	classDef sub3 <span class="token property">fill:#ebe01a</span>
+	classDef main fill:#f96
+	classDef sub1 fill:#56b800
+	classDef sub2 fill:#7abceb
+	classDef sub3 fill:#ebe01a
     root(root):::main-->a(fork)
     a:::main-->c((dad)):::main
 	c-->d(fork):::main
