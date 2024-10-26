@@ -369,3 +369,7 @@ div[alt="three-table"] table tr:nth-last-child(1){
     --note-border: none;
     --note-border-radius: 2px;
 }
+
+.markdown-body blockquote a {
+    color: var(--post-link-color);
+}
