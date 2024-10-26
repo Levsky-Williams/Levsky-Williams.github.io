@@ -16,23 +16,24 @@
   <meta name="author" content="Levski-Williams">
   <meta name="keywords" content="python">
   
-    <meta name="description" content="长期更新中">
+    <meta name="description" content="这是显示在首页的概述，正文内容均会被隐藏。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux下常见的环境变量对应的目录">
-<meta property="og:url" content="https://levsky-williams.top/posts/1df8ddf2/index.html">
+<meta property="og:title" content="从源码安装openFOAM">
+<meta property="og:url" content="https://levsky-williams.top/posts/65f85108/index.html">
 <meta property="og:site_name" content="Левский Уильямс の 博客">
-<meta property="og:description" content="长期更新中">
+<meta property="og:description" content="这是显示在首页的概述，正文内容均会被隐藏。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-13T13:37:00.000Z">
-<meta property="article:modified_time" content="2024-05-01T16:18:21.257Z">
+<meta property="article:published_time" content="2024-05-01T15:39:00.000Z">
+<meta property="article:modified_time" content="2024-05-02T11:32:50.715Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="tips">
+<meta property="article:tag" content="openFOAM">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>linux下常见的环境变量对应的目录 - Левский Уильямс の 博客</title>
+  <title>从源码安装openFOAM - Левский Уильямс の 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="linux下常见的环境变量对应的目录"></span>
+            <span id="subtitle" data-typed-text="从源码安装openFOAM"></span>
           
         </div>
 
@@ -228,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-13 21:37" pubdate>
-          2024年4月13日 晚上
+        <time datetime="2024-05-01 23:39" pubdate>
+          2024年5月1日 晚上
         </time>
       </span>
     
@@ -240,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          794 字
+          232 字
         
       </span>
     
@@ -251,7 +252,7 @@
         
         
         
-          7 分钟
+          2 分钟
         
       </span>
     
@@ -288,74 +289,70 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">linux下常见的环境变量对应的目录</h1>
+            <h1 id="seo-header">从源码安装openFOAM</h1>
             
             
               <div class="markdown-body">
                 
-                <h1><span id="环境变量作用">环境变量作用</span></h1><div class="table-container">
+                <h1><span id="系统环境">系统环境</span></h1><p>CentOS 7，无网络连接，无sudo权限</p>
+<p>参考了官方网站的<a target="_blank" rel="noopener" href="https://openfoam.org/download/source/">安装指南</a></p>
+<h1><span id="第1步安装依赖">第1步，安装依赖</span></h1><div class="table-container">
 <table>
 <thead>
 <tr>
-<th>环境变量</th>
-<th>作用</th>
+<th>依赖包</th>
+<th>版本</th>
+<th>如何获取</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ACLOCAL</code></td>
-<td>在GNU automake套件中起作用。对应各个软件里的<code>share/aclocal</code>目录</td>
+<td>gcc</td>
+<td>&gt;=5.4</td>
+<td><code>module load gnu</code></td>
 </tr>
 <tr>
-<td><code>PATH</code></td>
-<td>可执行程序的目录。</td>
+<td>cmake</td>
+<td>3.28.4</td>
 </tr>
 <tr>
-<td><code>PKG_CONFIG_PATH</code></td>
-<td>作用见后文，对应软件里的<code>lib/pkgconfig</code>或<code>share/pkgconfig</code>目录</td>
+<td>FLEX</td>
+<td>2.6.4</td>
+<td>从<a target="_blank" rel="noopener" href="https://github.com/westes/flex/releases/tag/v2.6.4">github</a>上下载，或<a target="_blank" rel="noopener" href="https://mirror.ghproxy.com/https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz">点击直接下载</a></td>
 </tr>
 <tr>
-<td><code>LD_LIBRARY_PATH</code></td>
-<td>主要是用于指定动态链接器（ld）查找ELF可执行文件运行时所依赖的动态库（so）的路径。即用于在程序运行期间查找动态链接库时，指定除了系统默认路径(/usr/lib)之外的路径。对应<code>lib</code>目录</td>
+<td>QT</td>
+<td>5.12.2</td>
+<td><a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/5.12/5.12.2/">官方镜像站</a>，或<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/5.12/5.12.2/qt-opensource-linux-x64-5.12.2.run">点击直接下载</a></td>
 </tr>
 <tr>
-<td><code>LIBRARY_PATH</code></td>
-<td>在程序编译期间查找动态链接库时指定的查找共享库的路径。指定gcc编译需要链接动态链接库的目录。</td>
+<td>Git</td>
+<td>1.8.3.1</td>
+<td>系统已自带</td>
 </tr>
 <tr>
-<td><code>CPATH</code></td>
-<td>CPATH 环境变量用于 C/C++ 预处理，它列出了预处理器检索 C/C++ 头文件的目录，与之相对的环境变量还有 C_INCLUDE_PATH、CPLUS_INCLUDE_PATH 和 OBJC_INCLUDE_PATH。其中无论预处理哪种语言，都会使用 CPATH 环境变量，而其余的三种环境变量仅在预处理指定的语言时才会适用。</td>
+<td>OpenMPI</td>
+<td>5.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://www.open-mpi.org/software/ompi/v5.0/">官方下载</a>，或<a target="_blank" rel="noopener" href="https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.2.tar.gz">点击直接下载</a></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>以下部分来自于<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36182852/article/details/109680418">https://blog.csdn.net/qq_36182852/article/details/109680418</a></p>
-<blockquote>
-<p><code>PKG-CONFIG</code>用来检索系统中安装库文件的信息。典型的是用作库的编译和连接。
-一般来说，如果库的头文件不在/usr/include目录中，那么在编译的时候需要用<code>-I</code>参数指定其路径。
-由于同一个库在不同系统上可能位于不同的目录下，用户安装库的时候也可以将库安装在不同的目录下，
-所以即使使用同一个库，由于库的路径的不同，
-造成了用<code>-I</code>参数指定的头文件的路径和在连接时使用<code>-L</code>参数指定lib库的路径都可能不同，
-其结果就是造成了编译命令界面的不统一。可能由于编译，连接的不一致，
-造成同一份程序从一台机器copy到另一台机器时就可能会出现问题。</p>
-<p><code>PKG-CONFIG</code>就是用来解决编译连接界面不统一问题的一个工具。
-它的基本思想：<code>PKG-CONFIG</code>是通过库提供的一个<code>.pc</code>文件获得库的各种必要信息，
-包括版本信息、编译和连接需要的参数等。
-需要的时候可以通过pkg-config提供的参数(–cflags, –libs)，将所需信息提取出来供编译和连接使用。
-这样，不管库文件安装在哪，通过库对应的.pc文件就可以准确定位，
-可以使用相同的编译和连接命令，使得编译和连接界面统一。</p>
-<p>它提供的主要功能有:</p>
-<ol>
-<li>检查库的版本号。如果所需库的版本不满足要求，打印出错误信息，避免连接错误版本的库文件。</li>
-<li>获得编译预处理参数，如宏定义，头文件的路径。</li>
-<li>获得编译参数，如库及其依赖的其他库的位置，文件名及其他一些连接参数。</li>
-<li>自动加入所依赖的其他库的设置。</li>
-</ol>
-</blockquote>
-<h1><span id="参考文献">参考文献</span></h1><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36182852/article/details/109680418">【Linux】PKG_CONFIG_PATH: https://blog.csdn.net/qq_36182852/article/details/109680418</a></li>
-<li><a target="_blank" rel="noopener" href="https://e-ffen.com/2021/11/30/PATH_CPATH_LIBRARY_PATH/">Linux 环境变量 PATH、CPATH、LIBRARY_PATH和LD_LIBRARY_PATH</a></li>
-</ul>
+<h2><span id="安装flex-废弃">安装FLEX-废弃</span></h2><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> flex-2.6.4.tar.gz
+<span class="token builtin class-name">cd</span> flex-2.6.4
+<span class="token assign-left variable">install_to</span><span class="token operator">=</span><span class="token string">"需要安装到的绝对路径"</span>
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>
+<span class="token function">make</span> check
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/bin:<span class="token variable">$&#123;<span class="token environment constant">PATH</span>&#125;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/lib:<span class="token variable">$&#123;LD_LIBRARY_PATH&#125;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/lib:<span class="token variable">$&#123;LIBRARY_PATH&#125;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/include:<span class="token variable">$&#123;CPATH&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<h1><span id="第2步下载源码">第2步，下载源码</span></h1><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://githubfast.com/OpenFOAM/OpenFOAM-11.git
+<span class="token function">git</span> clone https://githubfast.com/OpenFOAM/ThirdParty-11.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>官网上给的教程中，安装位置默认在<code>~/OpenFOAM/</code>下面，并且源码也在此目录中。
+如果需要更改安装路径，就需要更改<code>FOAM_INIT_DIR</code>变量的值</p>
+<p>正在核实中。</p>
 
                 
               </div>
@@ -374,7 +371,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/notes/" class="category-chain-item">notes</a>
+  <a href="/categories/article/" class="category-chain-item">article</a>
   
   
 
@@ -393,6 +390,8 @@
       
         <a href="/tags/tips/" class="print-no-link">#tips</a>
       
+        <a href="/tags/openFOAM/" class="print-no-link">#openFOAM</a>
+      
     </div>
   
 </div>
@@ -403,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>linux下常见的环境变量对应的目录</div>
-      <div>https://levsky-williams.top/posts/1df8ddf2/</div>
+      <div>从源码安装openFOAM</div>
+      <div>https://levsky-williams.top/posts/65f85108/</div>
     </div>
     <div class="license-meta">
       
@@ -416,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月13日</div>
+          <div>2024年5月1日</div>
         </div>
       
       
@@ -460,18 +459,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/321f/" title="c语言中fork,exec和system函数的理解">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">c语言中fork,exec和system函数的理解</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/5d529438/" title="从源码安装Tmux">
-                        <span class="hidden-mobile">从源码安装Tmux</span>
+                      <a href="/posts/321f/" title="c语言中fork,exec和system函数的理解">
+                        <span class="hidden-mobile">c语言中fork,exec和system函数的理解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
