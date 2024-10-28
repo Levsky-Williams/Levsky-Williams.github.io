@@ -16,17 +16,17 @@
   <meta name="author" content="levsky-williams">
   <meta name="keywords" content="python">
   
-    <meta name="description" content="为了应对数电小测，特出此篇">
+    <meta name="description" content="为了应对数电小测写的小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数电总结1">
 <meta property="og:url" content="https://levsky-williams.top/posts/e6683f03/index.html">
 <meta property="og:site_name" content="Левский Уильямс の 博客">
-<meta property="og:description" content="为了应对数电小测，特出此篇">
+<meta property="og:description" content="为了应对数电小测写的小结">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100032315.png">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100033712.png">
 <meta property="article:published_time" content="2023-10-09T16:01:00.000Z">
-<meta property="article:modified_time" content="2024-04-28T13:23:51.133Z">
+<meta property="article:modified_time" content="2024-10-28T07:17:54.205Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="default">
 <meta name="twitter:card" content="summary_large_image">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          739 字
+          689 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -296,81 +296,48 @@
               <div class="markdown-body">
                 
                 <!-- toc -->
-<ul>
-<li><a href="#数制与码制">数制与码制</a><ul>
-<li><a href="#进制转换">进制转换</a><ul>
-<li><a href="#2-8-16">2-8-16</a></li>
-<li><a href="#10-2">10-2</a></li>
-<li><a href="#2-10">2-10</a></li>
-</ul>
-</li>
-<li><a href="#机内存储码">机内存储码</a><ul>
-<li><a href="#减法">减法</a></li>
-<li><a href="#乘法">乘法</a></li>
-<li><a href="#除法">除法</a></li>
-</ul>
-</li>
-<li><a href="#代码和编码">代码和编码</a><ul>
-<li><a href="#bcd">BCD</a><ul>
-<li><a href="#余3码">余3码</a></li>
-<li><a href="#余3循环码">余3循环码</a></li>
-</ul>
-</li>
-<li><a href="#gray码">Gray码</a></li>
-<li><a href="#校验码">校验码</a><ul>
-<li><a href="#奇偶校验码">奇偶校验码</a></li>
-</ul>
-</li>
-<li><a href="#ascii码">ASCII码</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#逻辑代数">逻辑代数</a></li>
-</ul>
-<!-- tocstop -->
-<h1><span id="数制与码制">数制与码制</span></h1><p>这部分基本上是学习计算机相关课程所需要的必要内容，但同时也意味着，你可以在其它地方学到本部分的内容。</p>
+<h1 id="数制与码制"><a href="#数制与码制" class="headerlink" title="数制与码制"></a>数制与码制</h1><p>这部分基本上是学习计算机相关课程所需要的必要内容，但同时也意味着，你可以在其它地方学到本部分的内容。</p>
 <p><strong>数制的定义：</strong> 包含每一位<span alt="solid">由什么构成</span>和从低位到高位的<span alt="solid">进位规则</span></p>
-<h2><span id="进制转换">进制转换</span></h2><p>在大学所学的进制转换中，除了整数需要转换，还有小数需要转换。</p>
-<h3><span id="2-8-16">2-8-16</span></h3><p>最简单：2进制(Binary)、16进制(Hexadecimal)、8进制(Octal)之间的相互转换。</p>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><p>在大学所学的进制转换中，除了整数需要转换，还有小数需要转换。</p>
+<h3 id="2-8-16"><a href="#2-8-16" class="headerlink" title="2-8-16"></a>2-8-16</h3><p>最简单：2进制(Binary)、16进制(Hexadecimal)、8进制(Octal)之间的相互转换。</p>
 <p>只需要注意：整数部分不够在高位补0，小数部分不够在末位补0</p>
-<h3><span id="10-2">10-2</span></h3><p>整数部分：除2法（看余数，<font title="red" color="red"><b>倒序</b></font>）</p>
+<h3 id="10-2"><a href="#10-2" class="headerlink" title="10-2"></a>10-2</h3><p>整数部分：除2法（看余数，<font title="red" color=red><b>倒序</b></font>）</p>
 <center>
-<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100032315.png" srcset="/img/loading.gif" lazyload alt="Typora" style="width:30%;">
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100032315.png" srcset="/img/loading.gif" lazyload alt="Typora" style="width:30%;" />
 </center>
 
-<p>小数部分：乘2法（看每次乘出来的整数位，<font title="red" color="red"><b>正序</b></font>）</p>
+<p>小数部分：乘2法（看每次乘出来的整数位，<font title="red" color=red><b>正序</b></font>）</p>
 <center>
-<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100033712.png" srcset="/img/loading.gif" lazyload alt="Typora" style="width:50%;">
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202310100033712.png" srcset="/img/loading.gif" lazyload alt="Typora" style="width:50%;" />
 </center>
 
-<h3><span id="2-10">2-10</span></h3><p>就是2的次幂相乘相加</p>
-<h2><span id="机内存储码">机内存储码</span></h2><p>在计算机中有4种存储码：<font title="green" color="green"><b>原码、反码、补码、移码</b></font></p>
-<p>常用的是补码和移码，但移码不考，主要考<font title="blue" color="blue"><b>补码</b></font></p>
+<h3 id="2-10"><a href="#2-10" class="headerlink" title="2-10"></a>2-10</h3><p>就是2的次幂相乘相加</p>
+<h2 id="机内存储码"><a href="#机内存储码" class="headerlink" title="机内存储码"></a>机内存储码</h2><p>在计算机中有4种存储码：<font title="green" color=green><b>原码、反码、补码、移码</b></font></p>
+<p>常用的是补码和移码，但移码不考，主要考<font title="blue" color=blue><b>补码</b></font></p>
 <blockquote>
 <p>如何补码与原码之间的相互转换？</p>
 <p>不管是补码转原码还是原码转补码，都是取反再加1。
 不过需要注意，符号位<mark>不动</mark></p>
 </blockquote>
-<h4><span id="减法">减法</span></h4><p>原码、反码：老老实实减。</p>
+<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><p>原码、反码：老老实实减。</p>
 <p>补码：转换为加法</p>
-<h4><span id="乘法">乘法</span></h4><p>加法+左移</p>
-<h4><span id="除法">除法</span></h4><p>减法+移（如果用补码就变成加法+移）</p>
-<h2><span id="代码和编码">代码和编码</span></h2><h3><span id="bcd">BCD</span></h3><p>用4位二进制数来表示1位十进制数中的0~9这10个数码的都是BCD。可以分为2大类：恒权码和变权码。</p>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><p>加法+左移</p>
+<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>减法+移（如果用补码就变成加法+移）</p>
+<h2 id="代码和编码"><a href="#代码和编码" class="headerlink" title="代码和编码"></a>代码和编码</h2><h3 id="BCD"><a href="#BCD" class="headerlink" title="BCD"></a>BCD</h3><p>用4位二进制数来表示1位十进制数中的0~9这10个数码的都是BCD。可以分为2大类：恒权码和变权码。</p>
 <p>像<code>8421码</code>,<code>5421</code>,<code>2421</code>等都是恒权码。</p>
 <p>而变权码的代表是余3码和余3循环码</p>
-<h4><span id="余3码">余3码</span></h4><p>余3码，就是在8421码的基础上，每一个二进制数对应加上3，比如十进制中的0，在余3码中，对应的就是0011。</p>
-<h4><span id="余3循环码">余3循环码</span></h4><p>余3循环码，是在余3码的基础上，
+<h4 id="余3码"><a href="#余3码" class="headerlink" title="余3码"></a>余3码</h4><p>余3码，就是在8421码的基础上，每一个二进制数对应加上3，比如十进制中的0，在余3码中，对应的就是0011。</p>
+<h4 id="余3循环码"><a href="#余3循环码" class="headerlink" title="余3循环码"></a>余3循环码</h4><p>余3循环码，是在余3码的基础上，
 进行求格雷码的异或运算（从左到右，第一位相等，余3码的第二位开始与前一位进行异或运算求得余3循环码该位的值）。
 比如，十进制的0，余3码中对应的是0011，余三循环码中对应的就是0010。</p>
 <p><span alt="wavy">这样可以拥有Gray码的主要特性</span></p>
-<h3><span id="gray码">Gray码</span></h3><h3><span id="校验码">校验码</span></h3><p>这里又有学问了。不过数电讲的不多，后面再补充。</p>
-<h4><span id="奇偶校验码">奇偶校验码</span></h4><p>只有<font title="red" color="red"><b>一位</b></font>校验码</p>
+<h3 id="Gray码"><a href="#Gray码" class="headerlink" title="Gray码"></a>Gray码</h3><h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><p>这里又有学问了。不过数电讲的不多，后面再补充。</p>
+<h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>只有<font title="red" color=red><b>一位</b></font>校验码</p>
 <p>奇(odd)校验码： <strong>信息码</strong>和<strong>校验码</strong>中的1为奇数。</p>
 <p>偶(even)校验码： <strong>信息码</strong>和<strong>校验码</strong>中的1为偶数。</p>
-<h3><span id="ascii码">ASCII码</span></h3><p>搞计算机相关的一定学过。此处略。</p>
+<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p>搞计算机相关的一定学过。此处略。</p>
 <hr>
-<h1><span id="逻辑代数">逻辑代数</span></h1><p><strong>逻辑变量：</strong> 只有0和1</p>
+<h1 id="逻辑代数"><a href="#逻辑代数" class="headerlink" title="逻辑代数"></a>逻辑代数</h1><p><strong>逻辑变量：</strong> 只有0和1</p>
 <p><strong>逻辑函数：</strong> 逻辑变量运算的结果</p>
 <p>3种表示方式：表达式、真值表、逻辑符号（电路符号）</p>
 
@@ -380,6 +347,34 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" class="category-chain-item">数字电路</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

@@ -24,10 +24,10 @@
 <meta property="og:description" content="直接修改~&#x2F;.bashrc有风险，应该有相对更安全的做法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-14T14:32:00.000Z">
-<meta property="article:modified_time" content="2024-10-26T11:37:04.490Z">
+<meta property="article:modified_time" content="2024-10-28T07:13:08.636Z">
 <meta property="article:author" content="Levski-Williams">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="bash">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -293,7 +293,7 @@
             
               <div class="markdown-body">
                 
-                <h1><span id="bashrc干什么">.bashrc干什么</span></h1><p>我们谈论的是Linux系统。Unix类系统也可以参考，但Windows系统就别看了。</p>
+                <h1 id="bashrc干什么"><a href="#bashrc干什么" class="headerlink" title=".bashrc干什么"></a>.bashrc干什么</h1><p>我们谈论的是Linux系统。Unix类系统也可以参考，但Windows系统就别看了。</p>
 <p>如果我们用<code>ls -a</code>命令查看用户主目录下的文件，我们可以发现有4个带”bash”的文件：</p>
 <ul>
 <li><code>.bashrc</code>：非登录Session初始化时执行的配置。</li>
@@ -322,7 +322,7 @@ end
     end
         style ide2 <span class="token property">fill:#f0e518, font-size:12</span>
 </code></pre></p>
-<h1><span id="该不该直接改bashrc">该不该直接改.bashrc</span></h1><p>如果要加环境变量，网上一般是让改<code>.bashrc</code>。为什么？因为在<code>.bash_profile</code>里一般是引用了<code>.bashrc</code>的。</p>
+<h1 id="该不该直接改-bashrc"><a href="#该不该直接改-bashrc" class="headerlink" title="该不该直接改.bashrc"></a>该不该直接改.bashrc</h1><p>如果要加环境变量，网上一般是让改<code>.bashrc</code>。为什么？因为在<code>.bash_profile</code>里一般是引用了<code>.bashrc</code>的。</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># .bash_profile</span>
 
 <span class="token comment"># Get the aliases and functions</span>
@@ -337,7 +337,7 @@ end
 <span class="token builtin class-name">export</span> <span class="token environment constant">PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>这也就带来了一个问题，如果直接改<code>.bashrc</code>，一旦改出了一些严重的问题，就可能导致无法登录的情况。所以不推荐直接改<code>.bashrc</code></p>
 <p>那么，有没有安全一点的方法？</p>
-<h1><span id="更安全的方法">更安全的方法</span></h1><p>当然有，只不过可能有点麻烦。</p>
+<h1 id="更安全的方法"><a href="#更安全的方法" class="headerlink" title="更安全的方法"></a>更安全的方法</h1><p>当然有，只不过可能有点麻烦。</p>
 <!-- ## 1. 最安全，修改简单，使用麻烦 -->
 <p>不去修改<code>.bashrc</code>，而是把你需要的环境变量什么的写到一个新的文件里。每次需要运行的时候，<code>source</code>你新写的那个文件。</p>
 <p>比如我需要加一些环境变量。那么我把环境变量写到一个叫作<code>.mybashrc</code>的全新的文件里。然后<strong>每次</strong>我登录的时候，就执行：
@@ -345,7 +345,7 @@ end
 <p>最安全，因为根本没有改<code>.bashrc</code>、<code>.bash_profile</code>。而且如果你改的环境变量有问题，退出之后重新登录就好了。</p>
 <p>只不过有点麻烦，因为每次登录都需要<code>source</code>一下。</p>
 <p>鱼和熊掌不可兼得，要安全只能牺牲方便。</p>
-<h2><span id="牺牲一小点安全的折中方法">牺牲一小点安全的折中方法</span></h2><p><strong>注：</strong><font color="red"><b>做下面的操作时一定要写对</b></font></p>
+<h2 id="牺牲一小点安全的折中方法"><a href="#牺牲一小点安全的折中方法" class="headerlink" title="牺牲一小点安全的折中方法"></a>牺牲一小点安全的折中方法</h2><p><strong>注：</strong><font color=red><b>做下面的操作时一定要写对</b></font></p>
 <p>有一个折中的方法，就是在<code>.bash_profile</code>里加入判断逻辑，每次登录时选择一下是否运行<code>.bashrc</code>。比如在<code>.bash_profile</code>末尾加入这些指令：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">read</span> <span class="token parameter variable">-t</span> <span class="token number">10</span> <span class="token parameter variable">-p</span> <span class="token string">"10秒倒计时，是否载入.bashrc? [Y/n]: "</span> var
 <span class="token assign-left variable">var</span><span class="token operator">=</span><span class="token variable">$&#123;var<span class="token operator">:-</span>"yes"&#125;</span>
@@ -363,7 +363,7 @@ end
 set-option <span class="token parameter variable">-g</span> default-shell <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure></p>
 <p>（但你这不是需要改<code>.bash_profile</code>文件吗？</p>
 <p>（所以这段只针对有一定能力的人</p>
-<h1><span id="一些杂谈">一些杂谈</span></h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuyujin1997/article/details/104663726">bashrc中的rc是什么含义？</a></p>
+<h1 id="一些杂谈"><a href="#一些杂谈" class="headerlink" title="一些杂谈"></a>一些杂谈</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wuyujin1997/article/details/104663726">bashrc中的rc是什么含义？</a></p>
 
                 
               </div>
@@ -397,9 +397,9 @@ set-option <span class="token parameter variable">-g</span> default-shell <span 
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
-      
         <a href="/tags/bash/" class="print-no-link">#bash</a>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
       
     </div>
   

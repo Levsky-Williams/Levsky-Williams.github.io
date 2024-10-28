@@ -295,7 +295,7 @@
             
               <div class="markdown-body">
                 
-                <h1><span id="fork">fork</span></h1><p>用于创建子进程。</p>
+                <h1 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h1><p>用于创建子进程。</p>
 <p>由fork创建的新进程被称为子进程（child process）。fork函数被调用一次，但返回两次。</p>
 <ol>
 <li>在父进程中，fork返回新创建子进程的进程ID。</li>
@@ -328,14 +328,14 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>其结果应该如下：(父进程和子进程之间没有固定的先后顺序，看运气)
-<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404281552465.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202404281552465.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>如果画个进程运行图，应该是这样：</p>
 <pre><code class="mermaid">%%&#123; init: &#123; 'flowchart': &#123; 'curve': 'linear' &#125; &#125; &#125;%%
 flowchart LR
-	classDef main fill:#f96
-	classDef sub1 fill:#56b800
-	classDef sub2 fill:#7abceb
-	classDef sub3 fill:#ebe01a
+	classDef main <span class="token property">fill:#f96</span>
+	classDef sub1 <span class="token property">fill:#56b800</span>
+	classDef sub2 <span class="token property">fill:#7abceb</span>
+	classDef sub3 <span class="token property">fill:#ebe01a</span>
     root(root):::main-->a(fork)
     a:::main-->c((dad)):::main
 	c-->d(fork):::main
@@ -347,12 +347,12 @@ flowchart LR
 	g-->i((son)):::sub3</code></pre>
 <p>流程如下：</p>
 <ol>
-<li>程序从main进入，此时的身份我们假设为<font color="orange"><b>root</b></font>。</li>
-<li>当运行到<code>fork</code>时，产生一个子进程<font color="#56b800"><b>sub1</b></font>(此时<code>cnt=1</code>)。
+<li>程序从main进入，此时的身份我们假设为<font color=orange><b>root</b></font>。</li>
+<li>当运行到<code>fork</code>时，产生一个子进程<font color=#56b800><b>sub1</b></font>(此时<code>cnt=1</code>)。
 两个进程都向后运行。父进程无其它输出，子进程输出<code>Son</code></li>
-<li><font color="orange"><b>root</b></font>和<font color="#56b800"><b>sub1</b></font>都进入下一轮循环，
-此时<code>cnt=2</code>。这意味着<font color="orange"><b>root</b></font>和<font color="#56b800"><b>sub1</b></font>都会进行一次<code>fork</code>，
-分别产生<font color="#ebe01a"><b>sub2</b></font>和<font color="#7abceb"><b>sub3</b></font>。</li>
+<li><font color=orange><b>root</b></font>和<font color=#56b800><b>sub1</b></font>都进入下一轮循环，
+此时<code>cnt=2</code>。这意味着<font color=orange><b>root</b></font>和<font color=#56b800><b>sub1</b></font>都会进行一次<code>fork</code>，
+分别产生<font color=#ebe01a><b>sub2</b></font>和<font color=#7abceb><b>sub3</b></font>。</li>
 </ol>
 
                 

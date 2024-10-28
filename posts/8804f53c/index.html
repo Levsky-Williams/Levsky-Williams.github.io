@@ -292,13 +292,13 @@
             
               <div class="markdown-body">
                 
-                <h1><span id="版本库中的后悔药">版本库中的后悔药</span></h1><h2><span id="git-commit-amend">git commit —amend</span></h2><h2><span id="git-revert-id">git revert id</span></h2><p>回到第<code>id</code>次提交，但是是用提交一个新的分支的方式</p>
-<h2><span id="git-reset-id">git reset id</span></h2><p><code>git reset id</code> 命令会直接删除版本库中的一次commit，<code>id</code>是你想要回到的那个版本。
+                <h1 id="版本库中的后悔药"><a href="#版本库中的后悔药" class="headerlink" title="版本库中的后悔药"></a>版本库中的后悔药</h1><h2 id="git-commit-—amend"><a href="#git-commit-—amend" class="headerlink" title="git commit —amend"></a>git commit —amend</h2><h2 id="git-revert-id"><a href="#git-revert-id" class="headerlink" title="git revert id"></a>git revert id</h2><p>回到第<code>id</code>次提交，但是是用提交一个新的分支的方式</p>
+<h2 id="git-reset-id"><a href="#git-reset-id" class="headerlink" title="git reset id"></a>git reset id</h2><p><code>git reset id</code> 命令会直接删除版本库中的一次commit，<code>id</code>是你想要回到的那个版本。
 其有3个参数可选：</p>
 <ol>
 <li><code>--soft</code>：将你删除的这次commit在版本库中的文件放到<strong>工作区</strong>和<strong>暂存区</strong></li>
 <li><code>--mixed</code>（默认）：将你删除的这次commit在版本库中的文件放仅到<strong>工作区</strong></li>
-<li><code>--hard</code>（<font color="red"><b>危险</b></font>）：直接删除，在提交<code>id</code>之后的所有修改永远丢失！</li>
+<li><code>--hard</code>（<font color=red><b>危险</b></font>）：直接删除，在提交<code>id</code>之后的所有修改永远丢失！</li>
 </ol>
 <p>如果第一次提交的时候，没有在gitignore文件中添加忽略文件，那么这些文件（目录也是文件）就会被git跟踪。
 此时如果想让git取消对一些文件的跟踪，可以用如下命令：

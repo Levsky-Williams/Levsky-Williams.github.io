@@ -24,7 +24,7 @@
 <meta property="og:description" content="这是显示在首页的概述，正文内容均会被隐藏。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-01T15:39:00.000Z">
-<meta property="article:modified_time" content="2024-05-02T11:32:50.715Z">
+<meta property="article:modified_time" content="2024-10-28T07:13:33.869Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="tips">
@@ -294,9 +294,9 @@
             
               <div class="markdown-body">
                 
-                <h1><span id="系统环境">系统环境</span></h1><p>CentOS 7，无网络连接，无sudo权限</p>
+                <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><p>CentOS 7，无网络连接，无sudo权限</p>
 <p>参考了官方网站的<a target="_blank" rel="noopener" href="https://openfoam.org/download/source/">安装指南</a></p>
-<h1><span id="第1步安装依赖">第1步，安装依赖</span></h1><div class="table-container">
+<h1 id="第1步，安装依赖"><a href="#第1步，安装依赖" class="headerlink" title="第1步，安装依赖"></a>第1步，安装依赖</h1><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -338,7 +338,7 @@
 </tbody>
 </table>
 </div>
-<h2><span id="安装flex-废弃">安装FLEX-废弃</span></h2><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> flex-2.6.4.tar.gz
+<h2 id="安装FLEX-废弃"><a href="#安装FLEX-废弃" class="headerlink" title="安装FLEX-废弃"></a>安装FLEX-废弃</h2><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> flex-2.6.4.tar.gz
 <span class="token builtin class-name">cd</span> flex-2.6.4
 <span class="token assign-left variable">install_to</span><span class="token operator">=</span><span class="token string">"需要安装到的绝对路径"</span>
 ./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>
@@ -348,7 +348,7 @@
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/lib:<span class="token variable">$&#123;LD_LIBRARY_PATH&#125;</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/lib:<span class="token variable">$&#123;LIBRARY_PATH&#125;</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">CPATH</span><span class="token operator">=</span><span class="token variable">$&#123;install_to&#125;</span>/include:<span class="token variable">$&#123;CPATH&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-<h1><span id="第2步下载源码">第2步，下载源码</span></h1><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://githubfast.com/OpenFOAM/OpenFOAM-11.git
+<h1 id="第2步，下载源码"><a href="#第2步，下载源码" class="headerlink" title="第2步，下载源码"></a>第2步，下载源码</h1><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://githubfast.com/OpenFOAM/OpenFOAM-11.git
 <span class="token function">git</span> clone https://githubfast.com/OpenFOAM/ThirdParty-11.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 <p>官网上给的教程中，安装位置默认在<code>~/OpenFOAM/</code>下面，并且源码也在此目录中。
 如果需要更改安装路径，就需要更改<code>FOAM_INIT_DIR</code>变量的值</p>
@@ -371,7 +371,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/article/" class="category-chain-item">article</a>
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
   
   
 
