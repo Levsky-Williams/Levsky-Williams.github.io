@@ -4,33 +4,6 @@
   
   
   <entry>
-    <title>Excel 基础+进阶（未完）</title>
-    <link href="/posts/0/"/>
-    <url>/posts/0/</url>
-    
-    <content type="html"><![CDATA[<h1 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h1><p><code>SUMPRODUCT</code>：求多个数组对应元素乘积之和（向量点乘）<code>MMULT</code>：两个矩阵相乘</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>article</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>default</tag>
-      
-      <tag>未完</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>动态规划</title>
     <link href="/posts/a80d0031/"/>
     <url>/posts/a80d0031/</url>

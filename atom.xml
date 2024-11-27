@@ -6,7 +6,7 @@
   <link href="https://levsky-williams.top/atom.xml" rel="self"/>
   
   <link href="https://levsky-williams.top/"/>
-  <updated>2024-11-25T07:11:45.537Z</updated>
+  <updated>2024-11-23T13:47:09.075Z</updated>
   <id>https://levsky-williams.top/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Excel 基础+进阶（未完）</title>
-    <link href="https://levsky-williams.top/posts/0/"/>
-    <id>https://levsky-williams.top/posts/0/</id>
-    <published>2024-11-23T12:58:00.000Z</published>
-    <updated>2024-11-25T07:11:45.537Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h1><p><code>SUMPRODUCT</code>：求多个数组对应元素乘积之和（向量点乘）<code>MMULT</code>：两个矩阵相乘</p>]]></content>
-    
-    
-    <summary type="html">office 还需要学？不是拿来就会用？那是我们还不会用。</summary>
-    
-    
-    
-    <category term="article" scheme="https://levsky-williams.top/categories/article/"/>
-    
-    
-    <category term="default" scheme="https://levsky-williams.top/tags/default/"/>
-    
-    <category term="未完" scheme="https://levsky-williams.top/tags/%E6%9C%AA%E5%AE%8C/"/>
-    
-  </entry>
   
   <entry>
     <title>动态规划</title>
