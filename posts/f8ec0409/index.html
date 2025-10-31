@@ -1,0 +1,1271 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Hudi.svg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Levski-Williams">
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="如标题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scoop,winget等的配置">
+<meta property="og:url" content="https://levsky-williams.top/posts/f8ec0409/index.html">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
+<meta property="og:description" content="如标题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-16T18:10:00.000Z">
+<meta property="article:modified_time" content="2025-10-31T20:54:37.339Z">
+<meta property="article:author" content="Levski-Williams">
+<meta property="article:tag" content="default">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Scoop,winget等的配置 - Левский Уильямс の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fliud.custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Левский Уильямс の 博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Levsky-Williams</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Scoop,winget等的配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-16 18:10" pubdate>
+          2024年12月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Scoop,winget等的配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Winget"><a href="#Winget" class="headerlink" title="Winget"></a>Winget</h1><p><code>winget settings</code>可以打开设置json文件。其中与安装有关的部分如下</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+	...
+	
+<span class="token property">"installBehavior"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"defaultInstallRoot"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span>
+        <span class="token property">"portablePackageUserRoot"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span>
+        <span class="token property">"portablePackageMachineRoot"</span><span class="token operator">:</span> <span class="token string">"..."</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+
+    ...
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>第1个是默认的安装路径，但我自己用下来不太实用，还不如用<code>-i</code>参数图形化安装。<br>第2个和第3个参数有用，安装一些直接运行的软件（如wget）时就会用这个参数。</p>
+<h1 id="Scoop"><a href="#Scoop" class="headerlink" title="Scoop"></a>Scoop</h1><p>Scoop 修改其根目录，只需要新建系统级环境变量 <code>SCOOP</code>，之后再用脚本安装即可。</p>
+<details>
+<summary>ps1脚本内容如下：</summary>
+<figure><div class="code-wrapper"><pre class="line-numbers language-ps1" data-language="ps1">
+<code class="language-ps1"># Issue Tracker: https://github.com/ScoopInstaller/Install/issues
+# Unlicense License:
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <http://unlicense.org/>
+
+<p>&lt;#<br>.SYNOPSIS<br>    Scoop installer.<br>.DESCRIPTION<br>    The installer of Scoop. For details please check the website and wiki.<br>.PARAMETER ScoopDir<br>    Specifies Scoop root path.<br>    If not specified, Scoop will be installed to ‘$env:USERPROFILE\scoop’.<br>.PARAMETER ScoopGlobalDir<br>    Specifies directory to store global apps.<br>    If not specified, global apps will be installed to ‘$env:ProgramData\scoop’.<br>.PARAMETER ScoopCacheDir<br>    Specifies cache directory.<br>    If not specified, caches will be downloaded to ‘$ScoopDir\cache’.<br>.PARAMETER NoProxy<br>    Bypass system proxy during the installation.<br>.PARAMETER Proxy<br>    Specifies proxy to use during the installation.<br>.PARAMETER ProxyCredential<br>    Specifies credential for the given proxy.<br>.PARAMETER ProxyUseDefaultCredentials<br>    Use the credentials of the current user for the proxy server that is specified by the -Proxy parameter.<br>.PARAMETER RunAsAdmin<br>    Force to run the installer as administrator.<br>.LINK<br>    <a target="_blank" rel="noopener external nofollow noreferrer" href="https://scoop.sh/">https://scoop.sh</a><br>.LINK<br>    <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ScoopInstaller/Scoop/wiki">https://github.com/ScoopInstaller/Scoop/wiki</a><br>#&gt;<br>param(<br>    [String] $ScoopDir,<br>    [String] $ScoopGlobalDir,<br>    [String] $ScoopCacheDir,<br>    [Switch] $NoProxy,<br>    [Uri] $Proxy,<br>    [System.Management.Automation.PSCredential] $ProxyCredential,<br>    [Switch] $ProxyUseDefaultCredentials,<br>    [Switch] $RunAsAdmin<br>)</p>
+<h1 id="Disable-StrictMode-in-this-script"><a href="#Disable-StrictMode-in-this-script" class="headerlink" title="Disable StrictMode in this script"></a>Disable StrictMode in this script</h1><p>Set-StrictMode -Off</p>
+<p>function Write-InstallInfo {<br>    param(<br>        [Parameter(Mandatory &#x3D; $True, Position &#x3D; 0)]<br>        [String] $String,<br>        [Parameter(Mandatory &#x3D; $False, Position &#x3D; 1)]<br>        [System.ConsoleColor] $ForegroundColor &#x3D; $host.UI.RawUI.ForegroundColor<br>    )</p>
+<pre class="language-none"><code class="language-none">$backup = $host.UI.RawUI.ForegroundColor
+
+if ($ForegroundColor -ne $host.UI.RawUI.ForegroundColor) {
+    $host.UI.RawUI.ForegroundColor = $ForegroundColor
+}
+
+Write-Output &quot;$String&quot;
+
+$host.UI.RawUI.ForegroundColor = $backup
+</code></pre></div></figure>
+<p>}</p>
+<p>function Deny-Install {<br>    param(<br>        [String] $message,<br>        [Int] $errorCode &#x3D; 1<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">Write-InstallInfo -String $message -ForegroundColor DarkRed
+Write-InstallInfo &#39;Abort.&#39;
+
+# Don&#39;t abort if invoked with iex that would close the PS session
+if ($IS_EXECUTED_FROM_IEX) {
+    break
+} else {
+    exit $errorCode
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Test-LanguageMode {<br>    if ($ExecutionContext.SessionState.LanguageMode -ne ‘FullLanguage’) {<br>        Write-Output ‘Scoop requires PowerShell FullLanguage mode to run, current PowerShell environment is restricted.’<br>        Write-Output ‘Abort.’</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">    if ($IS_EXECUTED_FROM_IEX) {
+        break
+    } else {
+        exit $errorCode
+    }
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Test-ValidateParameter {<br>    if ($null -eq $Proxy -and ($null -ne $ProxyCredential -or $ProxyUseDefaultCredentials)) {<br>        Deny-Install ‘Provide a valid proxy URI for the -Proxy parameter when using the -ProxyCredential or -ProxyUseDefaultCredentials.’<br>    }</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">if ($ProxyUseDefaultCredentials -and $null -ne $ProxyCredential) {
+    Deny-Install &quot;ProxyUseDefaultCredentials is conflict with ProxyCredential. Don&#39;t use the -ProxyCredential and -ProxyUseDefaultCredentials together.&quot;
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Test-IsAdministrator {<br>    return ([Security.Principal.WindowsPrincipal]<code>             [Security.Principal.WindowsIdentity]::GetCurrent()</code><br>    ).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)<br>}</p>
+<p>function Test-Prerequisite {<br>    # Scoop requires PowerShell 5 at least<br>    if (($PSVersionTable.PSVersion.Major) -lt 5) {<br>        Deny-Install ‘PowerShell 5 or later is required to run Scoop. Go to <a target="_blank" rel="noopener external nofollow noreferrer" href="https://microsoft.com/powershell">https://microsoft.com/powershell</a> to get the latest version of PowerShell.’<br>    }</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none"># Scoop requires TLS 1.2 SecurityProtocol, which exists in .NET Framework 4.5+
+if ([System.Enum]::GetNames([System.Net.SecurityProtocolType]) -notcontains &#39;Tls12&#39;) {
+    Deny-Install &#39;Scoop requires .NET Framework 4.5+ to work. Go to https://microsoft.com/net/download to get the latest version of .NET Framework.&#39;
+}
+
+# Ensure Robocopy.exe is accessible
+if (!(Test-CommandAvailable(&#39;robocopy&#39;))) {
+    Deny-Install &quot;Scoop requires &#39;C:\Windows\System32\Robocopy.exe&#39; to work. Please make sure &#39;C:\Windows\System32&#39; is in your PATH.&quot;
+}
+
+# Detect if RunAsAdministrator, there is no need to run as administrator when installing Scoop
+if (!$RunAsAdmin -and (Test-IsAdministrator)) {
+    # Exception: Windows Sandbox, GitHub Actions CI
+    $exception = ($env:USERNAME -eq &#39;WDAGUtilityAccount&#39;) -or ($env:GITHUB_ACTIONS -eq &#39;true&#39; -and $env:CI -eq &#39;true&#39;)
+    if (!$exception) {
+        Deny-Install &#39;Running the installer as administrator is disabled by default, see https://github.com/ScoopInstaller/Install#for-admin for details.&#39;
+    }
+}
+
+# Show notification to change execution policy
+$allowedExecutionPolicy = @(&#39;Unrestricted&#39;, &#39;RemoteSigned&#39;, &#39;ByPass&#39;)
+if ((Get-ExecutionPolicy).ToString() -notin $allowedExecutionPolicy) {
+    Deny-Install &quot;PowerShell requires an execution policy in [$($allowedExecutionPolicy -join &#39;, &#39;)] to run Scoop. For example, to set the execution policy to &#39;RemoteSigned&#39; please run &#39;Set-ExecutionPolicy RemoteSigned -Scope CurrentUser&#39;.&quot;
+}
+
+# Test if scoop is installed, by checking if scoop command exists.
+if (Test-CommandAvailable(&#39;scoop&#39;)) {
+    Deny-Install &quot;Scoop is already installed. Run &#39;scoop update&#39; to get the latest version.&quot;
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Optimize-SecurityProtocol {<br>    # .NET Framework 4.7+ has a default security protocol called ‘SystemDefault’,<br>    # which allows the operating system to choose the best protocol to use.<br>    # If SecurityProtocolType contains ‘SystemDefault’ (means .NET4.7+ detected)<br>    # and the value of SecurityProtocol is ‘SystemDefault’, just do nothing on SecurityProtocol,<br>    # ‘SystemDefault’ will use TLS 1.2 if the webrequest requires.<br>    $isNewerNetFramework &#x3D; ([System.Enum]::GetNames([System.Net.SecurityProtocolType]) -contains ‘SystemDefault’)<br>    $isSystemDefault &#x3D; ([System.Net.ServicePointManager]::SecurityProtocol.Equals([System.Net.SecurityProtocolType]::SystemDefault))</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none"># If not, change it to support TLS 1.2
+if (!($isNewerNetFramework -and $isSystemDefault)) {
+    # Set to TLS 1.2 (3072), then TLS 1.1 (768), and TLS 1.0 (192). Ssl3 has been superseded,
+    # https://docs.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=netframework-4.5
+    [System.Net.ServicePointManager]::SecurityProtocol = 3072 -bor 768 -bor 192
+    Write-Verbose &#39;SecurityProtocol has been updated to support TLS 1.2&#39;
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Get-Downloader {<br>    $downloadSession &#x3D; New-Object System.Net.WebClient</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none"># Set proxy to null if NoProxy is specificed
+if ($NoProxy) {
+    $downloadSession.Proxy = $null
+} elseif ($Proxy) {
+    # Prepend protocol if not provided
+    if (!$Proxy.IsAbsoluteUri) {
+        $Proxy = New-Object System.Uri(&#39;http://&#39; + $Proxy.OriginalString)
+    }
+
+    $Proxy = New-Object System.Net.WebProxy($Proxy)
+
+    if ($null -ne $ProxyCredential) {
+        $Proxy.Credentials = $ProxyCredential.GetNetworkCredential()
+    } elseif ($ProxyUseDefaultCredentials) {
+        $Proxy.UseDefaultCredentials = $true
+    }
+
+    $downloadSession.Proxy = $Proxy
+}
+
+return $downloadSession
+</code></pre></div></figure>
+<p>}</p>
+<p>function Test-isFileLocked {<br>    param(<br>        [String] $path<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">$file = New-Object System.IO.FileInfo $path
+
+if (!(Test-Path $path)) {
+    return $false
+}
+
+try {
+    $stream = $file.Open(
+        [System.IO.FileMode]::Open,
+        [System.IO.FileAccess]::ReadWrite,
+        [System.IO.FileShare]::None
+    )
+    if ($stream) {
+        $stream.Close()
+    }
+    return $false
+} catch {
+    # The file is locked by a process.
+    return $true
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Expand-ZipArchive {<br>    param(<br>        [String] $path,<br>        [String] $to<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">if (!(Test-Path $path)) {
+    Deny-Install &quot;Unzip failed: can&#39;t find $path to unzip.&quot;
+}
+
+# Check if the zip file is locked, by antivirus software for example
+$retries = 0
+while ($retries -le 10) {
+    if ($retries -eq 10) {
+        Deny-Install &quot;Unzip failed: can&#39;t unzip because a process is locking the file.&quot;
+    }
+    if (Test-isFileLocked $path) {
+        Write-InstallInfo &quot;Waiting for $path to be unlocked by another process... ($retries/10)&quot;
+        $retries++
+        Start-Sleep -Seconds 2
+    } else {
+        break
+    }
+}
+
+# Workaround to suspend Expand-Archive verbose output,
+# upstream issue: https://github.com/PowerShell/Microsoft.PowerShell.Archive/issues/98
+$oldVerbosePreference = $VerbosePreference
+$global:VerbosePreference = &#39;SilentlyContinue&#39;
+
+# Disable progress bar to gain performance
+$oldProgressPreference = $ProgressPreference
+$global:ProgressPreference = &#39;SilentlyContinue&#39;
+
+# PowerShell 5+: use Expand-Archive to extract zip files
+Microsoft.PowerShell.Archive\Expand-Archive -Path $path -DestinationPath $to -Force
+$global:VerbosePreference = $oldVerbosePreference
+$global:ProgressPreference = $oldProgressPreference
+</code></pre></div></figure>
+<p>}</p>
+<p>function Out-UTF8File {<br>    param(<br>        [Parameter(Mandatory &#x3D; $True, Position &#x3D; 0)]<br>        [Alias(‘Path’)]<br>        [String] $FilePath,<br>        [Switch] $Append,<br>        [Switch] $NoNewLine,<br>        [Parameter(ValueFromPipeline &#x3D; $True)]<br>        [PSObject] $InputObject<br>    )<br>    process {<br>        if ($Append) {<br>            [System.IO.File]::AppendAllText($FilePath, $InputObject)<br>        } else {<br>            if (!$NoNewLine) {<br>                # Ref: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://stackoverflow.com/questions/5596982">https://stackoverflow.com/questions/5596982</a><br>                # Performance Note: <code>WriteAllLines</code> throttles memory usage while<br>                # <code>WriteAllText</code> needs to keep the complete string in memory.<br>                [System.IO.File]::WriteAllLines($FilePath, $InputObject)<br>            } else {<br>                # However <code>WriteAllText</code> does not add ending newline.<br>                [System.IO.File]::WriteAllText($FilePath, $InputObject)<br>            }<br>        }<br>    }<br>}</p>
+<p>function Import-ScoopShim {<br>    Write-InstallInfo ‘Creating shim…’<br>    # The scoop executable<br>    $path &#x3D; “$SCOOP_APP_DIR\bin\scoop.ps1”</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">if (!(Test-Path $SCOOP_SHIMS_DIR)) {
+    New-Item -Type Directory $SCOOP_SHIMS_DIR | Out-Null
+}
+
+# The scoop shim
+$shim = &quot;$SCOOP_SHIMS_DIR\scoop&quot;
+
+# Convert to relative path
+Push-Location $SCOOP_SHIMS_DIR
+$relativePath = Resolve-Path -Relative $path
+Pop-Location
+$absolutePath = Resolve-Path $path
+
+# if $path points to another drive resolve-path prepends .\ which could break shims
+$ps1text = if ($relativePath -match &#39;^(\.\\)?\w:.*$&#39;) {
+    @(
+        &quot;# $absolutePath&quot;,
+        &quot;`$path = `&quot;$path`&quot;&quot;,
+        &quot;if (`$MyInvocation.ExpectingInput) { `$input | &amp; `$path $arg @args } else { &amp; `$path $arg @args }&quot;,
+        &quot;exit `$LASTEXITCODE&quot;
+    )
+} else {
+    @(
+        &quot;# $absolutePath&quot;,
+        &quot;`$path = Join-Path `$PSScriptRoot `&quot;$relativePath`&quot;&quot;,
+        &quot;if (`$MyInvocation.ExpectingInput) { `$input | &amp; `$path $arg @args } else { &amp; `$path $arg @args }&quot;,
+        &quot;exit `$LASTEXITCODE&quot;
+    )
+}
+$ps1text -join &quot;`r`n&quot; | Out-UTF8File &quot;$shim.ps1&quot;
+
+# make ps1 accessible from cmd.exe
+@(
+    &quot;@rem $absolutePath&quot;,
+    &#39;@echo off&#39;,
+    &#39;setlocal enabledelayedexpansion&#39;,
+    &#39;set args=%*&#39;,
+    &#39;:: replace problem characters in arguments&#39;,
+    &quot;set args=%args:`&quot;=&#39;%&quot;,
+    &quot;set args=%args:(=``(%&quot;,
+    &quot;set args=%args:)=``)%&quot;,
+    &quot;set invalid=`&quot;=&#39;&quot;,
+    &#39;if !args! == !invalid! ( set args= )&#39;,
+    &#39;where /q pwsh.exe&#39;,
+    &#39;if %errorlevel% equ 0 (&#39;,
+    &quot;    pwsh -noprofile -ex unrestricted -file `&quot;$absolutePath`&quot; $arg %args%&quot;,
+    &#39;) else (&#39;,
+    &quot;    powershell -noprofile -ex unrestricted -file `&quot;$absolutePath`&quot; $arg %args%&quot;,
+    &#39;)&#39;
+) -join &quot;`r`n&quot; | Out-UTF8File &quot;$shim.cmd&quot;
+
+@(
+    &#39;#!/bin/sh&#39;,
+    &quot;# $absolutePath&quot;,
+    &#39;if command -v pwsh.exe &gt; /dev/null 2&gt;&amp;1; then&#39;,
+    &quot;    pwsh.exe -noprofile -ex unrestricted -file `&quot;$absolutePath`&quot; $arg `&quot;$@`&quot;&quot;,
+    &#39;else&#39;,
+    &quot;    powershell.exe -noprofile -ex unrestricted -file `&quot;$absolutePath`&quot; $arg `&quot;$@`&quot;&quot;,
+    &#39;fi&#39;
+) -join &quot;`n&quot; | Out-UTF8File $shim -NoNewLine
+</code></pre></div></figure>
+<p>}</p>
+<p>function Get-Env {<br>    param(<br>        [String] $name,<br>        [Switch] $global<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">$RegisterKey = if ($global) {
+    Get-Item -Path &#39;HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager&#39;
+} else {
+    Get-Item -Path &#39;HKCU:&#39;
+}
+
+$EnvRegisterKey = $RegisterKey.OpenSubKey(&#39;Environment&#39;)
+$RegistryValueOption = [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames
+$EnvRegisterKey.GetValue($name, $null, $RegistryValueOption)
+</code></pre></div></figure>
+<p>}</p>
+<p>function Publish-Env {<br>    if (-not (‘Win32.NativeMethods’ -as [Type])) {<br>        Add-Type -Namespace Win32 -Name NativeMethods -MemberDefinition @’<br>[DllImport(“user32.dll”, SetLastError &#x3D; true, CharSet &#x3D; CharSet.Auto)]<br>public static extern IntPtr SendMessageTimeout(<br>    IntPtr hWnd, uint Msg, UIntPtr wParam, string lParam,<br>    uint fuFlags, uint uTimeout, out UIntPtr lpdwResult);<br>‘@<br>    }</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">$HWND_BROADCAST = [IntPtr] 0xffff
+$WM_SETTINGCHANGE = 0x1a
+$result = [UIntPtr]::Zero
+
+[Win32.Nativemethods]::SendMessageTimeout($HWND_BROADCAST,
+    $WM_SETTINGCHANGE,
+    [UIntPtr]::Zero,
+    &#39;Environment&#39;,
+    2,
+    5000,
+    [ref] $result
+) | Out-Null
+</code></pre></div></figure>
+<p>}</p>
+<p>function Write-Env {<br>    param(<br>        [String] $name,<br>        [String] $val,<br>        [Switch] $global<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">$RegisterKey = if ($global) {
+    Get-Item -Path &#39;HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager&#39;
+} else {
+    Get-Item -Path &#39;HKCU:&#39;
+}
+
+$EnvRegisterKey = $RegisterKey.OpenSubKey(&#39;Environment&#39;, $true)
+if ($val -eq $null) {
+    $EnvRegisterKey.DeleteValue($name)
+} else {
+    $RegistryValueKind = if ($val.Contains(&#39;%&#39;)) {
+        [Microsoft.Win32.RegistryValueKind]::ExpandString
+    } elseif ($EnvRegisterKey.GetValue($name)) {
+        $EnvRegisterKey.GetValueKind($name)
+    } else {
+        [Microsoft.Win32.RegistryValueKind]::String
+    }
+    $EnvRegisterKey.SetValue($name, $val, $RegistryValueKind)
+}
+Publish-Env
+</code></pre></div></figure>
+<p>}</p>
+<p>function Add-ShimsDirToPath {<br>    # Get $env:PATH of current user<br>    $userEnvPath &#x3D; Get-Env ‘PATH’</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">if ($userEnvPath -notmatch [Regex]::Escape($SCOOP_SHIMS_DIR)) {
+    $h = (Get-PSProvider &#39;FileSystem&#39;).Home
+    if (!$h.EndsWith(&#39;\&#39;)) {
+        $h += &#39;\&#39;
+    }
+
+    if (!($h -eq &#39;\&#39;)) {
+        $friendlyPath = &quot;$SCOOP_SHIMS_DIR&quot; -Replace ([Regex]::Escape($h)), &#39;~\&#39;
+        Write-InstallInfo &quot;Adding $friendlyPath to your path.&quot;
+    } else {
+        Write-InstallInfo &quot;Adding $SCOOP_SHIMS_DIR to your path.&quot;
+    }
+
+    # For future sessions
+    Write-Env &#39;PATH&#39; &quot;$SCOOP_SHIMS_DIR;$userEnvPath&quot;
+    # For current session
+    $env:PATH = &quot;$SCOOP_SHIMS_DIR;$env:PATH&quot;
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Use-Config {<br>    if (!(Test-Path $SCOOP_CONFIG_FILE)) {<br>        return $null<br>    }</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">try {
+    return (Get-Content $SCOOP_CONFIG_FILE -Raw | ConvertFrom-Json -ErrorAction Stop)
+} catch {
+    Deny-Install &quot;ERROR loading $SCOOP_CONFIG_FILE`: $($_.Exception.Message)&quot;
+}
+</code></pre></div></figure>
+<p>}</p>
+<p>function Add-Config {<br>    param (<br>        [Parameter(Mandatory &#x3D; $True, Position &#x3D; 0)]<br>        [String] $Name,<br>        [Parameter(Mandatory &#x3D; $True, Position &#x3D; 1)]<br>        [String] $Value<br>    )</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">$scoopConfig = Use-Config
+
+if ($scoopConfig -is [System.Management.Automation.PSObject]) {
+    if ($Value -eq [bool]::TrueString -or $Value -eq [bool]::FalseString) {
+        $Value = [System.Convert]::ToBoolean($Value)
+    }
+    if ($null -eq $scoopConfig.$Name) {
+        $scoopConfig | Add-Member -MemberType NoteProperty -Name $Name -Value $Value
+    } else {
+        $scoopConfig.$Name = $Value
+    }
+} else {
+    $baseDir = Split-Path -Path $SCOOP_CONFIG_FILE
+    if (!(Test-Path $baseDir)) {
+        New-Item -Type Directory $baseDir | Out-Null
+    }
+
+    $scoopConfig = New-Object PSObject
+    $scoopConfig | Add-Member -MemberType NoteProperty -Name $Name -Value $Value
+}
+
+if ($null -eq $Value) {
+    $scoopConfig.PSObject.Properties.Remove($Name)
+}
+
+ConvertTo-Json $scoopConfig | Set-Content $SCOOP_CONFIG_FILE -Encoding ASCII
+return $scoopConfig
+</code></pre></div></figure>
+<p>}</p>
+<p>function Add-DefaultConfig {<br>    # If user-level SCOOP env not defined, save to root_path<br>    if (!(Get-Env ‘SCOOP’)) {<br>        if ($SCOOP_DIR -ne “$env:USERPROFILE\scoop”) {<br>            Write-Verbose “Adding config root_path: $SCOOP_DIR”<br>            Add-Config -Name ‘root_path’ -Value $SCOOP_DIR | Out-Null<br>        }<br>    }</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none"># Use system SCOOP_GLOBAL, or set system SCOOP_GLOBAL
+# with $env:SCOOP_GLOBAL if RunAsAdmin, otherwise save to global_path
+if (!(Get-Env &#39;SCOOP_GLOBAL&#39; -global)) {
+    if ((Test-IsAdministrator) -and $env:SCOOP_GLOBAL) {
+        Write-Verbose &quot;Setting System Environment Variable SCOOP_GLOBAL: $env:SCOOP_GLOBAL&quot;
+        [Environment]::SetEnvironmentVariable(&#39;SCOOP_GLOBAL&#39;, $env:SCOOP_GLOBAL, &#39;Machine&#39;)
+    } else {
+        if ($SCOOP_GLOBAL_DIR -ne &quot;$env:ProgramData\scoop&quot;) {
+            Write-Verbose &quot;Adding config global_path: $SCOOP_GLOBAL_DIR&quot;
+            Add-Config -Name &#39;global_path&#39; -Value $SCOOP_GLOBAL_DIR | Out-Null
+        }
+    }
+}
+
+# Use system SCOOP_CACHE, or set system SCOOP_CACHE
+# with $env:SCOOP_CACHE if RunAsAdmin, otherwise save to cache_path
+if (!(Get-Env &#39;SCOOP_CACHE&#39; -global)) {
+    if ((Test-IsAdministrator) -and $env:SCOOP_CACHE) {
+        Write-Verbose &quot;Setting System Environment Variable SCOOP_CACHE: $env:SCOOP_CACHE&quot;
+        [Environment]::SetEnvironmentVariable(&#39;SCOOP_CACHE&#39;, $env:SCOOP_CACHE, &#39;Machine&#39;)
+    } else {
+        if ($SCOOP_CACHE_DIR -ne &quot;$SCOOP_DIR\cache&quot;) {
+            Write-Verbose &quot;Adding config cache_path: $SCOOP_CACHE_DIR&quot;
+            Add-Config -Name &#39;cache_path&#39; -Value $SCOOP_CACHE_DIR | Out-Null
+        }
+    }
+}
+
+# save current datatime to last_update
+Add-Config -Name &#39;last_update&#39; -Value ([System.DateTime]::Now.ToString(&#39;o&#39;)) | Out-Null
+</code></pre></div></figure>
+<p>}</p>
+<p>function Test-CommandAvailable {<br>    param (<br>        [Parameter(Mandatory &#x3D; $True, Position &#x3D; 0)]<br>        [String] $Command<br>    )<br>    return [Boolean](Get-Command $Command -ErrorAction SilentlyContinue)<br>}</p>
+<p>function Install-Scoop {<br>    Write-InstallInfo ‘Initializing…’<br>    # Validate install parameters<br>    Test-ValidateParameter<br>    # Check prerequisites<br>    Test-Prerequisite<br>    # Enable TLS 1.2<br>    Optimize-SecurityProtocol</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none"># Download scoop from GitHub
+Write-InstallInfo &#39;Downloading...&#39;
+$downloader = Get-Downloader
+[bool]$downloadZipsRequired = $True
+
+if (Test-CommandAvailable(&#39;git&#39;)) {
+    $old_https = $env:HTTPS_PROXY
+    $old_http = $env:HTTP_PROXY
+    try {
+        if ($downloader.Proxy) {
+            #define env vars for git when behind a proxy
+            $Env:HTTP_PROXY = $downloader.Proxy.Address
+            $Env:HTTPS_PROXY = $downloader.Proxy.Address
+        }
+        Write-Verbose &quot;Cloning $SCOOP_PACKAGE_GIT_REPO to $SCOOP_APP_DIR&quot;
+        git clone -q $SCOOP_PACKAGE_GIT_REPO $SCOOP_APP_DIR
+        if (-Not $?) {
+            throw &#39;Cloning failed. Falling back to downloading zip files.&#39;
+        }
+        Write-Verbose &quot;Cloning $SCOOP_MAIN_BUCKET_GIT_REPO to $SCOOP_MAIN_BUCKET_DIR&quot;
+        git clone -q $SCOOP_MAIN_BUCKET_GIT_REPO $SCOOP_MAIN_BUCKET_DIR
+        if (-Not $?) {
+            throw &#39;Cloning failed. Falling back to downloading zip files.&#39;
+        }
+        $downloadZipsRequired = $False
+    } catch {
+        Write-Warning &quot;$($_.Exception.Message)&quot;
+        $Global:LastExitCode = 0
+    } finally {
+        $env:HTTPS_PROXY = $old_https
+        $env:HTTP_PROXY = $old_http
+    }
+}
+
+if ($downloadZipsRequired) {
+    # 1. download scoop
+    $scoopZipfile = &quot;$SCOOP_APP_DIR\scoop.zip&quot;
+    if (!(Test-Path $SCOOP_APP_DIR)) {
+        New-Item -Type Directory $SCOOP_APP_DIR | Out-Null
+    }
+    Write-Verbose &quot;Downloading $SCOOP_PACKAGE_REPO to $scoopZipfile&quot;
+    $downloader.downloadFile($SCOOP_PACKAGE_REPO, $scoopZipfile)
+    # 2. download scoop main bucket
+    $scoopMainZipfile = &quot;$SCOOP_MAIN_BUCKET_DIR\scoop-main.zip&quot;
+    if (!(Test-Path $SCOOP_MAIN_BUCKET_DIR)) {
+        New-Item -Type Directory $SCOOP_MAIN_BUCKET_DIR | Out-Null
+    }
+    Write-Verbose &quot;Downloading $SCOOP_MAIN_BUCKET_REPO to $scoopMainZipfile&quot;
+    $downloader.downloadFile($SCOOP_MAIN_BUCKET_REPO, $scoopMainZipfile)
+
+    # Extract files from downloaded zip
+    Write-InstallInfo &#39;Extracting...&#39;
+    # 1. extract scoop
+    $scoopUnzipTempDir = &quot;$SCOOP_APP_DIR\_tmp&quot;
+    Write-Verbose &quot;Extracting $scoopZipfile to $scoopUnzipTempDir&quot;
+    Expand-ZipArchive $scoopZipfile $scoopUnzipTempDir
+    Copy-Item &quot;$scoopUnzipTempDir\scoop-*\*&quot; $SCOOP_APP_DIR -Recurse -Force
+    # 2. extract scoop main bucket
+    $scoopMainUnzipTempDir = &quot;$SCOOP_MAIN_BUCKET_DIR\_tmp&quot;
+    Write-Verbose &quot;Extracting $scoopMainZipfile to $scoopMainUnzipTempDir&quot;
+    Expand-ZipArchive $scoopMainZipfile $scoopMainUnzipTempDir
+    Copy-Item &quot;$scoopMainUnzipTempDir\Main-*\*&quot; $SCOOP_MAIN_BUCKET_DIR -Recurse -Force
+
+    # Cleanup
+    Remove-Item $scoopUnzipTempDir -Recurse -Force
+    Remove-Item $scoopZipfile
+    Remove-Item $scoopMainUnzipTempDir -Recurse -Force
+    Remove-Item $scoopMainZipfile
+}
+# Create the scoop shim
+Import-ScoopShim
+# Finially ensure scoop shims is in the PATH
+Add-ShimsDirToPath
+# Setup initial configuration of Scoop
+Add-DefaultConfig
+
+Write-InstallInfo &#39;Scoop was installed successfully!&#39; -ForegroundColor DarkGreen
+Write-InstallInfo &quot;Type &#39;scoop help&#39; for instructions.&quot;
+</code></pre></div></figure>
+<p>}</p>
+<p>function Write-DebugInfo {<br>    param($BoundArgs)</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">Write-Verbose &#39;-------- PSBoundParameters --------&#39;
+$BoundArgs.GetEnumerator() | ForEach-Object { Write-Verbose $_ }
+Write-Verbose &#39;-------- Environment Variables --------&#39;
+Write-Verbose &quot;`$env:USERPROFILE: $env:USERPROFILE&quot;
+Write-Verbose &quot;`$env:ProgramData: $env:ProgramData&quot;
+Write-Verbose &quot;`$env:SCOOP: $env:SCOOP&quot;
+Write-Verbose &quot;`$env:SCOOP_CACHE: $SCOOP_CACHE&quot;
+Write-Verbose &quot;`$env:SCOOP_GLOBAL: $env:SCOOP_GLOBAL&quot;
+Write-Verbose &#39;-------- Selected Variables --------&#39;
+Write-Verbose &quot;SCOOP_DIR: $SCOOP_DIR&quot;
+Write-Verbose &quot;SCOOP_CACHE_DIR: $SCOOP_CACHE_DIR&quot;
+Write-Verbose &quot;SCOOP_GLOBAL_DIR: $SCOOP_GLOBAL_DIR&quot;
+Write-Verbose &quot;SCOOP_CONFIG_HOME: $SCOOP_CONFIG_HOME&quot;
+</code></pre></div></figure>
+<p>}</p>
+<h1 id="Prepare-variables"><a href="#Prepare-variables" class="headerlink" title="Prepare variables"></a>Prepare variables</h1><p>$IS_EXECUTED_FROM_IEX &#x3D; ($null -eq $MyInvocation.MyCommand.Path)</p>
+<h1 id="Abort-when-the-language-mode-is-restricted"><a href="#Abort-when-the-language-mode-is-restricted" class="headerlink" title="Abort when the language mode is restricted"></a>Abort when the language mode is restricted</h1><p>Test-LanguageMode</p>
+<h1 id="Scoop-root-directory"><a href="#Scoop-root-directory" class="headerlink" title="Scoop root directory"></a>Scoop root directory</h1><p>$SCOOP_DIR &#x3D; $ScoopDir, $env:SCOOP, “$env:USERPROFILE\scoop” | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
+<h1 id="Scoop-global-apps-directory"><a href="#Scoop-global-apps-directory" class="headerlink" title="Scoop global apps directory"></a>Scoop global apps directory</h1><p>$SCOOP_GLOBAL_DIR &#x3D; $ScoopGlobalDir, $env:SCOOP_GLOBAL, “$env:ProgramData\scoop” | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
+<h1 id="Scoop-cache-directory"><a href="#Scoop-cache-directory" class="headerlink" title="Scoop cache directory"></a>Scoop cache directory</h1><p>$SCOOP_CACHE_DIR &#x3D; $ScoopCacheDir, $env:SCOOP_CACHE, “$SCOOP_DIR\cache” | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
+<h1 id="Scoop-shims-directory"><a href="#Scoop-shims-directory" class="headerlink" title="Scoop shims directory"></a>Scoop shims directory</h1><p>$SCOOP_SHIMS_DIR &#x3D; “$SCOOP_DIR\shims”</p>
+<h1 id="Scoop-itself-directory"><a href="#Scoop-itself-directory" class="headerlink" title="Scoop itself directory"></a>Scoop itself directory</h1><p>$SCOOP_APP_DIR &#x3D; “$SCOOP_DIR\apps\scoop\current”</p>
+<h1 id="Scoop-main-bucket-directory"><a href="#Scoop-main-bucket-directory" class="headerlink" title="Scoop main bucket directory"></a>Scoop main bucket directory</h1><p>$SCOOP_MAIN_BUCKET_DIR &#x3D; “$SCOOP_DIR\buckets\main”</p>
+<h1 id="Scoop-config-file-location"><a href="#Scoop-config-file-location" class="headerlink" title="Scoop config file location"></a>Scoop config file location</h1><p>$SCOOP_CONFIG_HOME &#x3D; $env:XDG_CONFIG_HOME, “$env:USERPROFILE.config” | Select-Object -First 1<br>$SCOOP_CONFIG_FILE &#x3D; “$SCOOP_CONFIG_HOME\scoop\config.json”</p>
+<h1 id="TODO-Use-a-specific-version-of-Scoop-and-the-main-bucket"><a href="#TODO-Use-a-specific-version-of-Scoop-and-the-main-bucket" class="headerlink" title="TODO: Use a specific version of Scoop and the main bucket"></a>TODO: Use a specific version of Scoop and the main bucket</h1><p>$SCOOP_PACKAGE_REPO &#x3D; ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ScoopInstaller/Scoop/archive/master.zip">https://github.com/ScoopInstaller/Scoop/archive/master.zip</a>‘<br>$SCOOP_MAIN_BUCKET_REPO &#x3D; ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ScoopInstaller/Main/archive/master.zip">https://github.com/ScoopInstaller/Main/archive/master.zip</a>‘</p>
+<p>$SCOOP_PACKAGE_GIT_REPO &#x3D; ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ScoopInstaller/Scoop.git">https://github.com/ScoopInstaller/Scoop.git</a>‘<br>$SCOOP_MAIN_BUCKET_GIT_REPO &#x3D; ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ScoopInstaller/Main.git">https://github.com/ScoopInstaller/Main.git</a>‘</p>
+<h1 id="Quit-if-anything-goes-wrong"><a href="#Quit-if-anything-goes-wrong" class="headerlink" title="Quit if anything goes wrong"></a>Quit if anything goes wrong</h1><p>$oldErrorActionPreference &#x3D; $ErrorActionPreference<br>$ErrorActionPreference &#x3D; ‘Stop’</p>
+<h1 id="Logging-debug-info"><a href="#Logging-debug-info" class="headerlink" title="Logging debug info"></a>Logging debug info</h1><p>Write-DebugInfo $PSBoundParameters</p>
+<h1 id="Bootstrap-function"><a href="#Bootstrap-function" class="headerlink" title="Bootstrap function"></a>Bootstrap function</h1><p>Install-Scoop</p>
+<h1 id="Reset-ErrorActionPreference-to-original-value"><a href="#Reset-ErrorActionPreference-to-original-value" class="headerlink" title="Reset $ErrorActionPreference to original value"></a>Reset $ErrorActionPreference to original value</h1><p>$ErrorActionPreference &#x3D; $oldErrorActionPreference<br></code></pre></p>
+</details>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/article/" class="category-chain-item">article</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/default/" class="print-no-link">#default</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Scoop,winget等的配置</div>
+      <div>https://levsky-williams.top/posts/f8ec0409/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Levski-Williams</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/82456769/" title="扩展欧几里德">
+                        <span class="hidden-mobile">扩展欧几里德</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"forest"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

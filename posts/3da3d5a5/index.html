@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Hudi.svg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Levski-Williams">
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="详细说明了如何在CentOS7上配置PRESTO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PRESTO的配置（高算版）">
+<meta property="og:url" content="https://levsky-williams.top/posts/3da3d5a5/index.html">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
+<meta property="og:description" content="详细说明了如何在CentOS7上配置PRESTO">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://levsky-williams.top/img/presto.png">
+<meta property="article:published_time" content="2024-03-13T12:41:00.000Z">
+<meta property="article:modified_time" content="2025-10-31T20:54:37.339Z">
+<meta property="article:author" content="Levski-Williams">
+<meta property="article:tag" content="HPC">
+<meta property="article:tag" content="instruction">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://levsky-williams.top/img/presto.png">
+  
+  
+  
+  <title>PRESTO的配置（高算版） - Левский Уильямс の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fliud.custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Левский Уильямс の 博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Levsky-Williams</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PRESTO的配置（高算版）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-13 12:41" pubdate>
+          2024年3月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PRESTO的配置（高算版）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>作者为：левский Уильямс</p>
+<h1 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h1><p>在配置安装的时候，<font color=red><b>没有load任何的Module</b></font>。<br>如果在此之前有导入过任何的模块（用<code>module list</code>查看已导入的模块），请<strong>全部卸载</strong>。</p>
+<p>保证gcc是4.8.5版本的。</p>
+<p>需要下载如下的工具：</p>
+<ol>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.fftw.org/fftw-3.3.9.tar.gz">fftw-3.3.9</a> (点击下载)</li>
+<li><a href="ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz" rel="external nofollow noreferrer">pgplot5.2</a> (点击下载，有点慢)</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://master.dl.sourceforge.net/project/tempo/tempo-13.103.tar.gz?viasf=1">tempo</a> (点击下载)</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio-4.0.0.tar.gz">cfitsio-4.0.0</a> (点击下载) (<strong>注意其大小只有4M左右，如果不是4M左右肯定是下错了</strong>)</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://doget-api.oopscloud.xyz/api/download?token=eyJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL2dpdGh1Yi5jb20vc2NvdHRyYW5zb20vcHJlc3RvL2FyY2hpdmUvcmVmcy90YWdzL3Y0LjAudGFyLmd6In0.Tc1zVQgm7_7s_F3641l2uBFWzNCjlS8e0UDrVHrOfR8">presto</a> (点击下载)</li>
+</ol>
+<p>数据集下载如下：</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cv.nrao.edu/~sransom/GBT_Lband_PSR.fil">GBT_Lband_PSR.fil</a></p>
+<blockquote>
+<p>**注：**如果想自己下载，可以参考下面的链接</p>
+<p>fftw-3.3.9</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://www.fftw.org/fftw-3.3.9.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>pgplot：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>tempo：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git://git.code.sf.net/p/tempo/tempo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>cfitsio</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio-4.0.0.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>presto</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">git clone git:&#x2F;&#x2F;github.com&#x2F;scottransom&#x2F;presto<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure></blockquote>
+<p>网络方面的问题请自己想办法(ง •_•)ง</p>
+<h2 id="需要会的基本命令与操作"><a href="#需要会的基本命令与操作" class="headerlink" title="需要会的基本命令与操作"></a>需要会的基本命令与操作</h2><ul>
+<li><font color=Red><b>vim</b></font>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/linux/linux-vim.html">点击学习</a></li>
+<li><font color=Red><b>Linux下路径的基本操作</b></font>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/dghfttgv/article/details/107808158">点击学习</a></li>
+<li>Bash中的变量：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/linux/linux-shell-variable.html">了解</a>，<br><a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuanlan.zhihu.com/p/440108529#:~:text=%E5%8F%98%E9%87%8F%E6%98%AF%E4%BB%BB%E4%BD%95%E4%B8%80%E7%A7%8D%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%83%BD%E5%BF%85%E4%B8%8D%E5%8F%AF%E5%B0%91%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%EF%BC%8C%E5%8F%98%E9%87%8F%E7%94%A8%E6%9D%A5%E5%AD%98%E6%94%BE%E5%90%84%E7%A7%8D%E6%95%B0%E6%8D%AE%E3%80%82%20%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%E6%97%B6%E9%80%9A%E5%B8%B8%E4%B8%8D%E9%9C%80%E8%A6%81%E6%8C%87%E6%98%8E%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%B5%8B%E5%80%BC%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8CShell%20%E5%8F%98%E9%87%8F%E4%B9%9F%E9%81%B5%E5%BE%AA%E8%BF%99%E4%B8%AA%E8%A7%84%E5%88%99%E3%80%82%20%E5%9C%A8%20Bash,shell%20%E4%B8%AD%EF%BC%8C%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC%E9%83%BD%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E6%97%A0%E8%AE%BA%E4%BD%A0%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%E6%97%B6%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E5%BC%95%E5%8F%B7%EF%BC%8C%E5%80%BC%E9%83%BD%E4%BC%9A%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%AD%98%E5%82%A8%E3%80%82%20%E8%BF%99%E6%84%8F%E5%91%B3%E7%9D%80%EF%BC%8CBash%20shell%20%E5%9C%A8%E9%BB%98%E8%AE%A4%E6%83%85%E5%86%B5%E4%B8%8B%E4%B8%8D%E4%BC%9A%E5%8C%BA%E5%88%86%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%8D%B3%E4%BD%BF%E4%BD%A0%E5%B0%86%E6%95%B4%E6%95%B0%E5%92%8C%E5%B0%8F%E6%95%B0%E8%B5%8B%E5%80%BC%E7%BB%99%E5%8F%98%E9%87%8F%EF%BC%8C%E5%AE%83%E4%BB%AC%E4%B9%9F%E4%BC%9A%E8%A2%AB%E8%A7%86%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E8%BF%99%E4%B8%80%E7%82%B9%E5%92%8C%E5%A4%A7%E9%83%A8%E5%88%86%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8D%E5%90%8C%E3%80%82">了解2</a></li>
+<li><font color=Red><b>如何添加环境变量</b></font>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/liumiaocn/article/details/103287475">点击学习</a></li>
+<li>make如何工作：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/qq_45544223/article/details/106857018#:~:text=%E4%B8%89%E3%80%81%20make%20%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%201%20make%20%E4%BC%9A%E5%9C%A8%E5%BD%93%20%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%20%E6%89%BE%E5%90%8D%E5%AD%97%E5%8F%AB%E2%80%9CMakefile%E2%80%9D%E6%88%96%E2%80%9Cmakefile%E2%80%9D%E7%9A%84%E6%96%87%E4%BB%B6%E3%80%82,%E6%96%87%E4%BB%B6%E4%B9%9F%E5%AD%98%E5%9C%A8%EF%BC%8C%E9%82%A3%E4%B9%88%20make%20%E4%BC%9A%20%E5%9C%A8%E5%BD%93%E5%89%8D%E6%96%87%E4%BB%B6%E4%B8%AD%E6%89%BE%E7%9B%AE%E6%A0%87%E4%B8%BA.o%20%E6%96%87%E4%BB%B6%E7%9A%84%E4%BE%9D%E8%B5%96%E6%80%A7%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%89%BE%E5%88%B0%E5%88%99%E5%86%8D%E6%A0%B9%E6%8D%AE%E9%82%A3%E4%B8%80%E4%B8%AA%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90.o%20%E6%96%87%E4%BB%B6%20%E3%80%82%20%E6%9B%B4%E5%A4%9A%E9%A1%B9%E7%9B%AE">了解</a></li>
+</ul>
+<h1 id="二、正式安装"><a href="#二、正式安装" class="headerlink" title="二、正式安装"></a>二、正式安装</h1><p>再强调一遍，在配置安装的时候，<font color=red><b>没有load任何的Module</b></font>。<br>如果在此之前有导入过任何的模块（用<code>module list</code>查看已导入的模块），请<strong>全部卸载</strong>。</p>
+<p>在正式安装之前，我建议把源码目录和安装目录分开，像下面这样的一个文件树是比较推荐的。</p>
+<p><font color=red><b>之后所有的指令都是基于下面这个文件结构来的。</b></font></p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">~ <span class="token comment"># 用户根目录</span>
+├── Data <span class="token comment"># 数据集存放目录</span>
+│   └── GBT_Lband_PSR.fil
+├── Downloads <span class="token comment"># 源码目录</span>
+│   ├── cfitsio
+│   ├── fftw
+│   ├── pgplot
+│   ├── presto
+│   └── tempo
+└── Program_Files <span class="token comment"># 安装目录</span>
+    ├── cfitsio
+    ├── fftw
+    ├── pgplot
+    ├── presto
+    └── tempo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>也就是说，需要在用户根目录下(<code>~</code>)新建3个文件夹：<code>Data</code>、<code>Downloads</code>、<code>Program_Files</code>相。<br>新建完之后，需要在安装目录里(<code>Program_Files</code>)新建5个文件夹。</p>
+<p>在上面这个文件目录下，需要添加的环境变量如下：(如果看不懂没关系，那就<strong>先跳到下面正式安装部分</strong>)</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/lib/"</span> <span class="token comment"># 这里$&#123;HOME&#125;是你用户的根目录</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/lib/pkgconfig"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/bin"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">C_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$C_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/include"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPLUS_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$CPLUS_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/include"</span>
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PGPLOT_DIR</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/"</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/"</span>   <span class="token comment"># 注意：没有lib的子文件夹</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/lib/pkgconfig"</span>
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo/lib/pkgconfig"</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TEMPO</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo"</span> 
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/cfitsio/lib/pkgconfig"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/cfitsio/lib"</span>
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PRESTO</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/"</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/lib"</span> 
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/bin"</span> <span class="token comment"># 注意，这条是在源码目录下！！！</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">C_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$C_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/presto/include"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPLUS_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$CPLUS_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/presto/include"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<blockquote>
+<p><strong>注：</strong> <font color=red><b>直接加在<code>~/.bashrc</code>里有风险，可以参考： <a href="/posts/7a37d6c9/" title=".bashrc改不改">bashrc改不改?</a></b></font></p>
+</blockquote>
+<h2 id="1-fftw安装"><a href="#1-fftw安装" class="headerlink" title="1.fftw安装"></a>1.fftw安装</h2><h3 id="fftw-第1步：安装"><a href="#fftw-第1步：安装" class="headerlink" title="fftw.第1步：安装"></a>fftw.第1步：安装</h3><p>进入fftw的源码根目录，然后依次执行如下命令：（如果不知道源码根目录在哪里，看看上面。）</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./configure --enable-shared --enable-single <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw"</span>
+<span class="token function">make</span> 
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>通常来说，第1个安装包的安装都是顺利的。</p>
+<blockquote>
+<p>有几点需要说明：</p>
+<ol>
+<li>此处用<code>make -j4</code>可能会报错。<strong>如果执行make报错，就执行一下<code>make clean</code>，清理掉编译错误的文件之后再执行<code>make</code></strong></li>
+</ol>
+</blockquote>
+<h3 id="fftw-第2步：添加环境变量"><a href="#fftw-第2步：添加环境变量" class="headerlink" title="fftw.第2步：添加环境变量"></a>fftw.第2步：添加环境变量</h3><p>加入环境变量<br>直接在终端里执行下面的指令，仅当前shell有效，退出或者重连之后就失效。<br>而我们需要环境变量一直存在，因此把下面的指令追加到<code>~/.bashrc</code>文件末尾 <a href="%E7%9B%B4%E6%8E%A5%E5%8A%A0%E5%9C%A8%60~/.bashrc%60%E9%87%8C%E6%9C%89%E9%A3%8E%E9%99%A9%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E6%88%91%E7%9A%84%E5%8F%A6%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%EF%BC%9A%5Bbashrc%E6%94%B9%E4%B8%8D%E6%94%B9%5D(../7a37d6c9/)">^note</a></p>
+<p>然后再重新载入<code>.bashrc</code>（重新载入需要在终端里执行<code>source ~/.bashrc</code>）</p>
+<p>具体来说，就是：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 第1步，打开.bashrc</span>
+<span class="token function">vim</span> ~/.bashrc   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 第2步，把如下行加到.bashrc的末尾</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/lib/"</span> <span class="token comment"># 这里$&#123;HOME&#125;是你用户的根目录</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/lib/pkgconfig"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/bin"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">C_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$C_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/include"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">C_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$C_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/presto/include"</span>
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 第3步，重新载入.bashrc</span>
+<span class="token builtin class-name">source</span> ~/.bashrc   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<h2 id="2-pgplot的安装"><a href="#2-pgplot的安装" class="headerlink" title="2.pgplot的安装"></a>2.pgplot的安装</h2><h3 id="pgplot-第1步：移动1个文件到安装目录"><a href="#pgplot-第1步：移动1个文件到安装目录" class="headerlink" title="pgplot.第1步：移动1个文件到安装目录"></a>pgplot.第1步：移动1个文件到安装目录</h3><p><mark>现在请切换到pgplot的源码根目录(<code>~/Downloads/pgplot</code>)</mark></p>
+<p>执行下面的命令以备份相关文件</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">##### 如果想直接复制粘贴，请确保你当前的目录是pgplot的源码的根目录!</span>
+<span class="token function">cp</span> drivers.list ~/Program_Files/pgplot/drivers.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+
+<h3 id="pgplot-第2步：修改3个文件"><a href="#pgplot-第2步：修改3个文件" class="headerlink" title="pgplot.第2步：修改3个文件"></a>pgplot.第2步：修改3个文件</h3><p>用vim打开安装目录下<code>~/Program_Files/pgplot</code>下面的<code>drivers.list</code>文件，也就是执行<code>vim drivers.list</code>，然后把下面这几行前面的<code>!</code>去掉</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"># 去掉这几行前面的感叹号
+
+　  GIDRIV <span class="token number">1</span> <span class="token operator">/</span>GIF GIF<span class="token operator">-</span>format <span class="token keyword">file</span><span class="token punctuation">,</span> landscape                            # line <span class="token number">19</span>
+　　GIDRIV <span class="token number">2</span> <span class="token operator">/</span>VGIF GIF<span class="token operator">-</span>format <span class="token keyword">file</span><span class="token punctuation">,</span> portrait                            # line <span class="token number">20</span>
+　　NUDRIV <span class="token number">0</span> <span class="token operator">/</span>NULL Null device <span class="token punctuation">(</span>no output<span class="token punctuation">)</span> Std F77                      # line <span class="token number">38</span>
+　　PSDRIV <span class="token number">1</span> <span class="token operator">/</span>PS PostScript printers<span class="token punctuation">,</span> monochrome<span class="token punctuation">,</span> landscape Std F77     # line <span class="token number">44</span>
+　　PSDRIV <span class="token number">2</span> <span class="token operator">/</span>VPS Postscript printers<span class="token punctuation">,</span> monochrome<span class="token punctuation">,</span> portrait Std F77     # line <span class="token number">45</span>
+　　PSDRIV <span class="token number">3</span> <span class="token operator">/</span>CPS PostScript printers<span class="token punctuation">,</span> color<span class="token punctuation">,</span> landscape Std F77         # line <span class="token number">46</span>
+　　PSDRIV <span class="token number">4</span> <span class="token operator">/</span>VCPS PostScript printers<span class="token punctuation">,</span> color<span class="token punctuation">,</span> portrait Std F77         # line <span class="token number">47</span>
+　　XWDRIV <span class="token number">1</span> <span class="token operator">/</span>XWINDOW Workstations running <span class="token keyword">X</span> Window System C            # line <span class="token number">71</span>
+　　XWDRIV <span class="token number">2</span> <span class="token operator">/</span>XSERVE Persistent <span class="token builtin">window</span> <span class="token keyword">on</span> <span class="token keyword">X</span> Window System C             # line <span class="token number">72</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<p>然后保存并退出——<code>:wq</code></p>
+<p>用vim打开<code>~/Downloads/pgplot/src/grpckg1.inc</code>文件，然后对第29行作如下修改</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Replace " PARAMETER (GRIMAX = 8) " in line 29</span>
+<span class="token comment">#    by   " PARAMETER (GRIMAX = 32) "</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>然后保存并退出——<code>:wq</code></p>
+<p>用vim打开<code>~/Downloads/pgplot/src/pgplot.inc</code>文件，然后对第7行作如下修改</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Replace " PARAMETER (PGMAXD=8) " in line 7</span>
+<span class="token comment">#    by   " PARAMETER (PGMAXD=32) "</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>然后保存并退出——<code>:wq</code></p>
+<h3 id="pgplot-第3步：安装前的配置"><a href="#pgplot-第3步：安装前的配置" class="headerlink" title="pgplot.第3步：安装前的配置"></a>pgplot.第3步：安装前的配置</h3><p><mark>现在请切换到pgplot的安装目录(<code>~/Program_Files/pgplot</code>)</mark></p>
+<p>在安装目录运行位于源码目录里的<code>makemake</code>，并执行2遍。</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 目录结构见本文开头</span>
+~/Downloads/pgplot/makemake ~/Downloads/pgplot linux g77_gcc
+~/Downloads/pgplot/makemake ~/Downloads/pgplot linux g77_gcc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+<blockquote>
+<p><strong>注：</strong></p>
+<p>上面的命令是可以正常执行的。不要看见<code>makemake</code>前面有一堆路径就觉得这个写的有问题。<br>只需要把对应文件的路径换成你自己的路径。</p>
+<p>如果报错说<code>Permission denied</code>，说明你的<code>makemake</code>没有可执行权限。执行下面的指令以加上：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x ~/Downloads/pgplot/makemake<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>如遇其它文件没有权限，类似处理。</p>
+</blockquote>
+<p>执行完毕之后<strong>安装目录下</strong>会出现如下的文件：（如果你安装文件夹和我开头写的是一样的结构的话）</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">drivers.list   grexec.f   grpckg1.inc   makefile   pgplot.inc   rgb.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>然后更改<code>makefile</code>文件的第25和第26行</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Replace "FCOMPL=g77"       in line 25 </span>
+<span class="token comment">#   by    "FCOMPL=gfortran" </span>
+<span class="token comment"># </span>
+<span class="token comment"># Replace "FFLAGC=-u -Wall -fPIC -O" in line 26</span>
+<span class="token comment">#   by    "FFLAGC=-ffixed-form -ffixed-line-length-none -u -Wall -fPIC -O"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<h3 id="pgplot-第4步，安装"><a href="#pgplot-第4步，安装" class="headerlink" title="pgplot.第4步，安装"></a>pgplot.第4步，安装</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在安装目录下执行</span>
+<span class="token function">make</span>
+<span class="token function">make</span> cpg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>如果<code>make</code>报错，<code>make clean</code>之后再运行一次试试。</p>
+<blockquote>
+<p><strong>注：</strong> 如果需要编译<code>pgplot.html</code>，需要更改<code>~/Downloads/pgplot/makehtml</code>文件。只需要把第1行替换为这个：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/usr/bin/perl</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>然后：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在安装目录下执行</span>
+<span class="token function">make</span> pgplot.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure></blockquote>
+<h3 id="pgplot-第5步，添加环境变量"><a href="#pgplot-第5步，添加环境变量" class="headerlink" title="pgplot.第5步，添加环境变量"></a>pgplot.第5步，添加环境变量</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PGPLOT_DIR</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/"</span> <span class="token comment"># 记得替换USER为自己的用户名</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/"</span>   <span class="token comment"># 注意：没有lib的子文件夹</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/pgplot/lib/pkgconfig"</span>
+
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<blockquote>
+<p><strong>注：</strong></p>
+<p>pgplot有一些demo可以运行。只需要切换到安装目录，运行<code>./pgdemo1</code>，弹出如下信息可说明pgplot正常安装</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Graphcs device/type <span class="token punctuation">(</span>? to see list, default /Xserve<span class="token punctuation">)</span>:
+<span class="token comment"># 或 Graphcs device/type (? to see list, default /NULL):</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure></blockquote>
+<h2 id="3-Tempo安装"><a href="#3-Tempo安装" class="headerlink" title="3.Tempo安装"></a>3.Tempo安装</h2><h3 id="tempo-第1步：安装前的准备"><a href="#tempo-第1步：安装前的准备" class="headerlink" title="tempo.第1步：安装前的准备"></a>tempo.第1步：安装前的准备</h3><p><mark>现在请切换到Tempo的源码根目录(<code>~/Downloads/tempo</code>)</mark></p>
+<p>可以尝试运行源码根目录下的<code>prepare</code>，像这样：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./prepare   <span class="token comment"># 一般无法正常运行</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>如果可以正常工作，就跳到下一步，否则就<strong>别执行那个prepare了</strong>，改成执行如下的操作：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">autoreconf <span class="token parameter variable">--install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>另外需要把<code>./src/get_version_id.sh</code>加上执行权限，并把它的file format改成Unix。（用下面的<code>dos2unix</code>，服务器上自带）</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x ./src/get_version_id.sh
+dos2unix ./src/get_version_id.sh
+dos2unix ./configure.ac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h3 id="tempo-第2步：正式安装"><a href="#tempo-第2步：正式安装" class="headerlink" title="tempo.第2步：正式安装"></a>tempo.第2步：正式安装</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo"</span>
+<span class="token function">make</span> 
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<blockquote>
+<p><strong>注：</strong></p>
+<p>如果之间那步没有把<code>configure.ac</code>转换成unix格式，configure之后会报错，此时重新运行configure是没有用的，需要按如下方法运行</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">dos2unux ./configure.ac
+aclocal
+autoconf
+automake <span class="token parameter variable">-a</span>
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<p>之后再继续<code>make</code>和<code>make install</code>即可</p>
+</blockquote>
+<h3 id="tempo-第3步：添加环境"><a href="#tempo-第3步：添加环境" class="headerlink" title="tempo.第3步：添加环境"></a>tempo.第3步：添加环境</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo/lib/pkgconfig"</span> 
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TEMPO</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/tempo"</span> 
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h2 id="4-cfitsio安装"><a href="#4-cfitsio安装" class="headerlink" title="4.cfitsio安装"></a>4.cfitsio安装</h2><h3 id="cfitsio-第1步：安装"><a href="#cfitsio-第1步：安装" class="headerlink" title="cfitsio.第1步：安装"></a>cfitsio.第1步：安装</h3><p><mark>现在请切换到cfitsio的源码根目录(<code>~/Downloads/cfitsio</code>)</mark></p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/cfitsio"</span> 
+<span class="token function">make</span> 
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h3 id="cfitsio-第2步：添加环境变量"><a href="#cfitsio-第2步：添加环境变量" class="headerlink" title="cfitsio.第2步：添加环境变量"></a>cfitsio.第2步：添加环境变量</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PKG_CONFIG_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/cfitsio/lib/pkgconfig"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/cfitsio/lib"</span>
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<h2 id="5-安装PRESTO"><a href="#5-安装PRESTO" class="headerlink" title="5.安装PRESTO"></a>5.安装PRESTO</h2><h3 id="presto-第1步：添加安装用的环境变量"><a href="#presto-第1步：添加安装用的环境变量" class="headerlink" title="presto.第1步：添加安装用的环境变量"></a>presto.第1步：添加安装用的环境变量</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PRESTO</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/"</span> <span class="token comment"># 把USER替换为你的用户名</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$LD_LIBRARY_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/lib"</span> 
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h3 id="presto-第2步：修改1个文件"><a href="#presto-第2步：修改1个文件" class="headerlink" title="presto.第2步：修改1个文件"></a>presto.第2步：修改1个文件</h3><p><mark>现在请切换到presto下的src目录(<code>~/Downloads/presto/src</code>)</mark></p>
+<p>打开<code>./realfft.c</code>，编辑第70行，</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"># 改前
+<span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>int fi <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span> fi <span class="token operator">&lt;</span> numfiles <span class="token punctuation">;</span> fi<span class="token operator">+</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span>
+
+
+
+# 改后
+<span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span>
+int fi<span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>fi <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">;</span> fi <span class="token operator">&lt;</span> numfiles <span class="token punctuation">;</span> fi<span class="token operator">+</span><span class="token operator">+</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token operator">.</span><span class="token operator">.</span><span class="token operator">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+
+<h3 id="presto-第3步：安装"><a href="#presto-第3步：安装" class="headerlink" title="presto.第3步：安装"></a>presto.第3步：安装</h3><p><mark>保持在presto下的src目录(<code>~/Downloads/presto/src</code>)</mark></p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> makewisdom
+<span class="token function">make</span> prep
+<span class="token function">make</span>    <span class="token comment"># 目前只能安装在源码目录下</span>
+
+<span class="token comment"># 下面这两行本来也是安装的步骤，但服务器没网就算了，不影响</span>
+<span class="token builtin class-name">cd</span> <span class="token variable">$PRESTO</span>
+pip <span class="token function">install</span> <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h3 id="presto-第4步：添加环境变量"><a href="#presto-第4步：添加环境变量" class="headerlink" title="presto.第4步：添加环境变量"></a>presto.第4步：添加环境变量</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Downloads/presto/bin"</span> <span class="token comment"># 注意，这条是在源码目录下！！！</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPLUS_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$CPLUS_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/fftw/include"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CPLUS_INCLUDE_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$CPLUS_INCLUDE_PATH</span>:<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Program_Files/presto/include"</span>
+<span class="token comment"># 如果写在~/.bashrc里，记得source ~/.bashrc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>到目前为止，你应该正确安装了presto。下面我们进行一些验证。输入<code>readfile --help</code>，应该有如下的输出</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">readfile: unknown option <span class="token variable"><span class="token variable">`</span>--help<span class="token string">'
+
+   [-page] [-byte] [-b] [-float] [-f] [-double] [-d] [-fcomplex] [-fc] [-dcomplex] [-dc] [-short] [-s] [-int] [-i] [-long] [-l] [-rzwcand] [-rzw] [-bincand] [-bin] [-position] [-pos] [-pkmb] [-bcpm] [-wapp] [-spigot] [-filterbank] [-psrfits] [-fortran] [-index [index]] [-nph nph] [--] file
+      Reads raw data from a binary file and displays it on stdout.
+          -page: Paginate the output like '</span>more'
+          -byte: Raw data <span class="token keyword">in</span> byte <span class="token function">format</span>
+             -b: Raw data <span class="token keyword">in</span> byte <span class="token function">format</span>
+         -float: Raw data <span class="token keyword">in</span> floating point <span class="token function">format</span>
+             -f: Raw data <span class="token keyword">in</span> floating point <span class="token function">format</span>
+        -double: Raw data <span class="token keyword">in</span> double precision <span class="token function">format</span>
+             -d: Raw data <span class="token keyword">in</span> double precision <span class="token function">format</span>
+      -fcomplex: Raw data <span class="token keyword">in</span> float-complex <span class="token function">format</span>
+            -fc: Raw data <span class="token keyword">in</span> float-complex <span class="token function">format</span>
+      -dcomplex: Raw data <span class="token keyword">in</span> double-complex <span class="token function">format</span>
+            -dc: Raw data <span class="token keyword">in</span> double-complex <span class="token function">format</span>
+         -short: Raw data <span class="token keyword">in</span> short <span class="token function">format</span>
+             -s: Raw data <span class="token keyword">in</span> short <span class="token function">format</span>
+           -int: Raw data <span class="token keyword">in</span> integer <span class="token function">format</span>
+             -i: Raw data <span class="token keyword">in</span> integer <span class="token function">format</span>
+          -long: Raw data <span class="token keyword">in</span> long <span class="token function">format</span>
+             -l: Raw data <span class="token keyword">in</span> long <span class="token function">format</span>
+       -rzwcand: Raw data <span class="token keyword">in</span> rzw search candidate <span class="token function">format</span>
+           -rzw: Raw data <span class="token keyword">in</span> rzw search candidate <span class="token function">format</span>
+       -bincand: Raw data <span class="token keyword">in</span> bin search candidate <span class="token function">format</span>
+           -bin: Raw data <span class="token keyword">in</span> bin search candidate <span class="token function">format</span>
+      -position: Raw data <span class="token keyword">in</span> position struct <span class="token function">format</span>
+           -pos: Raw data <span class="token keyword">in</span> position struct <span class="token function">format</span>
+          -pkmb: Raw data <span class="token keyword">in</span> Parkes Multibeam <span class="token function">format</span>
+          -bcpm: Raw data <span class="token keyword">in</span> BCPM <span class="token function">format</span>
+          -wapp: Raw data <span class="token keyword">in</span> WAPP <span class="token function">format</span>
+        -spigot: Raw data <span class="token keyword">in</span> Spigot Card <span class="token function">format</span>
+    -filterbank: Raw data <span class="token keyword">in</span> SIGPROC filterbank <span class="token function">format</span>
+       -psrfits: Raw data <span class="token keyword">in</span> PSRFITS <span class="token function">format</span>
+       -fortran: Raw data was written by a fortran program
+         -index: The range of objects to display
+                 <span class="token number">0</span><span class="token punctuation">..</span>.2 int values between <span class="token parameter variable">-1</span> and oo
+                 default: <span class="token variable">`</span></span><span class="token number">0</span><span class="token string">' ` -1'</span>
+           -nph: 0th FFT bin amplitude <span class="token punctuation">(</span>for <span class="token string">'RZW'</span> data<span class="token punctuation">)</span>
+                 <span class="token number">1</span> double value
+                 default: `1.0'
+           file: Input data <span class="token function">file</span> name.
+                 <span class="token number">1</span> value
+  version: 12Mar10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>如果有这些输出，就说明是成功安装了</p>
+<h1 id="三、跑数据集"><a href="#三、跑数据集" class="headerlink" title="三、跑数据集"></a>三、跑数据集</h1><h2 id="跑数据集的第1步：预处理"><a href="#跑数据集的第1步：预处理" class="headerlink" title="跑数据集的第1步：预处理"></a>跑数据集的第1步：预处理</h2><p>在数据目录(<code>~/Data/</code>)下执行如下指令</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">readfile ~/Data/GBT_Lband_PSR.fil
+rfifind <span class="token parameter variable">-time</span> <span class="token number">1.0</span> <span class="token parameter variable">-o</span> Lband ~/Data/GBT_Lband_PSR.fil
+prepdata <span class="token parameter variable">-nobary</span> <span class="token parameter variable">-o</span> ~/Data/Lband_topo_DM0.00 <span class="token parameter variable">-dm</span> <span class="token number">0.0</span> <span class="token parameter variable">-mask</span> ~/Data/Lband_rfifind.mask ~/Data/GBT_Lband_PSR.fil<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h2 id="跑数据集的第2步：写脚本"><a href="#跑数据集的第2步：写脚本" class="headerlink" title="跑数据集的第2步：写脚本"></a>跑数据集的第2步：写脚本</h2><p>编写如下的脚本，注意保存的后缀需要是<code>*.slurm</code>（可以取名为<code>run.slurm</code>）：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment">#SBATCH -J presto</span>
+<span class="token comment">#SBATCH -p cpu-low</span>
+<span class="token comment">#SBATCH -N 2</span>
+<span class="token comment">#SBATCH -n 16</span>
+<span class="token comment">#SBATCH --ntasks-per-node=8</span>
+<span class="token comment">#SBATCH -t 5:00</span>
+<span class="token comment">#SBATCH -o run.out</span>
+<span class="token comment">#SBATCH -e run.err</span>
+
+module load intel/18.0.3.222
+
+<span class="token builtin class-name">cd</span> <span class="token variable">$PRESTO</span>/tests/
+mpirun <span class="token parameter variable">-np</span> <span class="token number">2</span> accelsearch <span class="token parameter variable">-numharm</span> <span class="token number">4</span> <span class="token parameter variable">-zmax</span> <span class="token number">0</span> <span class="token string">"<span class="token variable">$&#123;<span class="token environment constant">HOME</span>&#125;</span>/Data/Lband_topo_DM0.00.dat"</span> <span class="token parameter variable">-ncpus</span> <span class="token number">8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>然后，我们可以先在本地试试脚本能不能正常运行。在终端里输入如下：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> ./run.slurm <span class="token operator"><span class="token file-descriptor important">1</span>></span>run.out <span class="token operator"><span class="token file-descriptor important">2</span>></span>run.err <span class="token comment"># 假设你保存的脚本叫run.slurm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+
+<p>如果<code>run.err</code>大小为<code>0b</code>，<code>0K</code>，说明没有问题，那么就放心提交作业吧!</p>
+<blockquote>
+<p><strong>注：命令含义解释</strong></p>
+<p><code>1&gt;run.out</code>表示把脚本的执行的<strong>正常</strong>输出写到run.out文件，尖括号左右不要有空格</p>
+<p><code>2&gt;run.err</code>表示把脚本的执行的<strong>错误</strong>输出写到run.err文件，尖括号左右不要有空格</p>
+</blockquote>
+<h2 id="跑数据集的第3步：提交"><a href="#跑数据集的第3步：提交" class="headerlink" title="跑数据集的第3步：提交"></a>跑数据集的第3步：提交</h2><p>如果在上面你脚本里<code>Lband_topo_DM0.00.dat</code>用的是绝对路径，那么在这一步你的slurm脚本就可以随便放。</p>
+<p>在你放脚本的地方执行如下指令：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sbatch run.slurm <span class="token comment"># 提交作业脚本</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>如果正常提交，会有如下的结果：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>para_xxxxxxxx@ln04 ~<span class="token punctuation">]</span>$ sbatch run.slurm
+Submitted batch job xxxxxxxx        <span class="token comment"># 仅表示成功提交</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+
+<p>至于运行的结果，则需要在<code>run.out</code>和<code>run.err</code>里面看了。（对应你slurm脚本的<code>#SBATCH -o run.out</code>和<code>#SBATCH -e run.err</code>）</p>
+<p>至于其它的问题，请自己解决吧，因为我也没有解决（笑</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/Among12345/article/details/93767772">CentOS 7 安装 pgplot</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.plxray.cn/article/example-7">PRESTO指导手册中文版</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/ddl789/p/17208358.html">脉冲星PRESTO部署文档</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HPC/" class="print-no-link">#HPC</a>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/instruction/" class="print-no-link">#instruction</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PRESTO的配置（高算版）</div>
+      <div>https://levsky-williams.top/posts/3da3d5a5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Levski-Williams</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/7a37d6c9/" title=".bashrc改不改">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">.bashrc改不改</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/8233ee46/" title="『码图』而非『画图』——Mermaid语法简介">
+                        <span class="hidden-mobile">『码图』而非『画图』——Mermaid语法简介</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"forest"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
