@@ -89,32 +89,6 @@
     font-weight: 300;
 }
 
-/* 站酷仓耳渔阳体 */
-@font-face {
-    font-family: 'ZhanKu_YvYangTi';
-    src: url('/fonts/站酷仓耳渔阳体/TsangerYuYangT_W01_W01.ttf') format('truetype');
-    font-weight: 100;
-}
-@font-face {
-    font-family: 'ZhanKu_YvYangTi';
-    src: url('/fonts/站酷仓耳渔阳体/TsangerYuYangT_W02_W02.ttf') format('truetype');
-    font-weight: 200;
-}
-@font-face {
-    font-family: 'ZhanKu_YvYangTi';
-    src: url('/fonts/站酷仓耳渔阳体/TsangerYuYangT_W03_W03.ttf') format('truetype');
-    font-weight: 300;
-}
-@font-face {
-    font-family: 'ZhanKu_YvYangTi';
-    src: url('/fonts/站酷仓耳渔阳体/TsangerYuYangT_W04_W04.ttf') format('truetype');
-    font-weight: 400;
-}
-@font-face {
-    font-family: 'ZhanKu_YvYangTi';
-    src: url('/fonts/站酷仓耳渔阳体/TsangerYuYangT_W05_W05.ttf') format('truetype');
-    font-weight: 500;
-}
 
 
 
