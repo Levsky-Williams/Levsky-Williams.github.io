@@ -1,0 +1,1059 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Hudi.svg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Levski-Williams">
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="当年上课时记的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言的学习笔记">
+<meta property="og:url" content="https://levsky-williams.top/posts/e08a8cc7/index.html">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
+<meta property="og:description" content="当年上课时记的笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s4.ax1x.com/2021/12/21/TMQs6f.png">
+<meta property="article:published_time" content="2022-08-30T11:58:00.000Z">
+<meta property="article:modified_time" content="2024-10-28T07:20:21.975Z">
+<meta property="article:author" content="Levski-Williams">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s4.ax1x.com/2021/12/21/TMQs6f.png">
+  
+  
+  
+  <title>C语言的学习笔记 - Левский Уильямс の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fliud.custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Levsky-Williams</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C语言的学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-30 19:58" pubdate>
+          2022年8月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C语言的学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>8进制与16进制</p>
+<h1 id="0x00-计算机原理"><a href="#0x00-计算机原理" class="headerlink" title="0x00 计算机原理"></a>0x00 计算机原理</h1><h2 id="01-缓冲区-buffer-与缓存-cache"><a href="#01-缓冲区-buffer-与缓存-cache" class="headerlink" title="01 缓冲区(buffer)与缓存(cache)"></a>01 缓冲区(buffer)与缓存(cache)</h2><p>buffer是内存的一部分<br>cache是CPU，磁盘等的一部分<br>简单来说就是buffer偏重于写，而cache偏重于读。</p>
+<h2 id="02-一个程序运行时的内存空间"><a href="#02-一个程序运行时的内存空间" class="headerlink" title="02 一个程序运行时的内存空间"></a>02 一个程序运行时的内存空间</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">栈区（stack）</td>
+<td>由编译器自动分配释放 ，存放函数的参数值，局部变量的值等</td>
+</tr>
+<tr>
+<td align="center">堆区（heap）</td>
+<td>一般由程序员分配释放(malloc)， 若程序员不释放，程序结束时可能由OS回收</td>
+</tr>
+<tr>
+<td align="center">全局区（静态区）（static）</td>
+<td>全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，<br/>未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放</td>
+</tr>
+<tr>
+<td align="center">文字常量区</td>
+<td>一般常量就是放在这里的。不能被修改。 程序结束后由系统释放</td>
+</tr>
+<tr>
+<td align="center">程序代码区</td>
+<td>存放函数体的二进制代码</td>
+</tr>
+</tbody></table>
+<h2 id="03-与-的作用顺序"><a href="#03-与-的作用顺序" class="headerlink" title="03 ++与--的作用顺序"></a>03 <code>++</code>与<code>--</code>的作用顺序</h2><p>一般来说，<code>++a</code>表示先算<code>++</code>再算<code>a</code>，<font color=red>但是，如果表达式里出现了多次变量，如<code>++a = a + (a-1)</code>，情况就不确定了</font>。在使用<code>++</code>和<code>--</code>时需谨慎。</p>
+<h1 id="0x01-输入专题"><a href="#0x01-输入专题" class="headerlink" title="0x01 输入专题"></a>0x01 输入专题</h1><h2 id="01-scanf"><a href="#01-scanf" class="headerlink" title="01 scanf"></a>01 scanf</h2><p>强烈推荐这篇博客，一定要去看看：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yhjoker/p/7530837.html">scanf函数读取缓冲区数据的问题</a></p>
+<ol>
+<li><p><code>scanf(&quot; &quot;)</code>；如果双引号里面的空格可以跳过广义上的空格，等价于循环+getchar</p>
+</li>
+<li><p>正则表达式</p>
+<p> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/orange1438/archive/2013/05/12/4544958.html">参考博客</a></p>
+<ul>
+<li><p><code>[]</code>内是匹配的字符。</p>
+</li>
+<li><p><code>^</code>表示求反集，当遇到非集合内的字符时立即终止输入。</p>
+</li>
+<li><p><code>%</code>表示选择，<code>%*</code> 表示跳过，其后一定要有新的<code>%</code>语句，否则无法读入。</p>
+</li>
+<li><p><code>%</code>,<code>%*</code>后面的是条件，比如<code>%s</code>，<code>s</code>是一个条件，表示任意字符。<code>%3s</code>又多了一个条件：只拷贝3个字符。 <code>%[a-z]</code>的条件稍微严格一些，输入的东西不但是字符，还得是一个小写字母的字符。<br> ，也就是跳过满足条件的字符，</p>
+</li>
+<li><p>注：<code>%[a-b 0-9]</code>能够读入空格。单个字符也可以直接写在中括号里面</p>
+</li>
+</ul>
+</li>
+<li><p><code>fgets(c, n, fp)</code> 与 <code>gets</code> 不同，第一、<code>fgets</code> 需要加最大输入长度<code>n</code>这个参量, 表示加了 <code>\0</code> 之后 <code>fgets</code> 能读入的最大长度。因此&#x3D;&#x3D;需要在读入的最末尾主动赋值为 <code>\0</code> ，不必管是否有 <code>\n</code>，这样能保证数据没有多余的 <code>\n</code>&#x3D;&#x3D;</p>
+</li>
+<li><p>对<strong>正文文件</strong>的<code>fscanf</code> 等函数大都和标准I&#x2F;O下的函数用法一样。除了 <code>fgets</code></p>
+</li>
+</ol>
+<h2 id="02-sscanf"><a href="#02-sscanf" class="headerlink" title="02 sscanf"></a>02 sscanf</h2><p>&#x3D;&#x3D;本质上与<code>scanf</code>相同，只不过将目标字符串当作stdin&#x3D;&#x3D;</p>
+<p>同理还有<code>sprintf</code></p>
+<h1 id="0x02-文件专题"><a href="#0x02-文件专题" class="headerlink" title="0x02 文件专题"></a>0x02 文件专题</h1><h2 id="01-fopen"><a href="#01-fopen" class="headerlink" title="01 fopen"></a>01 fopen</h2><ol>
+<li><p><code>fopen</code> 必须要搭配文件指针使用，如 <code>fp = fopen( , )</code> 而且得配合 <code>fscanf</code> 等等，但是在关闭文件之可以同时对文件和标准输入输出进行操作。</p>
+</li>
+<li><p>文件打开一定要判断是否成功。如果不成功，可以使用 <code>perror(const char *s)</code> 它可将 &#x3D;&#x3D;上一个函数(一般是各个库函数)&#x3D;&#x3D; 发生错误的原因输出到标准设备(stderr)。参数s所指的字符串会先打印出,后面再加上错误原因字符串。</p>
+</li>
+</ol>
+<h2 id="02-文本方式打开与二进制方式打开"><a href="#02-文本方式打开与二进制方式打开" class="headerlink" title="02 文本方式打开与二进制方式打开"></a>02 文本方式打开与二进制方式打开</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dfdfdsfdfdfdf/article/details/48198565">C语言采用文本方式和二进制方式打开文件的区别分析</a></p>
+<h3 id="i-区别"><a href="#i-区别" class="headerlink" title="i. 区别"></a>i. 区别</h3><p>数据怎么在磁盘上写不是由文件打开方式决定的，而是由写函数决定的。数据怎么从磁盘上读也不是由文件打开方式决定的，而是由读函数决定的。<br>上面说的数据怎么写是指：一种类型的变量是怎么存的？比如<code>int 12</code>，可以直接存12的二进制码(4个字节)，也可以存字符<code>‘1’</code>，字符<code>&#39;2&#39;</code>.<br>数据怎么读的是指：我要读一个int变量，是直接读sizeof(int)个字节，还是一个字符一个字符的读，直到读到的字符不是数字字符。</p>
+<p>这对应了两种函数</p>
+<h3 id="ii-如何读写"><a href="#ii-如何读写" class="headerlink" title="ii. 如何读写"></a>ii. 如何读写</h3><ol>
+<li><p><code>fread</code> 以二进制的方式读入，<code>fscanf</code> 以正文方式读入。<br/> <code>fread</code> 可以直接按几个字节为单位读，而 <code>fscanf</code> 则是把文章解释为字符串然后再读。</p>
+</li>
+<li><p><code>fread</code> 返回值是成功读入的以size为单位长度的项数</p>
+</li>
+</ol>
+<h3 id="iii-判断末尾"><a href="#iii-判断末尾" class="headerlink" title="iii. 判断末尾"></a>iii. 判断末尾</h3><p>首先说明一点，ASCII表有256个字符。</p>
+<p><code>EOF</code>是等于-1，但是 &#x3D;&#x3D;实际上文档末尾是没有<code>EOF</code>这个玩意的。<code>EOF</code>是读入函数的返回值。&#x3D;&#x3D;<br>在以文本方式打开的文件中，返回值为<code>int</code>，不会与ASCII(char类型)冲突。故EOF有效。<br>而在以二进制打开的文件中，要想读字符，就必须得用 <code>sizeof(char)</code> ，这样不可避免地就会出现 <code>EOF</code> 与ASCII冲突。此时就得用feof来判断。</p>
+<p><code>feof</code> ：若为末尾返回非零，若还没到就返回0。 &#x3D;&#x3D;返回非零的触发条件和 <code>fgets</code>等函数返回-1的条件相同&#x3D;&#x3D;</p>
+<h2 id="03-fseek-和-ftell"><a href="#03-fseek-和-ftell" class="headerlink" title="03 fseek 和 ftell"></a>03 fseek 和 ftell</h2><h3 id="i-ftell"><a href="#i-ftell" class="headerlink" title="i ftell"></a>i ftell</h3><p>原型如下</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">long</span> <span class="token function">ftell</span><span class="token punctuation">(</span>FILE <span class="token operator">*</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<p>它的返回值为<code>long</code>类型，只有一个参数为文件指针</p>
+<h3 id="ii-fseek"><a href="#ii-fseek" class="headerlink" title="ii fseek"></a>ii fseek</h3><p>原型如下</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">fseek</span> <span class="token punctuation">(</span>FILE <span class="token operator">*</span> stream<span class="token punctuation">,</span> <span class="token keyword">long</span> <span class="token keyword">int</span> offset<span class="token punctuation">,</span> <span class="token keyword">int</span> origin <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<ol>
+<li>它中间的那个参数是<code>long</code>类型，因此中间那个参数可以这样写：<code>22L</code>，<code>L</code>表示这个整数是<code>long</code>类型。<br/>需要注意的是，offset移动的量永远是字节数。 &#x3D;&#x3D;由于二进制文件和文本文件存储格式的区别&#x3D;&#x3D; ，需要自己手动计算偏移量</li>
+<li>第三个参数只有三个值<code>SEEK_SET</code>表示文件开头，<code>SEEK_CUR</code>表示当前指针位置，<code>SEEK_END</code>表示文件末尾</li>
+<li>当offset是向文件尾方向偏移的时候，&#x3D;&#x3D;无论偏移量是否超出文件尾，fseek都是返回0&#x3D;&#x3D;，当偏移量超出文件尾的时候，文件指针是指向文件尾的。并不会返回偏移出错-1值。当offset是向文件头方向偏移的时候，如果offset没有超出文件头，fseek返回值为0.&#x3D;&#x3D;当offset超出文件头时，fseek返回出错-1值，文件指针不变还是处于原来的地址。&#x3D;&#x3D;</li>
+</ol>
+<h2 id="04-fscanf与fgets与-n"><a href="#04-fscanf与fgets与-n" class="headerlink" title="04 fscanf与fgets与\n"></a>04 fscanf与fgets与\n</h2><p><code>fscanf</code>遇到\n和空格停止，但<code>fgets</code>会读进去。<br>建议用fgets去除\n，fgetc不一定行</p>
+<h1 id="0x03-变量专题"><a href="#0x03-变量专题" class="headerlink" title="0x03 变量专题"></a>0x03 变量专题</h1><h2 id="01-extern"><a href="#01-extern" class="headerlink" title="01 extern"></a>01 extern</h2><p><code>extern a</code>显式的说明了<code>a</code>的存储空间是在程序的其他地方分配的，在文件中<strong>其他位置</strong>或者<strong>其他文件</strong>中寻找<code>a</code>这个变量。</p>
+<h2 id="02-const"><a href="#02-const" class="headerlink" title="02 const"></a>02 const</h2><p>用const修饰的变量通常也叫常变量，因为这个变量有地址，有空间。只不过它的读写方式设定为了只读，这也就意味这只能通过赋初值的方式给它值。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">const（运行时概念）</th>
+<th align="center">define（编译时概念）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">原理</td>
+<td align="center">常量声明</td>
+<td align="center">字符替换</td>
+</tr>
+<tr>
+<td align="center">谁来编译？</td>
+<td align="center">编译器</td>
+<td align="center">预编译器</td>
+</tr>
+<tr>
+<td align="center">空间</td>
+<td align="center">需要分配空间<br/>（<a target="_blank" rel="noopener" href="https://blog.csdn.net/u014157109/article/details/115350923#comments_15816273">C与C++中const变量内存分配问题详解</a>)）</td>
+<td align="center">不需要分配空间</td>
+</tr>
+<tr>
+<td align="center">安全检查</td>
+<td align="center">有类型区别，需要在编译阶段进行类型检查</td>
+<td align="center">没有数据类型的区别，没有类型安全检查</td>
+</tr>
+<tr>
+<td align="center">有无生命周期</td>
+<td align="center">有（当前函数）</td>
+<td align="center">无（全局）</td>
+</tr>
+</tbody></table>
+<p>（注：const在C语言中与在C++中的内存分配方式不同。此处讨论C语言的情况）</p>
+<p>&#x3D;&#x3D;const修饰的全局变量，在常量区分配内存空间，不能通过变量地址来修改值；&#x3D;&#x3D;<br>&#x3D;&#x3D;const修饰的局部变量在栈区分配内存空间，可以通过变量地址来修改值&#x3D;&#x3D;</p>
+<h3 id="ii-与指针搭配"><a href="#ii-与指针搭配" class="headerlink" title="ii 与指针搭配"></a>ii 与指针搭配</h3><p>const的位置可以发生改变，但有可能含义就发生了变化</p>
+<p>例如： <code>const int * p</code> 和 <code>int const * p</code>等价，表示 <code>*p</code> 不能改，<br/>&#8195;&#8195;&#8195;&#8194;而 <code>int * const p</code> 则表示 <code>p</code> 不能改。</p>
+<p>如何记？<br> <code>*</code> 是右结合运算符，它若先和<code>p</code>结合，那<code>const</code>修饰的就是<code>*p</code>，否则<code>const</code>修饰的就是<code>p</code></p>
+<h2 id="03-typedef"><a href="#03-typedef" class="headerlink" title="03 typedef"></a>03 typedef</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liitdar/article/details/80069638">typedef基本用法</a><br>在一个定义 <code>typedef &lt;字符串&gt;</code> 中， <code>&lt;字符串&gt;</code> 中会出现一个未定义的类型名 <code>Type_A</code><br>当你写：<code>Type_A object; </code> 的时候，它的含义就是：用 <code>object</code>去替换 <code>&lt;字符串&gt;</code> 中的 <code>Type_A</code> 。</p>
+<p>例如：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">int</span> int_array<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+int_array object<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>实际上是：用 <code>object</code> 替换 字符串 <code>&quot;int int_array[4];&quot;</code> 中的 <code>int_array</code> 得到的结果： <code>int object[4];</code></p>
+<p>又例如：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>PU<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">char</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+PU pa<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>实际上就是用 <code>pa</code> 替换 <code>void (*PU)(int a, char b);</code> 中的 <code>PU</code> 。</p>
+<p>这也就是编译器处理tyepdef定义的原理。<br>&#x3D;&#x3D;typedef可以看作是定义了一个新的类型，这个类型在解释的时候按照以上规则定义变量。&#x3D;&#x3D;</p>
+<p>typedef与结构体搭配也可以用上面的理论解释：</p>
+<table>
+<thead>
+<tr>
+<th>使用typedef关键字定义结构体类型</th>
+<th>定义结构体类型的同时定义结构体类型变量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>typedef struct student<br/>{<br/>&#8195;int age;<br/>&#8195;int height;<br/>}std;<br/>&#x2F;&#x2F; <strong>std相当于struct student</strong></td>
+<td>struct student<br/>{<br/>&#8195;int age;<br/>&#8195;int height;<br/>}std1,std2;<br/>&#x2F;&#x2F;<strong>定义了student数据类型的结构体和std1、<br/>std2结构体变量</strong></td>
+</tr>
+</tbody></table>
+<h2 id="04-char有符号位"><a href="#04-char有符号位" class="headerlink" title="04 char有符号位"></a>04 char有符号位</h2><p>在x86平台上，默认有符号，但在arm平台上默认没符号。<br>保险起见，用 <code>signed char</code></p>
+<h2 id="05-enum-枚举常量"><a href="#05-enum-枚举常量" class="headerlink" title="05 enum(枚举常量)"></a>05 enum(枚举常量)</h2><p>定义类似于结构体<br>相当于一次性定义多个常量。<br>&#x3D;&#x3D;用它定义变量没用&#x3D;&#x3D;</p>
+<h2 id="06-可变数组长度"><a href="#06-可变数组长度" class="headerlink" title="06 可变数组长度"></a>06 可变数组长度</h2><p>老师可能讲的是在C语言中不能用变量作为数组的长度，但实际上， &#x3D;&#x3D;哪怕是c89的标准，在满足一定条件时也是能够用变量作为数组长度的。&#x3D;&#x3D; </p>
+<p>例如：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> a<span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
+<p>在语法上是没有问题的。</p>
+<p>尽管如此，我本人还是不推荐使用这种写法。</p>
+<ol>
+<li>这样写无法在定义的时候初始化。<code>char a[len] = {0}</code>就是错的。</li>
+<li>这样写只能作为局部变量，如果定义为全局变量就有问题。</li>
+</ol>
+<h1 id="0x04-指针专题"><a href="#0x04-指针专题" class="headerlink" title="0x04 指针专题"></a>0x04 指针专题</h1><h2 id="01-小知识点"><a href="#01-小知识点" class="headerlink" title="01  小知识点"></a>01  小知识点</h2><ol>
+<li><p>字符串常量有返回值，其返回值为首字母的地址</p>
+</li>
+<li><p>数组名，是指向它的第一个一级成员的指针<br/>数组名取地址，是指向整个数组的指针</p>
+</li>
+</ol>
+<h2 id="02-表述-p-1-与-p-1-等价"><a href="#02-表述-p-1-与-p-1-等价" class="headerlink" title="02 表述 *(p + 1) 与 p[1] 等价"></a>02 表述 <code>*(p + 1)</code> 与 <code>p[1]</code> 等价</h2><p>本质是因为 <code>[]</code> 是下标运算符。 <code>x[y]</code> 等价于 <code>*((x) + (y))</code></p>
+<h2 id="03-函数指针"><a href="#03-函数指针" class="headerlink" title="03 函数指针"></a>03 函数指针</h2><p>为方便起见，C语言中可以将函数指针直接按函数调用的方式使用。比如<code>func(u,v)</code> 与<code>(*func)(u,v)</code> 等价</p>
+<p>最常见的例子：qsort里面的cmp函数。cmp函数的名字是你自己定的，qsort在用你写的cmp的时候先给它一个别名。<br>这个过程就是函数A的地址通过一个函数指针的形参传递到另一个函数B内部，从而能够在内部调用。只要函数A格式与B里面的形参一样，A名字可以任何。<br>大大增加了程序的扩展性。</p>
+<h2 id="04-二维数组与二重指针"><a href="#04-二维数组与二重指针" class="headerlink" title="04 二维数组与二重指针"></a>04 二维数组与二重指针</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013684730/article/details/46565577">见此博客</a><br>具体原因是两者在内存中的分配不完全一样，二重指针更加分散一些<br>所以 <code>char **p</code> 和 <code>char p[2][3]</code> 之间不能相互传递参数</p>
+<h2 id="05-文件位置指针"><a href="#05-文件位置指针" class="headerlink" title="05 文件位置指针"></a>05 文件位置指针</h2><p>对文本文件的读写也是指针实现的。</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    FILE <span class="token operator">*</span>fp<span class="token punctuation">,</span> <span class="token operator">*</span>dd<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> x<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token class-name">fpos_t</span> pos<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">long</span> <span class="token keyword">int</span> pos2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token punctuation">;</span>
+    
+    fp <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"in.in"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//puts("fd");</span>
+    dd <span class="token operator">=</span> fp<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">feof</span><span class="token punctuation">(</span>fp<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+	    <span class="token function">fgetpos</span><span class="token punctuation">(</span>fp<span class="token punctuation">,</span> <span class="token operator">&amp;</span>pos<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token function">fgets</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">//pos2 = ftell(fp);</span>
+	    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"pos[%d]=%ld"</span><span class="token punctuation">,</span>top<span class="token punctuation">,</span> pos<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token function">puts</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">//printf("pos2=%d\n", pos2);</span>
+	    <span class="token comment">//fseek(dd, pos2, SEEK_SET);</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> top<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+	    <span class="token function">fsetpos</span><span class="token punctuation">(</span>dd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>pos<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token function">fgets</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d:"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token function">puts</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">&#125;</span>
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+
+
+
+
+
+<h1 id="0x05-结构体专题"><a href="#0x05-结构体专题" class="headerlink" title="0x05 结构体专题"></a>0x05 结构体专题</h1><h2 id="结构体大小-sizeof"><a href="#结构体大小-sizeof" class="headerlink" title="结构体大小(sizeof)"></a>结构体大小(sizeof)</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qiumingcheng/p/11370836.html">sizeof计算结构体大小</a></p>
+<p>没有成员的结构体占用的空间是1个字节。</p>
+<p>偏移量</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">stru</span> 
+<span class="token punctuation">&#123;</span>  
+		<span class="token keyword">int</span> a<span class="token punctuation">;</span>  <span class="token comment">//start address is 0</span>
+		<span class="token keyword">char</span> b<span class="token punctuation">;</span>  <span class="token comment">//start address is 4</span>
+		<span class="token keyword">int</span> c<span class="token punctuation">;</span>  <span class="token comment">//start address is 8</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<p>偏移量指的是结构体变量中成员的地址和结构体变量地址的差。结构体大小等于最后一个成员的偏移量加上最后一个成员的大小。显然，结构体变量中第一个成员的地址就是结构体变量的首地址。</p>
+<p>比如上面的结构体，第一个成员<code>a</code>的偏移量为0。第二个成员<code>b</code>的偏移量是第一个成员的偏移量加上第一个成员的大小（0+4）,其值为4；第三个成员<code>c</code>的偏移量是第二个成员的偏移量应该是加上第二个成员的大小（4+1）。</p>
+<p>但在实际中，存储变量时地址要求对齐，编译器在编译程序时会遵循两条原则：<br>（1）结构体变量中成员的偏移量必须是成员大小的整数倍（0被认为是任何数的整数倍）<br>（2）结构体大小必须是所有成员大小的整数倍，也即所有成员大小的公倍数。</p>
+<h1 id="0x06-函数专题"><a href="#0x06-函数专题" class="headerlink" title="0x06 函数专题"></a>0x06 函数专题</h1><h2 id="01-qsort"><a href="#01-qsort" class="headerlink" title="01 qsort"></a>01 qsort</h2><p>第一个参数是地址，注意首项零的情况<br>第二个参数是个数<br>qsort在调用外部判断函数的时候，传入的参数是 &#x3D;&#x3D;数组元素的地址！&#x3D;&#x3D; 。在自己写cmp函数的时候尤其要注意。<br>另外，指针在C语言中 &#x3D;&#x3D;指向的是被指元素的首地址&#x3D;&#x3D; </p>
+<p><img src="https://s4.ax1x.com/2021/12/21/TMQs6f.png" srcset="/img/loading.gif" lazyload alt="示意图b"></p>
+<p>&#x3D;&#x3D;qsort默认从小到大排序，若cmp返回值大于0则交换，小于等于0不管。通常直接写<code>return a - b;</code>&#x3D;&#x3D;</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c">一维的数组排序
+<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span>
+<span class="token function">qsort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span>comp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">comp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>a<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span>a<span class="token operator">-</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> 
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+
+字符数组排序
+<span class="token keyword">char</span> a<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">qsort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">,</span>comp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">comp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>a<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token keyword">return</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>a<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+
+结构体排序
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">str</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token keyword">char</span> str1<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token keyword">char</span> str2<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>str<span class="token punctuation">;</span>
+
+str <span class="token operator">*</span>strs<span class="token punctuation">;</span>strs<span class="token operator">=</span><span class="token punctuation">(</span>str <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>a<span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>str<span class="token operator">*</span><span class="token punctuation">)</span>a<span class="token punctuation">)</span><span class="token operator">-></span>str2<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">(</span>str<span class="token operator">*</span><span class="token punctuation">)</span>b<span class="token punctuation">)</span><span class="token operator">-></span>str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">qsort</span><span class="token punctuation">(</span>strs<span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">,</span>compare<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h2 id="02-strlen"><a href="#02-strlen" class="headerlink" title="02 strlen()"></a>02 strlen()</h2><p>返回值为无符号整形<code>unsigned int</code>。故如果参与减法运算会产生负数，需要强制类型转换</p>
+<h2 id="03-内存分配函数"><a href="#03-内存分配函数" class="headerlink" title="03 内存分配函数"></a>03 内存分配函数</h2><h3 id="i-malloc"><a href="#i-malloc" class="headerlink" title="i malloc()"></a>i malloc()</h3><table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="left">申请堆内存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">所需头文件</td>
+<td align="left">#include&lt;stdlib.h&gt;</td>
+</tr>
+<tr>
+<td align="center">函数原型</td>
+<td align="left">void *malloc(size_t,size);</td>
+</tr>
+<tr>
+<td align="center">参数(size)</td>
+<td align="left">所申请的一块堆内存的大小，单位是字节</td>
+</tr>
+<tr>
+<td align="center">返回值</td>
+<td align="left">成功 - 指向分配好的堆内存的指针</br>失败 - NULL</td>
+</tr>
+<tr>
+<td align="center">malloc()分配给定大小（以字节为单位）的内存块，并返回一个指向块开头的指针。malloc()不会初始化分配的内存。如果在初始化之前我们尝试访问内存块的内容，那么我们将得到分段错误（或者可能是垃圾值）。</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h3 id="ii-calloc"><a href="#ii-calloc" class="headerlink" title="ii calloc()"></a>ii calloc()</h3><table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th>申请堆内存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">所需头文件</td>
+<td>#include&lt;stdlib.h&gt;</td>
+</tr>
+<tr>
+<td align="center">函数原型</td>
+<td>void *calloc(size_t count,size_t size);</td>
+</tr>
+<tr>
+<td align="center">参数(count与size)</td>
+<td>size —- 所申请的一块堆内存的大小，单位是字节</br>count —- 所申请的堆内存的块数，所有的内存块是连续分布的，无间隔的</td>
+</tr>
+<tr>
+<td align="center">返回值</td>
+<td>成功 - 指向分配好的堆内存的指针</br>失败 - NULL</td>
+</tr>
+<tr>
+<td align="center">calloc()分配内存并将分配的内存块初始化为零。如果我们尝试访问这些块的内容，那么我们将得到 0。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="0x07-宏定义专题（待整理）"><a href="#0x07-宏定义专题（待整理）" class="headerlink" title="0x07 宏定义专题（待整理）"></a>0x07 宏定义专题（待整理）</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanggangclcsdn/article/details/49704089">宏定义详解</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/article/" class="category-chain-item">article</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C语言的学习笔记</div>
+      <div>https://levsky-williams.top/posts/e08a8cc7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Levski-Williams</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/d97a10f4/" title="syncthing/SyncTrayzor如何同步而不删除">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">syncthing/SyncTrayzor如何同步而不删除</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"forest"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

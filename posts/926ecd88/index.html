@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Hudi.svg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Levski-Williams">
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="如标题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="偏微分方程02_方程的导出，化简与分类">
+<meta property="og:url" content="https://levsky-williams.top/posts/926ecd88/index.html">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
+<meta property="og:description" content="如标题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://levsky-williams.top/img/Pasted%20image%2020241026200846.png">
+<meta property="article:published_time" content="2024-10-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-28T07:15:41.460Z">
+<meta property="article:author" content="Levski-Williams">
+<meta property="article:tag" content="default">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://levsky-williams.top/img/Pasted%20image%2020241026200846.png">
+  
+  
+  
+  <title>偏微分方程02_方程的导出，化简与分类 - Левский Уильямс の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fliud.custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Levsky-Williams</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="偏微分方程02_方程的导出，化简与分类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-26 00:00" pubdate>
+          2024年10月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">偏微分方程02_方程的导出，化简与分类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-波动方程"><a href="#1-波动方程" class="headerlink" title="1 波动方程"></a>1 波动方程</h1><h1 id="2-热传导方程"><a href="#2-热传导方程" class="headerlink" title="2 热传导方程"></a>2 热传导方程</h1><h1 id="3-位势方程"><a href="#3-位势方程" class="headerlink" title="3 位势方程"></a>3 位势方程</h1><h1 id="4-二元二阶线性方程的化简与分类"><a href="#4-二元二阶线性方程的化简与分类" class="headerlink" title="4 二元二阶线性方程的化简与分类"></a>4 二元二阶线性方程的化简与分类</h1><h2 id="分析思路"><a href="#分析思路" class="headerlink" title="分析思路"></a>分析思路</h2><p>二元二阶线性方程的基本形式如下：（<strong>其中 $a, b, c$ 不同时为0</strong>）</p>
+<p>$$<br>a(x,y)u_{xx}+ 2b(x,y)u_{xy} + c(x,y)u_{yy} +d(x,y) u_x+e(x,y)u_y+f(x,y)u &#x3D; g(x,y)\tag{2.4.1}<br>$$</p>
+<p>为了对这个方程进行化简，我们对<strong>自变量进行局部变换</strong>。</p>
+<p><img src="/img/Pasted%20image%2020241026200846.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>Q: 为什么进行变换？<br><br>A: 目的是通过变换，把二阶导的系数化简，消除 1 到 2 个二阶项，最好把二阶项全部消掉。</p>
+<p>Q: 为什么可以变换？<br><br>A: 利用<a href="#goal2">隐函数存在定理</a>。<br>Q: 为什么对自变量进行变换？<br><br>A: 当然也可以做其它的变换，只不过讲的是以书上的方法为主。</p>
+</blockquote>
+<p><span id="goal2"><br><br></span></p>
+<blockquote>
+<p>隐函数存在定理<a href="%E8%A7%81%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%88%96%E8%87%AA%E8%A1%8C%E6%90%9C%E7%B4%A2%E3%80%82">^ref1</a>：</p>
+<ul>
+<li>一元：$\frac{\partial y}{\partial x} \ne 0\Longrightarrow x &#x3D;x(y)$ 存在（只有充分性）。</li>
+<li>二元：Jacobi 矩阵 $\ne 0$ ，即：<br>$$<br>\begin{gather}<br>\begin{bmatrix}<br>\frac{\partial f_1}{\partial x} &amp;<br>\frac{\partial f_1}{\partial y} \<br>\frac{\partial f_2}{\partial x} &amp;<br>\frac{\partial f_2}{\partial y}<br>\end{bmatrix} \ne 0<br>\end{gather}<blockquote>
+<p>$$</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>在 $(x_0, y_0)$ 附近</strong>利用 $\xi &#x3D; \xi(x,y), \eta &#x3D; \eta(x,y)$ 可以把式 $\mathrm{(2.4.1)}$ 写成以 $\xi, \eta$ 为自变量的方程：<br>$$<br>AU_{\xi\xi} + 2BU_{\xi\eta} + CU_{\eta\eta} + DU_{\xi} + EU_{\eta}+FU &#x3D; G \tag{2.4.4}<br>$$</p>
+<p>主要矛盾在二阶项，所以我们暂时只关注二阶项的系数。<br>把 $A,B,C$ 展开：<br>$$<br>\begin{gather}<br>\large<br>\begin{cases}<br>\displaylines A(\xi, \eta) &#x3D; (a\xi_x^2 + 2b\xi_x\xi_y + c\xi_y^2)\big\vert_{x &#x3D; x(\xi, \eta), y &#x3D; y(\xi, \eta)}\<br>\displaylines B(\xi, \eta) &#x3D; (a\xi_x\eta_x + b(\xi_x\eta_y+\xi_y\eta_x) + c\xi_y\eta_y) \<br>\displaylines C(\xi, \eta) &#x3D; (a\eta_x^2 + 2b\eta_x\eta_y + c\eta_y^2)\big\vert_{x &#x3D; x(\xi, \eta), y &#x3D; y(\xi, \eta)}\<br>\end{cases}\tag{2.4.5}<br>\end{gather}<br>$$<br>我们自然希望 $A &#x3D; B &#x3D; C &#x3D; 0$ 。但我们可以证明，A,B,C 不能同时为 0。</p>
+<blockquote>
+<p>证明（思路）：</p>
+<p>把式 $\mathrm{(2.4.5)}$ 看成关于 a, b, c 的参数方程，可以写出系数矩阵。如果 $A &#x3D; B &#x3D; C &#x3D; 0$ ，则方程组的解 (a, b, c) 也都为 0。这样的话与前提的假设矛盾。</p>
+</blockquote>
+<p>既然不能 3 个都为 0 ，那么可不可以让其中 1 个或 2 个为 0 ？观察可以发现，$A(\xi, \eta)$ 和 $C(\xi,\eta)$ 的形式相似，因此我们可以想办法试试让 $A &#x3D; C &#x3D; 0$。</p>
+<p><span id="goal1"><br><br></span><br>现在我们的目标就变成了：让 $A &#x3D; C &#x3D; 0$ 。</p>
+<p>为了达到分析一个方程，解 A,C 两个方程，我们先把 A, C 的表达式改一下。</p>
+<p>$$<br>a\varphi^2_x + 2b\varphi_x\varphi_y + c\varphi_y^2 &#x3D; 0 \tag{2.4.7}<br>$$</p>
+<p><a id="goal3"><br><br></a></p>
+<p>对于式 $\mathrm{(2.4.7)}$， 如果它有2个解，并且其Jacobi行列式 $$\left\vert\frac{\partial (\varphi_1, \varphi_2)}{\partial (x, y)}\right\vert \ne 0$$（可逆变换），则就可以实现我们想要的<a href="#goal1">目标</a>了。</p>
+<p>现在问题转换为：方程 $\mathrm{(2.4.7)}$ 的解的判断。</p>
+<p>这个问题，可以用下面的命题回答：</p>
+<div class="note note-warning">
+            <p>命题</p><p>若 $\varphi(x,y) &#x3D; C$ （常数）是一阶常微分方程：<br>$$<br>a\mathrm{d}y^2 -2b \mathrm{d}y\mathrm{d}x+c\mathrm{d}x^2 &#x3D; 0 \tag{2.4.8}<br>$$<br>的隐式解，且 $\varphi_x, \varphi_y$ 不同时为 0 ($\varphi_x^2+\varphi_y^2 \ne 0$)，则 $\varphi(x, y)$ 是方程 $\mathrm{(2.4.7)}$ 的解。</p>
+          </div>
+
+<blockquote>
+<p>证明思路：<br><br>对 $\varphi_x^2 + \varphi_y^2 &#x3D; 0$ 两边求 $\varphi_x$ 的导，得：<br>$$<br>\begin{gather}<br>2\varphi_x + 2\varphi_y\frac{\varphi_y}{\varphi_x} &#x3D; 0\<br>\varphi_x + \varphi_y\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; 0\<br>\therefore \frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; -\frac{\varphi_x}{\varphi_y}<br>\end{gather}<br>$$</p>
+<p>代回式 $\mathrm{(2.4.8)}$，则可以得到式 $\mathrm{(2.4.7)}$ 的格式。 </p>
+</blockquote>
+<p>这里的式 $\mathrm{(2.4.8)}$称为式 $\mathrm{(2.4.1)}$ 的特征方程。</p>
+<p>于是，现在的目的成了：求解式 $\mathrm{(2.4.8)}$。</p>
+<ul>
+<li>如果 $a(x_0, y_0) &#x3D; c(x_0, y_0) &#x3D; 0$ (这里 a, c 的含义与式 $\mathrm{(2.4.1)}$ 的含义相同)，则式 $\mathrm{(2.4.1)}$ 不用化简。</li>
+<li>如果 $a(x_0, y_0) , c(x_0, y_0)$ 中只有一个为 0， 不妨设 $a &#x3D;0$，则式 $\mathrm{(2.4.1)}$的特征方程 $\mathrm{(2.4.8)}$ 可以写成：<br>$$<br>a\left({\frac{\mathrm{d}y}{\mathrm{d}x}}\right)^2 -2b\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right) + c &#x3D; 0\tag{2.4.9}<br>$$</li>
+</ul>
+<p>式 $\mathrm{(2.4.9)}$ 看作一个一元二次方程，其 $\delta &#x3D;b^2-ac$ 。<br>接下来就对 $\delta$ 分情况讨论。</p>
+<h3 id="case1-delta-0"><a href="#case1-delta-0" class="headerlink" title="case1. $\delta&gt;0$"></a>case1. $\delta&gt;0$</h3><p><mark>大于0的前提是在 $(x_0, y_0)$ 附近</mark></p>
+<p>此一元二次方程有2个根，我们也就可以把式 $\mathrm{(2.4.9)}$ 看作 2 个方程：<br>$$<br>\begin{aligned}<br>\frac{\mathrm{d}y}{\mathrm{d}x} &amp;&#x3D; \frac{b + \sqrt{\delta}}{a}(x,y)\<br>\frac{\mathrm{d}y}{\mathrm{d}x} &amp;&#x3D; \frac{b - \sqrt{\delta}}{a}(x,y)\<br>\end{aligned}<br>\tag{2.4.10}<br>$$<br>由常微分方程解的存在唯一性，式 $\mathrm{(2.4.9)}$ 有 2 个解： $y &#x3D; y_k(x; C); k &#x3D; 1, 2$，其初始条件为 $y(x_0) &#x3D; y_0+C$ （初始位置加一个小搅动）。</p>
+<blockquote>
+<p>Q: 为什么初始条件要加一个小搅动？<br><br>A: 讨论的区域是在 $(x_0, y_0)$ 附近，并非严格的 $(x_0, y_0)$ 点。</p>
+</blockquote>
+<p>上面的解是一个显式表达，x, y 地位不平等。我们希望求得隐式表达，好给式 $\mathrm{(2.4.8)}$。</p>
+<p>因此，下面把 $y &#x3D; y_k(x;C)$ 变成 $\varphi_k(x, y) &#x3D;C$ 的形式。（用隐函数存在定理）</p>
+<p>在方程式 $\mathrm{(2.4.10)}$ 和初始条件两边对 $C$ 求导：<br>$$<br>\begin{cases}<br>\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial y}{\partial C}\right) &#x3D; \frac{\partial }{\partial y} \left(\frac{b \pm \sqrt{\delta}}{a}(x, y)\right)\frac{\partial y}{\partial C}\<br>\frac{\partial y}{\partial C}(x_0; C) &#x3D; 1<br>\end{cases}<br>$$</p>
+<p>这是一个关于 $\frac{\partial y}{\partial C}$ 的一阶线性常微分方程问题，可以解得：<br>$$<br>\frac{\partial y}{\partial C} &#x3D; \exp\left(\int_{x_0}^x\frac{\partial}{\partial y}\left(\frac{b\pm\sqrt{\delta}}{a}\left(\xi, y(\xi, C)\right)\mathrm{d} \xi\right)\right) &gt; 0<br>$$<br>（不用管里面解出来是什么，只要不为 0 就行）</p>
+<blockquote>
+<p>求隐函数：<strong>要求谁，对谁求导</strong>。求 $y$，因此对 $y$ 求导。</p>
+</blockquote>
+<p>由隐函数存在定理，从式 $\mathrm{(2.4.10)}$ 可以解出 $C&#x3D;\varphi_k(x, y)$ ， $C$ 满足式 $\mathrm{(2.4.7)}$ </p>
+<p>现在我们相当于求到了<a href="#goal3">之前</a> $\mathrm{(2.4.7)}$ 里的 $\varphi_1, \varphi_2$，还需要验证 Jacobi 行列式以确保可逆变换。</p>
+<div class="note note-info">
+            <p>验证 Jacobi 行列式</p><p>对 $y &#x3D; y_k(x; \varphi_k(x, y))$ 两边分别对 $x, y$ 求导：<br>$$<br>0 &#x3D; \frac{\partial y_k}{\partial x} + \frac{\partial y_k}{\partial C}\varphi_{kx}(x,y)\quad 1 &#x3D; \frac{\partial y_k}{\partial C}\varphi_{ky}<br>$$<br>在 $(x_0, y_0)$ 附近时（感觉应该是指 $x&#x3D;x_0$ 时）$y(x_0) &#x3D; y_0+C$，$\frac{\partial y_k(x_0, C)}{\partial C} &#x3D; \frac{\partial}{\partial C}(y_0+C) &#x3D; 1$：<br>$$<br>\varphi_{kx} &#x3D; -\frac{\partial y_k}{\partial x} &#x3D; -y_k’, \quad \varphi_{ky} &#x3D; 1<br>$$<br>故Jacobi 非 0。</p>
+          </div>
+
+<p> <strong>结论</strong>：当我们求出来 式 $\mathrm{(2.4.8)}$ 的隐式解之后，令 $\xi &#x3D; \varphi_1(x, y), \eta &#x3D; \varphi_2(x,y)$，从而式 $\mathrm{(2.4.5)}$ 中的 $A&#x3D;C&#x3D;0$，式 $\mathrm{(2.4.4)}$ 写成：<br> $$<br> {\color{red}{\Huge U_{\xi\eta}} &#x3D; D_1U_{\xi} + E_1U_{\eta} + F_1U + G_1, \tag{2.4.10}}<br> $$</p>
+<div class="note note-primary">
+            <details><summary>例</summary>化简并求解方程：$$4u_{xx} + 5u_{xy} + u_{yy} + u_x + u_y = 2$$---论化简，step1，列出形如 式 $\mathrm{(2.4.9)}$ 的式子。<br>step2，判断 $\delta$ 与 0 的关系。<br>step3，解一元二次方程<br>step4，解常微分方程得 $y$ 的表达式 $y(x, C)$。<br>step5，令 $\xi=\varphi_1(x, y), \eta = \varphi_2(x,y)$，然后把 $x,y$ 用 $\xi, \eta$ 表示出来。<br>step6，用 $u, U$ 表达。 <h2 id="解：-观察可得-a-4-b-frac25-c-1-，-delta-b-2-ac-0-。故有：-4-left-frac-mathrm-d-y-mathrm-d-x-right-2-5-left-frac-mathrm-d-y-mathrm-d-x-right-1-0-解得：-frac-mathrm-d-y-mathrm-d-x-1-或-frac14-解-mathrm-d-x-mathrm-d-y-的常微分方程，得：-frac14x-C-或-y-x-C-也即：-C-frac14x-y-或-C-x-y-令-xi-frac14x-y-eta-x-y-，则-u-x-y-U-y-x-y-frac-x-4-。-frac-partial-u-partial-x-frac-partial-U-partial-xi-frac-partial-xi-partial-x-frac-partial-U-partial-eta-frac-partial-eta-partial-x-U-xi-frac14-U-eta-同理可得：-begin-gather-u-y-U-xi-U-eta-u-xx-U-xi-xi-frac12U-xi-eta-frac-1-16-U-eta-eta-u-xx-U-xi-xi-frac54U-xi-eta-frac-1-4-U-eta-eta-u-xx-U-xi-xi-2U-xi-eta-U-eta-eta-end-gather-把小写-u-全部替换成大写-U-得：-frac94U-xi-eta-frac34U-eta-2-即：-U-xi-eta-frac13U-eta-frac89"><a href="#解：-观察可得-a-4-b-frac25-c-1-，-delta-b-2-ac-0-。故有：-4-left-frac-mathrm-d-y-mathrm-d-x-right-2-5-left-frac-mathrm-d-y-mathrm-d-x-right-1-0-解得：-frac-mathrm-d-y-mathrm-d-x-1-或-frac14-解-mathrm-d-x-mathrm-d-y-的常微分方程，得：-frac14x-C-或-y-x-C-也即：-C-frac14x-y-或-C-x-y-令-xi-frac14x-y-eta-x-y-，则-u-x-y-U-y-x-y-frac-x-4-。-frac-partial-u-partial-x-frac-partial-U-partial-xi-frac-partial-xi-partial-x-frac-partial-U-partial-eta-frac-partial-eta-partial-x-U-xi-frac14-U-eta-同理可得：-begin-gather-u-y-U-xi-U-eta-u-xx-U-xi-xi-frac12U-xi-eta-frac-1-16-U-eta-eta-u-xx-U-xi-xi-frac54U-xi-eta-frac-1-4-U-eta-eta-u-xx-U-xi-xi-2U-xi-eta-U-eta-eta-end-gather-把小写-u-全部替换成大写-U-得：-frac94U-xi-eta-frac34U-eta-2-即：-U-xi-eta-frac13U-eta-frac89" class="headerlink" title=" 解： 观察可得 $a &#x3D; 4, b&#x3D; \frac25, c&#x3D; 1$，$\delta &#x3D; b^2-ac&gt;0$。故有： $$4\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2 - 5\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right) + 1 &#x3D; 0 $$ 解得： $$\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; 1 或 \frac14 $$解 $\mathrm{d}x, \mathrm{d}y$ 的常微分方程，得：$$&#x3D; \frac14x+C 或 y &#x3D; x+C$$也即：$$C&#x3D; -\frac14x+y 或 C &#x3D; -x + y$$令 $\xi &#x3D; -\frac14x+y, \eta &#x3D; -x+y$ ，则 $u(x, y) &#x3D; U(y-x, y - \frac{x}{4})$。$$\frac{\partial u}{\partial x} &#x3D; \frac{\partial U}{\partial \xi}\frac{\partial \xi}{\partial x} + \frac{\partial U}{\partial\eta}\frac{\partial \eta}{\partial x} &#x3D; -U_{\xi} -\frac14 U_{\eta}$$同理可得：$$\begin{gather}u_y &#x3D; U_{\xi} + U_{\eta}\u_{xx} &#x3D; U_{\xi\xi}+\frac12U_{\xi\eta} + \frac{1}{16}U_{\eta\eta}\u_{xx} &#x3D; -U_{\xi\xi}-\frac54U_{\xi\eta} - \frac{1}{4}U_{\eta\eta}\u_{xx} &#x3D; U_{\xi\xi}+2U_{\xi\eta} + U_{\eta\eta}\\end{gather}$$把小写 $u$ 全部替换成大写 $U$ 得：$$-\frac94U_{\xi\eta} +\frac34U_{\eta} &#x3D; 2$$即：$$U_{\xi\eta} &#x3D; \frac13U_{\eta} - \frac89$$"></a> <strong>解：</strong> 观察可得 $a &#x3D; 4, b&#x3D; \frac25, c&#x3D; 1$，$\delta &#x3D; b^2-ac&gt;0$。故有：<br> $$<br>4\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2 - 5\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right) + 1 &#x3D; 0<br> $$<br> 解得：<br> $$<br>\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; 1 或 \frac14<br> $$<br>解 $\mathrm{d}x, \mathrm{d}y$ 的常微分方程，得：<br>$$<br>&#x3D; \frac14x+C 或 y &#x3D; x+C<br>$$<br>也即：<br>$$<br>C&#x3D; -\frac14x+y 或 C &#x3D; -x + y<br>$$<br>令 $\xi &#x3D; -\frac14x+y, \eta &#x3D; -x+y$ ，则 $u(x, y) &#x3D; U(y-x, y - \frac{x}{4})$。<br>$$<br>\frac{\partial u}{\partial x} &#x3D; \frac{\partial U}{\partial \xi}\frac{\partial \xi}{\partial x} + \frac{\partial U}{\partial\eta}\frac{\partial \eta}{\partial x} &#x3D; -U_{\xi} -\frac14 U_{\eta}<br>$$<br>同理可得：<br>$$<br>\begin{gather}<br>u_y &#x3D; U_{\xi} + U_{\eta}\<br>u_{xx} &#x3D; U_{\xi\xi}+\frac12U_{\xi\eta} + \frac{1}{16}U_{\eta\eta}\<br>u_{xx} &#x3D; -U_{\xi\xi}-\frac54U_{\xi\eta} - \frac{1}{4}U_{\eta\eta}\<br>u_{xx} &#x3D; U_{\xi\xi}+2U_{\xi\eta} + U_{\eta\eta}\<br>\end{gather}<br>$$<br>把小写 $u$ 全部替换成大写 $U$ 得：<br>$$<br>-\frac94U_{\xi\eta} +\frac34U_{\eta} &#x3D; 2<br>$$<br>即：<br>$$<br>U_{\xi\eta} &#x3D; \frac13U_{\eta} - \frac89<br>$$</h2><p>关于求解：先把上式写成：<br>$$<br>\left(U_{\eta}e^{-\frac13\xi}\right)_{\xi} &#x3D; -\frac89e^{-\frac13\xi}<br>$$<br>两边再积分：<br>$$<br>U &#x3D; \frac83\eta+e^{\frac{\xi}{3}}h(\eta) + g(\xi)<br>$$</p></details>
+          </div>
+
+<blockquote>
+<p><strong>一定要注意 $b$ 的含义有不同</strong>。原始的求根公式里的 b 对应应该是 $2b(x, y)$ 。</p>
+</blockquote>
+<h3 id="case2-delta-equiv0"><a href="#case2-delta-equiv0" class="headerlink" title="case2. $\delta\equiv0$"></a>case2. $\delta\equiv0$</h3><p><mark>前提： 在 $(x_0, y_0)$ 附近恒为 0</mark>，如果只是零点，不一定可以做下面的化简。</p>
+<p>此时式 $\mathrm{(2.4.9)}$ 就成了 1 个方程，只能解出一个 $\varphi$ 。还是在 $(x_0, y_0)$ 处：<br>$$<br>\varphi_{1x} &#x3D; -\frac{\partial y(x_0)}{\partial x}, \quad \varphi_{1y} &#x3D; 1<br>$$<br>为了让 Jacobi 非零，<strong>主动取</strong> $\varphi_2 &#x3D; x$，此时 $A &#x3D; B &#x3D; 0$，从而式 $\mathrm{(2.4.4)}$ 写成：</p>
+<p> $$<br> {\color{red}{\Huge U_{\eta\eta} }&#x3D; D_2U_{\xi} + E_2U_{\eta} + F_2U + G_2, \tag{2.4.11}}<br> $$</p>
+<h3 id="case3-在-x-0-y-0-附近-delta"><a href="#case3-在-x-0-y-0-附近-delta" class="headerlink" title="case3. 在$(x_0, y_0)$ 附近 $\delta&lt;0$"></a>case3. 在$(x_0, y_0)$ 附近 $\delta&lt;0$</h3><p>此时式 $\mathrm{(2.4.9)}$ 可以看作 2 个方程（1 个实方程， 1 个虚方程）。考虑其中的一个方程（共轭，所以另一个类似），我们可以假设：<br>$$<br>y &#x3D; \Big[g(x)+C_1\Big] + \Big[h(x)+C_2\Big] i<br>$$</p>
+<p>写成隐函数的形式：<br>$$<br>\varphi(x, y) &#x3D; C_1+iC_2 &#x3D; \underbrace{\Big[y-g(x)\Big]}<em>{\varphi_1} + \underbrace{\Big[-h(x)\Big]}</em>{\varphi_2}i<br>$$</p>
+<p>根据复变函数的求导法则<a href="%E5%8F%82%E8%80%83%E4%BA%86%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AF%BC%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%8C%E4%BD%86%E4%BF%9D%E6%8C%81%E7%96%91%E9%97%AE%E3%80%82">^ref2</a>：</p>
+<p>$$<br>\frac{\mathrm{d}y}{\mathrm{d}x} &#x3D; \frac{\mathrm{d}g(x)}{\mathrm{d}x} + i\frac{\mathrm{d}h(x)}{\mathrm{d}x}<br>$$<br>因而对于上面的式子：</p>
+<p>$$<br>\begin{align}<br>\varphi_{1x} &amp;&#x3D; -\frac{\mathrm{d}g(x)}{\mathrm{d} x} &#x3D; \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)<em>{\mathrm{real}}\<br>\varphi</em>{1y} &amp;&#x3D; 1\<br>\varphi_{2x} &amp;&#x3D; -\frac{\mathrm{d}h(x)}{\mathrm{d}x} &#x3D; \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)<em>{\mathrm{image}}&#x3D;-\frac{\pm\sqrt{\delta}}{a}\<br>\varphi</em>{2y} &amp;&#x3D; 0<br>\end{align}<br>$$</p>
+<blockquote>
+<p>注：<br><br>有一点我没有太明白，PPT上这里是在 $(x_0, y_0)$ （or 在其邻域？）的时候得到的结果，我上面的推导正确吗？</p>
+</blockquote>
+<p>在之后的替换中，用 $\xi &#x3D; \varphi_1, \eta &#x3D; \varphi_2$，就可以得到 $A &#x3D; C \ne 0, B &#x3D; 0$，故式 $\mathrm{(2.4.4)}$ 写成：</p>
+<p> $$<br> {\color{red}{\Huge U_{\xi\xi}+U_{\eta\eta} }&#x3D; D_3U_{\xi} + E_3U_{\eta} + F_3U + G_3, \tag{2.4.12}}<br> $$</p>
+<blockquote>
+<p>Q：为什么只考虑一个方程？<br><br>A：因为两个方程共轭。共轭只影响 $$\varphi&#x3D;\varphi_1{\color{red}\pm}\varphi_2i$$里红色的符号，最后替换为 $\xi, \eta$ 之后，我们也要实部虚部分开看。不影响结果。</p>
+</blockquote>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>以之前的 $\delta$ 为分类标准（可以证明式 $\mathrm{(2.4.1)}$ 的 $\delta$ 和式 $\mathrm{(2.4.4)}$ 的 $\Delta$ 在 $Jacobi\ne 0$ 时符号相同）。</p>
+<ul>
+<li>$\delta&gt;0$ ：双曲型，其标准型为式 $\mathrm{(2.4.10)}$。</li>
+<li>$\delta&#x3D;0$ ：抛物型，其标准型为式 $\mathrm{(2.4.11)}$。</li>
+<li>$\delta&lt;0$ ：椭圆型，其标准型为式 $\mathrm{(2.4.12)}$。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E5%AD%A6/" class="category-chain-item">数学</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/default/" class="print-no-link">#default</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>偏微分方程02_方程的导出，化简与分类</div>
+      <div>https://levsky-williams.top/posts/926ecd88/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Levski-Williams</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/dac9b442/" title="STL-队列，栈，堆">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">STL-队列，栈，堆</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/65f85108/" title="从源码安装openFOAM">
+                        <span class="hidden-mobile">从源码安装openFOAM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"forest"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

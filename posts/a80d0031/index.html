@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/Hudi.svg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Levski-Williams">
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="脱离竞赛很长时间了，有的知识已经忘记了。正好近期有蓝桥杯的报名，想着打打比比赛，争取拿个奖，顺便复习复习以前的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://levsky-williams.top/posts/a80d0031/index.html">
+<meta property="og:site_name" content="Левский Уильямс の 博客">
+<meta property="og:description" content="脱离竞赛很长时间了，有的知识已经忘记了。正好近期有蓝桥杯的报名，想着打打比比赛，争取拿个奖，顺便复习复习以前的知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://levsky-williams.top/img/Pasted%20image%2020241028181451.png">
+<meta property="article:published_time" content="2024-10-28T10:24:00.000Z">
+<meta property="article:modified_time" content="2024-11-29T06:12:27.843Z">
+<meta property="article:author" content="Levski-Williams">
+<meta property="article:tag" content="default">
+<meta property="article:tag" content="未完">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://levsky-williams.top/img/Pasted%20image%2020241028181451.png">
+  
+  
+  
+  <title>动态规划 - Левский Уильямс の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fliud.custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Levsky-Williams</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/minimalist_1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="动态规划"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-28 18:24" pubdate>
+          2024年10月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">动态规划</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>这篇文章，包括之后一系列的蓝桥杯文章都是在学习了<a target="_blank" rel="noopener" href="https://programmercarl.com/">代码随想录</a>的公开内容之后的个人总结。</p>
+<p>十分推荐<a target="_blank" rel="noopener" href="https://programmercarl.com/">代码随想录</a>这个网站，里面有不少信息竞赛的相关知识。虽然不是针对竞赛，但大部分内容是一样的，而且讲得很细。其在B站也有视频：<a target="_blank" rel="noopener" href="https://space.bilibili.com/525438321">代码随想录个人主页-哔哩哔哩视频</a>。</p>
+</blockquote>
+<h1 id="1-动态规划5步曲"><a href="#1-动态规划5步曲" class="headerlink" title="1 动态规划5步曲"></a>1 动态规划5步曲</h1><p>动态规划，可以看作是递推的一个推广。因此，一个问题能否用动态规划问题解决，需要看这个问题能否被分解为一个递推问题。具体来说，可以考虑如下的问题：</p>
+<ul>
+<li>能否分解为子问题？</li>
+<li>子问题与原问题是什么关系？</li>
+</ul>
+<p>当然，有的问题不一定一眼能看出来，我的习惯是先带入dp的方法来看，如果定义的dp数组可以写出递推公式，那大概率就可以用dp做。</p>
+<p>基本上，所有的dp问题的解决方法都可以归纳为如下的5步（来自代码随想录）：</p>
+<ol>
+<li>明确dp数组的定义；</li>
+<li>找递推公式；</li>
+<li>dp的初始化；</li>
+<li>遍历顺序；</li>
+<li>打印dp数组。</li>
+</ol>
+<p>我自己在此基础上修改了一些，变成了下面的这 5 步：</p>
+<ol>
+<li>dp定义；</li>
+<li>递推公式；</li>
+<li>结果形式（最后的输出是什么？是一个值还是一个等式）；</li>
+<li>初始条件；</li>
+<li>遍历顺序。</li>
+</ol>
+<p>经典问题一般有一个固定的模板（除了普通dp），这些模板的意义在于让我们看到这个问题之后能够较快的反应过来。<br>但如果没有按照5步曲来做，没有理解5步曲里每一步在具体问题里的具体含义，背模板只能是表面上的会，如果题目变一下就不会做了。</p>
+<h1 id="2-普通dp"><a href="#2-普通dp" class="headerlink" title="2 普通dp"></a>2 普通dp</h1><p>在力扣上的dp入门题如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/">70 爬楼梯</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/">509 斐波那契数</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-climbing-stairs/">746 使用最小花费爬楼梯</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">62 不同路径</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths-ii/">63 不同路径 II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-break/">343 整数拆分</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-binary-search-trees/">96 不同的二叉搜索树</a></li>
+</ul>
+<p>这类dp问题的难点在于，分析出这些问题可以用dp，并正确写出dp数组的定义。<br>如果有了dp数组的定义，后续的5步曲就相对容易了一点。</p>
+<p>比如<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-binary-search-trees/">96 不同的二叉搜索树</a>，<br>考虑一个相对一般的n，比如n&#x3D;3，<br>当我们选择一个元素作为二叉搜索树的root后，其方案数就变成了子树方案数的排列组合，<br>因此原问题就分解为了一个相同的子问题。</p>
+<h1 id="3-背包问题"><a href="#3-背包问题" class="headerlink" title="3 背包问题"></a>3 背包问题</h1><p>背包问题最明显的特征是取数，在一个集合里取数。</p>
+<h2 id="3-1-01背包"><a href="#3-1-01背包" class="headerlink" title="3.1 01背包"></a>3.1 01背包</h2><div class="note note-info">
+            <p><strong>简单描述：</strong></p><p>有n个物品，每个物品有价值<code>value</code>和体积<code>weight</code>。我们需要选择一些物品到一个固定容量的背包，每个物品<em><strong>只能选择一次</strong></em>。问最大价值是多少。</p>
+          </div>
+
+<h3 id="3-1-1-基本解法"><a href="#3-1-1-基本解法" class="headerlink" title="3.1.1 基本解法"></a>3.1.1 基本解法</h3><p><strong>step1，dp数组定义</strong></p>
+<p>对于经典的01背包问题，可以定义dp数组<code>dp[i][j]</code>，含义是从第<code>1</code>个物品到第<code>i</code>个物品（根据数组的下标也可能是从<code>0</code>到<code>i</code>），当背包容量为<code>j</code>时的装的最大价值。</p>
+<p><strong>step2，递推公式</strong></p>
+<p>假设当前是第 i 个物品，当前可用容量为 j ，现在有2种情况：</p>
+<ol>
+<li>不选第 i 个物品，那么最大价值就是上一个的最大价值：<code>dp[i-1][j]</code>；</li>
+<li>选第 i 个物品，那么就需要在上一个的最大价值（<code>dp[i-1][j]</code>）的基础上承受 <code>weight[i]</code> 的代价（体积），价值则增加了 <code>value[i]</code>，即<code>dp[i-1][j - weight[i]] + value[i]</code></li>
+</ol>
+<p>也就是下面的公式：<br>$$<br>\mathrm{dp}[i][j] &#x3D; \max(\mathrm{dp}[i-1][j], \mathrm{dp}[i-1][j-\mathrm{weight}[i]]+\mathrm{value}[i])<br>$$</p>
+<p><strong>step3，初始化</strong></p>
+<p>现在的 dp 数组是一个二维数组，每一个值都由它正上面相邻的格子和正上方格子左侧的格子推导而得，<br>因此我们需要初始化第 1 行和第 1 列。</p>
+<p><a id="pic1"><br><br></a></p>
+<img src="/img/Pasted%20image%2020241028181451.png" srcset="/img/loading.gif" lazyload width=60% />
+
+<p>第 1 列的含义是：当可用容量为 0 时的最大价值。显然为 0。<br>第 1 行的含义是：对于第 1 个物品，容量为 j 时的最大价值。<br>如果 <code>j</code> 比 <code>weight[0]</code> 小，那一定是 0。而 <code>j</code> 比 <code>weight[0]</code> 大的所有格子，都应该为 <code>value[0]</code>。</p>
+<p><strong>step4，遍历顺序</strong></p>
+<p>根据我刚才的<a href="#pic1">图片</a>，</p>
+<ul>
+<li>对于物品：只能从小到大。</li>
+<li>对于容量：可以从小到大，也可以从大到小。</li>
+<li>对于物品和容量之间：可以交换。</li>
+</ul>
+<p>具体的原理手动模拟一遍就可以了，不过多解释。</p>
+<hr>
+<h3 id="3-1-2-状态压缩"><a href="#3-1-2-状态压缩" class="headerlink" title="3.1.2 状态压缩"></a>3.1.2 状态压缩</h3><p>从刚才的遍历就可以发现，当前行只依赖于上一行，而且对右上角没有依赖。因此可以状态压缩。</p>
+<p>压缩后，dp 就成了 <code>dp[j]</code>。需要注意的是，此时的遍历顺序就固定了，没有可以交换的部分，即<strong>外层：物品从小到大，内层：容量从大到小</strong>。</p>
+<ul>
+<li>内外无法交换：只有行间是相邻的依赖，列与列之间的依赖跨行了。</li>
+<li>内层只能从大到小：行首的值会被行尾的用，因此只能先改行尾，再改行首。</li>
+</ul>
+<h3 id="3-1-3-变体"><a href="#3-1-3-变体" class="headerlink" title="3.1.3 变体"></a>3.1.3 变体</h3><p>01背包常见的问法（变体）：</p>
+<ul>
+<li>尽量装满容器，求最大价值（当物品价值等于物品体积，就成了最多能装多少体积）；</li>
+<li>能不能装满容器；</li>
+<li>尽量装满容器的方案数。</li>
+</ul>
+<p>01背包问题，在容量上有这样的关系：<br>$$<br>\mathrm{选的物品占的空间} \le \mathrm{背包容量} \tag{2.2.1}<br>$$</p>
+<p>如果物品的价值等于其自身的体积，那么背包问题求的最大价值就等价于求最大体积。</p>
+<div class="note note-primary">
+            <details><summary>Leetcode 416.分割等和子集</summary>这题可以看作一个01背包问题，让$sum/2$的背包的最大价值（也即最大体积）等于$sum/2$，则式$\mathrm{(2.2.1)}$的等号取等，则说明有分解方案。</details>
+          </div>
+
+<h2 id="3-2-完全背包"><a href="#3-2-完全背包" class="headerlink" title="3.2 完全背包"></a>3.2 完全背包</h2><p>完全背包， 之于 01 背包，最大的区别就在于其没有物品数量上的限制。<br>在理解了基本的动态规划 5 步和 01 背包问题后，完全背包相对而言就很简单了。</p>
+<p>代码随想录的视频里说，区别就在：一维数组内层遍历的顺序改为从小到大。<br>在这里，代码随想录里有解释为什么，但他用的是一维数组举的例子。<br>我还是喜欢先用二维数组进行理解，而且我觉得二维数组更接近问题的本质一些。</p>
+<p>在二维中， 递推公式是：<br>$$<br>\mathrm{dp}[i][j] &#x3D; \max(\mathrm{dp}[i-1][j] , \mathrm{dp}[{\color{red}i}][j-\mathrm{w}[i]])<br>$$</p>
+<img src=/img/Pasted%20image%2020241123212006.png width=60%/>
+
+<p>这个公式表示，当前 dp 数组的值可以从这两个地方更新：</p>
+<ol>
+<li>当前物品一个都不选，则来自 $\mathrm{dp}[i-1][j]$，</li>
+<li>当前物品要选，但不知道选多少个。则来自 $\mathrm{dp}[i][j-\mathrm{w}[i]]$。</li>
+</ol>
+<p>为什么当前不知道选多少个时可以从 $\mathrm{dp}[i][j-\mathrm{w}[i]]$ 更新？这是其实是把问题给分解了。<br>我们在考虑 dp 递推公式时，考虑的是一个子问题，而不是一些子问题的组合。</p>
+<p>比如以上面的图为例，当前的子问题和 01 背包问题的子问题很像，都是看：选第 i 个物品而容量为 j 时的价值如何从相邻的状态里获得。</p>
+<p>在 01 背包和完全背包中，dp数组的定义没变，<br>但 01 背包中，左边的箭头是从左上到右下，是因为当前物品只能选一次，<br>如果要选物品 i ，那么选之前的状态只能是 <strong>还没有选物品 i</strong> 的，也就是 i-1。</p>
+<p>而在完全背包中，如果要选物品 i ，那么选之前的状态可能来自 <strong>还没选</strong> ，也可能来自 <strong>选了一个，又想选一个</strong>。同时，<strong>选了一个，又想选一个</strong> 的状态已经把 <strong>还没选</strong> 的状态也包括了，也就是 $\mathrm{dp}[{\color{red}i}][j-\mathrm{w}[i]]$ 包括了 $\mathrm{dp}[{\color{green}i-1}][j-\mathrm{w}[i]]$，因此箭头直接变成了从左向右。</p>
+<p>如果理解了这个，也就不难理解为什么状压之后内层（背包容量）的遍历顺序是正向的了。</p>
+<p>另外，当问题是求最大价值时，内层和外层可以交换遍历顺序。如果是其它的（如组合数，或排列数），则不一定能交换，需要具体分析。</p>
+<div class="note note-primary">
+            <details><summary>Leetcode 518.零钱兑换II</summary>此题是一道完全背包问题。dp数组的定义为是总方案数（排列组合里的组合），这里内层外层就不能交换。如果交换就成了求排列数了。</details>
+          </div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="category-chain-item">蓝桥杯</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="category-chain-item">动态规划</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/default/" class="print-no-link">#default</a>
+      
+        <a href="/tags/%E6%9C%AA%E5%AE%8C/" class="print-no-link">#未完</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>动态规划</div>
+      <div>https://levsky-williams.top/posts/a80d0031/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Levski-Williams</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/82456769/" title="扩展欧几里德">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">扩展欧几里德</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/dac9b442/" title="STL-队列，栈，堆">
+                        <span class="hidden-mobile">STL-队列，栈，堆</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"forest"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
