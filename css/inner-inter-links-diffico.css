@@ -1,0 +1,7 @@
+.external-link::before {
+  content: "↗";
+  display: inline-block;
+  margin-right: 0.25em;
+  font-size: 0.8em;
+  opacity: 0.65;
+}

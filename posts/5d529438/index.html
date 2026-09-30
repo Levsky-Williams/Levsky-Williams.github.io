@@ -74,13 +74,18 @@
 
   
 <link rel="stylesheet" href="/css/fliud.custom.css">
+<link rel="stylesheet" href="/css/obsidian-callout.css">
+<link rel="stylesheet" href="/css/jump-highlight.css">
+<link rel="stylesheet" href="/css/inner-inter-links-diffico.css">
+<link rel="stylesheet" href="/css/equation-citator.css">
+<link rel="stylesheet" href="/css/codeblock-heightlimit.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -93,7 +98,7 @@
 
 
   
-<meta name="generator" content="Hexo 8.1.1"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -115,7 +120,7 @@
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
-    <!-- Collapsible content -->
+    <!-- Collapsible content (desktop) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto text-center">
         
@@ -211,6 +216,123 @@
   </div>
 </nav>
 
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>友链</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
   
 
 <div id="banner" class="banner" parallax=true
@@ -243,7 +365,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          338 字
+          1.1k 字
         
       </span>
     
@@ -254,7 +376,7 @@
         
         
         
-          3 分钟
+          9 分钟
         
       </span>
     
@@ -271,6 +393,8 @@
     </div>
   </div>
 </div>
+
+
 
 </div>
 
@@ -296,32 +420,33 @@
             
               <div class="markdown-body">
                 
-                <h1 id="1-相关环境"><a href="#1-相关环境" class="headerlink" title="1. 相关环境"></a>1. 相关环境</h1><ul>
+                <h1 id="1.-相关环境">1. 相关环境</h1>
+<ul>
 <li>系统：CentOS 7.6 (<font color=red><b>无网，无sudo</b></font>)</li>
 <li>tmux：3.5</li>
 <li>ncurses：6.2</li>
 <li>libevent：2.1.2-stable</li>
 </ul>
-<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h1><h2 id="2-1-安装libevent"><a href="#2-1-安装libevent" class="headerlink" title="2.1 安装libevent"></a>2.1 安装libevent</h2><p>在我安装的服务器上并没有libevent，需要手动进行安装。</p>
+<h1 id="2.-安装">2. 安装</h1>
+<h2 id="2-1-安装libevent">2.1 安装libevent</h2>
+<p>在我安装的服务器上并没有libevent，需要手动进行安装。</p>
 <p>下载<code>libevent-2.1.12-stable.tar.gz</code>，解压之后进行目录，正常地用configure安装：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> libevent-2.1.12-stable.tar.gz
 <span class="token builtin class-name">cd</span> libevent-2.1.12-stable
 ./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;program&#125;</span>/libevent"</span>
 <span class="token function">make</span> <span class="token parameter variable">-j</span> <span class="token comment"># 不带具体的数字，会自动达到最大数</span>
 <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-
 <p>安装完成后，相当重要的一点在于设置环境变量，这是手动安装软件所带来的麻烦之处。</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;program&#125;</span>/libevent/lib:<span class="token variable">$LD_LIBRARY_PATH</span>"</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable">PKG_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;program&#125;</span>/libevent/lib/pkgconfig:<span class="token variable">$PKG_CONFIG_PATH</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
-
-<h2 id="2-2-安装ncurses"><a href="#2-2-安装ncurses" class="headerlink" title="2.2 安装ncurses"></a>2.2 安装ncurses</h2><p>服务器比较老，连<code>ncurses</code>也没有安装，需要我们手动装一下。</p>
+<h2 id="2-2-安装ncurses">2.2 安装ncurses</h2>
+<p>服务器比较老，连<code>ncurses</code>也没有安装，需要我们手动装一下。</p>
 <p>下载<code>ncurses-6.2.tar.gz</code>，解压之后进行目录，正常地用configure安装：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> ncurses-6.2.tar.gz
 <span class="token builtin class-name">cd</span> ncurses-6.2
 ./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;program&#125;</span>/ncurses"</span>
 <span class="token function">make</span> <span class="token parameter variable">-j</span> <span class="token comment"># 不带具体的数字，会自动达到最大数</span>
 <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-
 <p>ncurses如果手动安装，不会产生<code>pkgconfig</code>，需要我们自己手写<code>ncurses.pc</code>。</p>
 <p>如下为手写的<code>ncurses.pc</code>： <mark>路径需要用绝对路径</mark></p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-pkgconfig" data-language="pkgconfig"><code class="language-pkgconfig">Name: ncurses
@@ -329,10 +454,9 @@ Description:ncurses
 Version: 6.2
 Cflags:-I&#x2F;your-path-to-ncurses&#x2F;include&#x2F;ncurses -I&#x2F;your-path-to-ncurses&#x2F;include
 Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-
-
 <p>此后，需要把<code>ncurses.pc</code>加入环境变量<code>PKG_CONFIG_PATH</code>中。</p>
-<h2 id="2-3-安装tmux"><a href="#2-3-安装tmux" class="headerlink" title="2.3 安装tmux"></a>2.3 安装tmux</h2><p>此后就可以正常安装tmux了。</p>
+<h2 id="2-3-安装tmux">2.3 安装tmux</h2>
+<p>此后就可以正常安装tmux了。</p>
 
                 
               </div>
@@ -509,12 +633,6 @@ Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidde
   
 
 
-  
-  
-
-
-
-
 
   <script>
   Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
@@ -636,7 +754,63 @@ Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidde
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init(Object.assign({
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
       linkClass       : 'tocbot-link',
@@ -647,10 +821,16 @@ Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidde
       scrollSmooth    : true,
       includeTitleTags: true,
       headingsOffset  : -boardTop,
-    }, CONFIG.toc));
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+    expandAllToc();
+    bindTocToggle();
 
     Fluid.events.registerRefreshCallback(function() {
       if ('tocbot' in window) {
@@ -662,6 +842,8 @@ Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidde
         if (toc.find('.toc-list-item').length > 0) {
           toc.css('visibility', 'visible');
         }
+        expandAllToc();
+        bindTocToggle();
       }
     });
   });
@@ -723,52 +905,14 @@ Libs:-L&#x2F;your-path-to-ncurses&#x2F;lib -lncurses -lncurses++<span aria-hidde
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
-
   <script  src="/js/local-search.js" ></script>
 
 
+
+
+  
+<script src="/js/anchor-highlight.js"></script>
+<script src="/js/inner-inter-links-diffico.js"></script>
 
 
 

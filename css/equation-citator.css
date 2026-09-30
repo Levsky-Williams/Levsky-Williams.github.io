@@ -1,0 +1,13 @@
+/* ===============================
+ * Equation target
+ * =============================== */
+
+.equation-citator-target {
+  display: block;
+
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  scroll-margin-top: 75px;
+}

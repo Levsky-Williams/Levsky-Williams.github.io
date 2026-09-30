@@ -72,13 +72,18 @@
 
   
 <link rel="stylesheet" href="/css/fliud.custom.css">
+<link rel="stylesheet" href="/css/obsidian-callout.css">
+<link rel="stylesheet" href="/css/jump-highlight.css">
+<link rel="stylesheet" href="/css/inner-inter-links-diffico.css">
+<link rel="stylesheet" href="/css/equation-citator.css">
+<link rel="stylesheet" href="/css/codeblock-heightlimit.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -91,7 +96,7 @@
 
 
   
-<meta name="generator" content="Hexo 8.1.1"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -113,7 +118,7 @@
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
-    <!-- Collapsible content -->
+    <!-- Collapsible content (desktop) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto text-center">
         
@@ -209,6 +214,123 @@
   </div>
 </nav>
 
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>友链</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
   
 
 <div id="banner" class="banner" parallax=true
@@ -241,7 +363,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          265 字
+          420 字
         
       </span>
     
@@ -252,7 +374,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -269,6 +391,8 @@
     </div>
   </div>
 </div>
+
+
 
 </div>
 
@@ -294,14 +418,20 @@
             
               <div class="markdown-body">
                 
-                <h1 id="版本库中的后悔药"><a href="#版本库中的后悔药" class="headerlink" title="版本库中的后悔药"></a>版本库中的后悔药</h1><h2 id="git-commit-–amend"><a href="#git-commit-–amend" class="headerlink" title="git commit –amend"></a>git commit –amend</h2><h2 id="git-revert-id"><a href="#git-revert-id" class="headerlink" title="git revert id"></a>git revert id</h2><p>回到第<code>id</code>次提交，但是是用提交一个新的分支的方式</p>
-<h2 id="git-reset-id"><a href="#git-reset-id" class="headerlink" title="git reset id"></a>git reset id</h2><p><code>git reset id</code> 命令会直接删除版本库中的一次commit，<code>id</code>是你想要回到的那个版本。<br>其有3个参数可选：</p>
+                <h1 id="版本库中的后悔药">版本库中的后悔药</h1>
+<h2 id="git-commit-amend">git commit --amend</h2>
+<h2 id="git-revert-id">git revert id</h2>
+<p>回到第<code>id</code>次提交，但是是用提交一个新的分支的方式</p>
+<h2 id="git-reset-id">git reset id</h2>
+<p><code>git reset id</code> 命令会直接删除版本库中的一次commit，<code>id</code>是你想要回到的那个版本。<br>
+其有3个参数可选：</p>
 <ol>
 <li><code>--soft</code>：将你删除的这次commit在版本库中的文件放到<strong>工作区</strong>和<strong>暂存区</strong></li>
 <li><code>--mixed</code>（默认）：将你删除的这次commit在版本库中的文件放仅到<strong>工作区</strong></li>
 <li><code>--hard</code>（<font color=red><b>危险</b></font>）：直接删除，在提交<code>id</code>之后的所有修改永远丢失！</li>
 </ol>
-<p>如果第一次提交的时候，没有在gitignore文件中添加忽略文件，那么这些文件（目录也是文件）就会被git跟踪。<br>此时如果想让git取消对一些文件的跟踪，可以用如下命令：</p>
+<p>如果第一次提交的时候，没有在gitignore文件中添加忽略文件，那么这些文件（目录也是文件）就会被git跟踪。<br>
+此时如果想让git取消对一些文件的跟踪，可以用如下命令：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-git" data-language="git"><code class="language-git">git rm (-r) --cached xxx        //仅删除在暂存区中的已跟踪文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p>删除后，本地的文件还在，但git没有再跟踪了。之后再去修改<code>.gitignore</code>就可以了。</p>
 <p>最好<code>.gitignore</code>文件的修改单独做一次提交</p>
@@ -477,12 +607,6 @@
   
 
 
-  
-  
-
-
-
-
 
   <script>
   Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js', function() {
@@ -604,7 +728,63 @@
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init(Object.assign({
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
       linkClass       : 'tocbot-link',
@@ -615,10 +795,16 @@
       scrollSmooth    : true,
       includeTitleTags: true,
       headingsOffset  : -boardTop,
-    }, CONFIG.toc));
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+    expandAllToc();
+    bindTocToggle();
 
     Fluid.events.registerRefreshCallback(function() {
       if ('tocbot' in window) {
@@ -630,6 +816,8 @@
         if (toc.find('.toc-list-item').length > 0) {
           toc.css('visibility', 'visible');
         }
+        expandAllToc();
+        bindTocToggle();
       }
     });
   });
@@ -691,52 +879,14 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
-
   <script  src="/js/local-search.js" ></script>
 
 
+
+
+  
+<script src="/js/anchor-highlight.js"></script>
+<script src="/js/inner-inter-links-diffico.js"></script>
 
 
 

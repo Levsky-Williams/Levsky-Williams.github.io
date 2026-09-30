@@ -1,0 +1,5 @@
+/* 长代码块限制高度 */
+.markdown-body pre {
+  max-height: 32rem;
+  overflow-y: auto;
+}

@@ -1,0 +1,203 @@
+/* =========================================
+ * Obsidian Callouts for Hexo Fluid
+ * ========================================= */
+
+.markdown-body .callout {
+  --callout-color: 8, 109, 221;
+
+  margin: 1.2em 0;
+  padding: 12px 16px;
+
+  border: 0;
+  border-left: 4px solid rgb(var(--callout-color));
+  border-radius: 6px;
+
+  background: rgba(var(--callout-color), 0.10);
+
+  overflow: hidden;
+}
+
+.markdown-body .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+  padding: 0;
+
+  color: rgb(var(--callout-color));
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.markdown-body .callout-title-icon {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+
+  color: rgb(var(--callout-color));
+}
+
+.markdown-body .callout-title-icon svg {
+  width: 18px;
+  height: 18px;
+
+  stroke: currentColor;
+}
+
+.markdown-body .callout-title-inner {
+  color: inherit;
+}
+
+.markdown-body .callout-content {
+  margin-top: 8px;
+  padding: 0;
+}
+
+.markdown-body .callout-content > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body .callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+
+/* -----------------------------------------
+ * Callout colors
+ * ----------------------------------------- */
+
+.markdown-body .callout[data-callout="note"] {
+  --callout-color: 8, 109, 221;
+}
+
+.markdown-body .callout[data-callout="abstract"],
+.markdown-body .callout[data-callout="summary"],
+.markdown-body .callout[data-callout="tldr"] {
+  --callout-color: 0, 191, 188;
+}
+
+.markdown-body .callout[data-callout="info"] {
+  --callout-color: 8, 109, 221;
+}
+
+.markdown-body .callout[data-callout="todo"] {
+  --callout-color: 8, 109, 221;
+}
+
+.markdown-body .callout[data-callout="tip"],
+.markdown-body .callout[data-callout="hint"],
+.markdown-body .callout[data-callout="important"] {
+  --callout-color: 0, 191, 188;
+}
+
+.markdown-body .callout[data-callout="success"],
+.markdown-body .callout[data-callout="check"],
+.markdown-body .callout[data-callout="done"] {
+  --callout-color: 8, 185, 78;
+}
+
+.markdown-body .callout[data-callout="question"],
+.markdown-body .callout[data-callout="help"],
+.markdown-body .callout[data-callout="faq"] {
+  --callout-color: 236, 117, 0;
+}
+
+.markdown-body .callout[data-callout="warning"],
+.markdown-body .callout[data-callout="caution"],
+.markdown-body .callout[data-callout="attention"] {
+  --callout-color: 236, 117, 0;
+}
+
+.markdown-body .callout[data-callout="failure"],
+.markdown-body .callout[data-callout="fail"],
+.markdown-body .callout[data-callout="missing"] {
+  --callout-color: 233, 49, 71;
+}
+
+.markdown-body .callout[data-callout="danger"],
+.markdown-body .callout[data-callout="error"] {
+  --callout-color: 233, 49, 71;
+}
+
+.markdown-body .callout[data-callout="bug"] {
+  --callout-color: 233, 49, 71;
+}
+
+.markdown-body .callout[data-callout="example"] {
+  --callout-color: 120, 82, 238;
+}
+
+.markdown-body .callout[data-callout="quote"],
+.markdown-body .callout[data-callout="cite"] {
+  --callout-color: 158, 158, 158;
+}
+
+
+/* -----------------------------------------
+ * Fluid dark mode
+ * ----------------------------------------- */
+
+html[data-user-color-scheme="dark"] .markdown-body .callout {
+  background: rgba(var(--callout-color), 0.15);
+}
+
+/* =========================================
+ * Foldable callout
+ * ========================================= */
+
+/* 去掉 <summary> 浏览器自带的小三角 */
+.markdown-body details.callout > summary.callout-title {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.markdown-body details.callout > summary.callout-title::-webkit-details-marker {
+  display: none;
+}
+
+.markdown-body details.callout .callout-title-inner {
+  flex: 0 1 auto;
+}
+
+.markdown-body details.callout .callout-fold {
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+
+  background-color: rgb(var(--callout-color));
+
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  transition: transform 0.18s ease;
+}
+
+/* 折叠：> */
+.markdown-body details.callout:not([open])
+  > .callout-title
+  > .callout-fold {
+  transform: rotate(0deg);
+}
+
+/* 展开：v */
+.markdown-body details.callout[open]
+  > .callout-title
+  > .callout-fold {
+  transform: rotate(90deg);
+}
+
+/* hover 时稍微突出 */
+.markdown-body details.callout > .callout-title:hover .callout-fold {
+  opacity: 0.75;
+}

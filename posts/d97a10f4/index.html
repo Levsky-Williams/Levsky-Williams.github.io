@@ -19,22 +19,23 @@
   <meta name="author" content="levsky-williams">
   <meta name="keywords" content="python">
   
-    <meta name="description" content="这是显示在首页的概述，正文内容均会被隐藏。">
+    <meta name="description" content="syncthing如何不删除文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="syncthing&#x2F;SyncTrayzor如何同步而不删除">
 <meta property="og:url" content="https://levsky-williams.top/posts/d97a10f4/index.html">
 <meta property="og:site_name" content="Левский Уильямс の 博客">
-<meta property="og:description" content="这是显示在首页的概述，正文内容均会被隐藏。">
+<meta property="og:description" content="syncthing如何不删除文件">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231851158.png">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231854281.png">
 <meta property="og:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231857391.png">
 <meta property="article:published_time" content="2023-09-23T09:59:00.000Z">
-<meta property="article:modified_time" content="2026-09-30T04:30:05.777Z">
+<meta property="article:modified_time" content="2026-09-30T08:15:44.315Z">
 <meta property="article:author" content="Levski-Williams">
 <meta property="article:tag" content="syncthing">
 <meta property="article:tag" content="synctrayzor">
 <meta property="article:tag" content="增量同步">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231851158.png">
   
@@ -78,13 +79,18 @@
 
   
 <link rel="stylesheet" href="/css/fliud.custom.css">
+<link rel="stylesheet" href="/css/obsidian-callout.css">
+<link rel="stylesheet" href="/css/jump-highlight.css">
+<link rel="stylesheet" href="/css/inner-inter-links-diffico.css">
+<link rel="stylesheet" href="/css/equation-citator.css">
+<link rel="stylesheet" href="/css/codeblock-heightlimit.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"levsky-williams.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":5},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -97,7 +103,7 @@
 
 
   
-<meta name="generator" content="Hexo 8.1.1"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -119,7 +125,7 @@
       <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
 
-    <!-- Collapsible content -->
+    <!-- Collapsible content (desktop) -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto text-center">
         
@@ -215,6 +221,123 @@
   </div>
 </nav>
 
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>友链</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
   
 
 <div id="banner" class="banner" parallax=true
@@ -247,7 +370,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          113 字
+          148 字
         
       </span>
     
@@ -258,7 +381,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -275,6 +398,8 @@
     </div>
   </div>
 </div>
+
+
 
 </div>
 
@@ -300,26 +425,24 @@
             
               <div class="markdown-body">
                 
-                <p>head2</p>
-<p>之间在用syncthing同步笔记的时候，总是担心一个设备的文件被删除后所有的设备一同删除。<br>结果，真的发生了。<br>好在通过一些手段，把数据找回来了。</p>
-<p>在网上找了很久，终于找到了解决方法。<br>下面出图文教程</p>
-<span id="more"></span>
-
+                <p>之间在用syncthing同步笔记的时候，总是担心一个设备的文件被删除后所有的设备一同删除。<br>
+结果，真的发生了。<br>
+好在通过一些手段，把数据找回来了。</p>
+<p>在网上找了很久，终于找到了解决方法。<br>
+下面出图文教程</p>
+<!-- more -->
 <p>（感谢这篇<a target="_blank" rel="noopener" href="https://jaycechant.info/2016/backup-tips-about-syncthing/">博客</a>的介绍）</p>
 <p>操作-&gt;高级</p>
 <center>
 <img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231851158.png" srcset="/img/loading.gif" lazyload alt="操作->高级" style="width:40%;" />
 </center>
-
 <p>选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上。</p>
 <center>
 <img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231854281.png" srcset="/img/loading.gif" lazyload alt="选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上" style="width:50%;" />
 </center>
-
 <center>
 <img src="https://mitnick-pic-1258691431.cos.ap-beijing.myqcloud.com/mitnick/pic/202309231857391.png" srcset="/img/loading.gif" lazyload alt="选中你要同步的文件夹，然后 把 IgnoreDelete 的勾打上" style="width:50%;" />
 </center>
-
 
                 
               </div>
@@ -328,9 +451,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
       
         <a href="/tags/syncthing/" class="print-no-link">#syncthing</a>
       
@@ -405,9 +551,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/f81506ce/" title="自动控制的基础">
+                      <a href="/posts/a52726e1/" title="css-demo">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">自动控制的基础</span>
+                        <span class="hidden-mobile">css-demo</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -473,12 +619,6 @@
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -602,7 +742,63 @@
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init(Object.assign({
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
       linkClass       : 'tocbot-link',
@@ -613,10 +809,16 @@
       scrollSmooth    : true,
       includeTitleTags: true,
       headingsOffset  : -boardTop,
-    }, CONFIG.toc));
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+    expandAllToc();
+    bindTocToggle();
 
     Fluid.events.registerRefreshCallback(function() {
       if ('tocbot' in window) {
@@ -628,6 +830,8 @@
         if (toc.find('.toc-list-item').length > 0) {
           toc.css('visibility', 'visible');
         }
+        expandAllToc();
+        bindTocToggle();
       }
     });
   });
@@ -689,52 +893,14 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-
-        Fluid.events.registerRefreshCallback(function() {
-          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
-            MathJax.startup.document.state(0);
-            MathJax.texReset();
-            MathJax.typeset();
-            MathJax.typesetPromise();
-          }
-        });
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
-
   <script  src="/js/local-search.js" ></script>
 
 
+
+
+  
+<script src="/js/anchor-highlight.js"></script>
+<script src="/js/inner-inter-links-diffico.js"></script>
 
 
 
