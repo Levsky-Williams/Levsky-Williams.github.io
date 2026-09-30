@@ -1,20 +1,8 @@
 (() => {
-  const script = document.createElement("script");
+  "use strict";
 
-  script.src = "https://busuanzi.9420.ltd/js";
-
-  // 让新版不蒜子继续使用 Fluid 原来的 ID：
-  // busuanzi_value_page_pv
-  // busuanzi_value_site_pv
-  // busuanzi_value_site_uv
-  script.dataset.prefix = "busuanzi_value";
-
-  script.addEventListener("load", () => {
-    [
-      "page_pv",
-      "site_pv",
-      "site_uv"
-    ].forEach((name) => {
+  function show(data) {
+    ["site_pv", "page_pv", "site_uv"].forEach((name) => {
       const value = document.getElementById(
         `busuanzi_value_${name}`
       );
@@ -23,31 +11,73 @@
         `busuanzi_container_${name}`
       );
 
-      if (!value || !container) return;
+      if (value && data[name] !== undefined) {
+        value.textContent = data[name];
+      }
 
-      const show = () => {
-        if (value.textContent.trim() !== "") {
-          container.style.display = "inline";
-          return true;
-        }
-        return false;
-      };
-
-      if (show()) return;
-
-      const observer = new MutationObserver(() => {
-        if (show()) {
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(value, {
-        childList: true,
-        subtree: true,
-        characterData: true
-      });
+      if (container) {
+        container.style.display = "inline";
+      }
     });
-  });
+  }
 
-  document.head.appendChild(script);
+  function hide() {
+    ["site_pv", "page_pv", "site_uv"].forEach((name) => {
+      const container = document.getElementById(
+        `busuanzi_container_${name}`
+      );
+
+      if (container) {
+        container.style.display = "none";
+      }
+    });
+  }
+
+  function request() {
+    const callback =
+      "BusuanziCallback_" +
+      Math.floor(Math.random() * 1e12);
+
+    const script = document.createElement("script");
+
+    window[callback] = (data) => {
+      try {
+        show(data);
+      } finally {
+        delete window[callback];
+        script.remove();
+      }
+    };
+
+    script.src =
+      "https://busuanzi.ibruce.info/busuanzi" +
+      "?jsonpCallback=" +
+      callback;
+
+    /*
+     * 关键：
+     * 只针对不蒜子的统计请求发送完整页面 URL。
+     */
+    script.referrerPolicy = "unsafe-url";
+
+    script.async = true;
+
+    script.onerror = () => {
+      hide();
+      delete window[callback];
+      script.remove();
+    };
+
+    document.head.appendChild(script);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      request,
+      { once: true }
+    );
+  } else {
+    request();
+  }
 })();
