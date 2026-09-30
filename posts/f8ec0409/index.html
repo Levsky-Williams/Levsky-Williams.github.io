@@ -33,6 +33,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>Scoop,winget等的配置 - Левский Уильямс の 博客</title>
 
@@ -363,7 +365,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          66k 字
+          2.8k 字
         
       </span>
     
@@ -374,12 +376,21 @@
         
         
         
-          549 分钟
+          24 分钟
         
       </span>
     
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
     
   </div>
 
@@ -473,9 +484,9 @@ The installer of Scoop. For details please check the website and wiki.<br>
 .PARAMETER ScoopDir<br>
 Specifies Scoop root path.<br>
 If not specified, Scoop will be installed to '
-    <span id="mjx-2b52191">
+    <span id="mjx-12a90c8">
       <style>
-      #mjx-2b52191{
+      #mjx-12a90c8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -712,9 +723,9 @@ Write-Output 'Abort.'</p>
 <p>}</p>
 <p>function Test-ValidateParameter {<br>
 if ($null -eq 
-    <span id="mjx-d2c0f38">
+    <span id="mjx-c2e7cfb">
       <style>
-      #mjx-d2c0f38{
+      #mjx-c2e7cfb{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1036,9 +1047,9 @@ param(<br>
 [Switch] $NoNewLine,<br>
 [Parameter(ValueFromPipeline = $True)]<br>
 [PSObject] 
-    <span id="mjx-c162c388">
+    <span id="mjx-dc46e418">
       <style>
-      #mjx-c162c388{
+      #mjx-dc46e418{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1198,9 +1209,9 @@ g[data-mml-node="xypic"] path {
     </span>
   Append) {<br>
 [System.IO.File]::AppendAllText($FilePath, 
-    <span id="mjx-5e5fcc18">
+    <span id="mjx-b43332d8">
       <style>
-      #mjx-5e5fcc18{
+      #mjx-b43332d8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1363,9 +1374,9 @@ g[data-mml-node="xypic"] path {
 # Performance Note: <code>WriteAllLines</code> throttles memory usage while<br>
 # <code>WriteAllText</code> needs to keep the complete string in memory.<br>
 [System.IO.File]::WriteAllLines($FilePath, 
-    <span id="mjx-001228d">
+    <span id="mjx-aed60a">
       <style>
-      #mjx-001228d{
+      #mjx-aed60a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1532,9 +1543,9 @@ g[data-mml-node="xypic"] path {
 Write-InstallInfo 'Creating shim...'<br>
 # The scoop executable<br>
 
-    <span id="mjx-12d6156">
+    <span id="mjx-b7afcd18">
       <style>
-      #mjx-12d6156{
+      #mjx-b7afcd18{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1896,9 +1907,9 @@ return $scoopConfig
 # If user-level SCOOP env not defined, save to root_path<br>
 if (!(Get-Env 'SCOOP')) {<br>
 if (
-    <span id="mjx-3a560a1">
+    <span id="mjx-0331bc1">
       <style>
-      #mjx-3a560a1{
+      #mjx-0331bc1{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2207,9 +2218,9 @@ Write-Verbose &quot;SCOOP_CONFIG_HOME: $SCOOP_CONFIG_HOME&quot;
 <p>}</p>
 <h1 id="prepare-variables">Prepare variables</h1>
 <p>
-    <span id="mjx-2b029168">
+    <span id="mjx-46812aa">
       <style>
-      #mjx-2b029168{
+      #mjx-46812aa{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2372,9 +2383,9 @@ g[data-mml-node="xypic"] path {
 <p>Test-LanguageMode</p>
 <h1 id="scoop-root-directory">Scoop root directory</h1>
 <p>$SCOOP_DIR = $ScoopDir, 
-    <span id="mjx-5233f13">
+    <span id="mjx-71d0f078">
       <style>
-      #mjx-5233f13{
+      #mjx-71d0f078{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2535,9 +2546,9 @@ g[data-mml-node="xypic"] path {
   env:USERPROFILE\scoop&quot; | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
 <h1 id="scoop-global-apps-directory">Scoop global apps directory</h1>
 <p>$SCOOP_GLOBAL_DIR = $ScoopGlobalDir, 
-    <span id="mjx-5c859d88">
+    <span id="mjx-a99c0c78">
       <style>
-      #mjx-5c859d88{
+      #mjx-a99c0c78{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2698,9 +2709,9 @@ g[data-mml-node="xypic"] path {
   env:ProgramData\scoop&quot; | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
 <h1 id="scoop-cache-directory">Scoop cache directory</h1>
 <p>$SCOOP_CACHE_DIR = $ScoopCacheDir, 
-    <span id="mjx-4da83598">
+    <span id="mjx-3008d08">
       <style>
-      #mjx-4da83598{
+      #mjx-3008d08{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2861,9 +2872,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_DIR\cache&quot; | Where-Object { -not [String]::IsNullOrEmpty($_) } | Select-Object -First 1</p>
 <h1 id="scoop-shims-directory">Scoop shims directory</h1>
 <p>
-    <span id="mjx-05d44478">
+    <span id="mjx-d6d7eeb">
       <style>
-      #mjx-05d44478{
+      #mjx-d6d7eeb{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3024,9 +3035,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_DIR\shims&quot;</p>
 <h1 id="scoop-itself-directory">Scoop itself directory</h1>
 <p>
-    <span id="mjx-704d6d78">
+    <span id="mjx-97a18b6">
       <style>
-      #mjx-704d6d78{
+      #mjx-97a18b6{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3187,9 +3198,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_DIR\apps\scoop\current&quot;</p>
 <h1 id="scoop-main-bucket-directory">Scoop main bucket directory</h1>
 <p>
-    <span id="mjx-a842838">
+    <span id="mjx-3bfafb3">
       <style>
-      #mjx-a842838{
+      #mjx-3bfafb3{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3350,9 +3361,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_DIR\buckets\main&quot;</p>
 <h1 id="scoop-config-file-location">Scoop config file location</h1>
 <p>$SCOOP_CONFIG_HOME = 
-    <span id="mjx-c7ad6938">
+    <span id="mjx-e5718d9">
       <style>
-      #mjx-c7ad6938{
+      #mjx-e5718d9{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3512,9 +3523,9 @@ g[data-mml-node="xypic"] path {
     </span>
   env:USERPROFILE.config&quot; | Select-Object -First 1<br>
 
-    <span id="mjx-d392e0d">
+    <span id="mjx-476c6f98">
       <style>
-      #mjx-d392e0d{
+      #mjx-476c6f98{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3675,9 +3686,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_CONFIG_HOME\scoop\config.json&quot;</p>
 <h1 id="todo:-use-a-specific-version-of-scoop-and-the-main-bucket">TODO: Use a specific version of Scoop and the main bucket</h1>
 <p>
-    <span id="mjx-484eca7">
+    <span id="mjx-7dece1c8">
       <style>
-      #mjx-484eca7{
+      #mjx-7dece1c8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3837,9 +3848,9 @@ g[data-mml-node="xypic"] path {
     </span>
   SCOOP_MAIN_BUCKET_REPO = 'https://github.com/ScoopInstaller/Main/archive/master.zip'</p>
 <p>
-    <span id="mjx-587b3c7">
+    <span id="mjx-640edc5">
       <style>
-      #mjx-587b3c7{
+      #mjx-640edc5{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4000,9 +4011,9 @@ g[data-mml-node="xypic"] path {
   SCOOP_MAIN_BUCKET_GIT_REPO = 'https://github.com/ScoopInstaller/Main.git'</p>
 <h1 id="quit-if-anything-goes-wrong">Quit if anything goes wrong</h1>
 <p>$oldErrorActionPreference = 
-    <span id="mjx-4ed41f68">
+    <span id="mjx-9f713658">
       <style>
-      #mjx-4ed41f68{
+      #mjx-9f713658{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4404,6 +4415,32 @@ g[data-mml-node="xypic"] path {
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
   
 </div>
 
@@ -4614,6 +4651,8 @@ g[data-mml-node="xypic"] path {
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
