@@ -1,0 +1,349 @@
+/* 阿里普惠体 */
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_35_Thin_35_Thin.ttf') format('truetype');
+    font-weight: 100;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_45_Light_45_Light.ttf') format('truetype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_55_Regular_55_Regular.ttf') format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_65_Medium_65_Medium.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_75_SemiBold_75_SemiBold.ttf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_55_Regular_85_Bold.ttf') format('truetype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_95_ExtraBold_95_ExtraBold.ttf') format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_105_Heavy_105_Heavy.ttf') format('truetype');
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'Ali_PuHuiTi';
+    src: url('/fonts/阿里普惠体/Alibaba_PuHuiTi_2.0_115_Black_115_Black.ttf') format('truetype');
+    font-weight: 900;
+}
+
+/* 思源黑体 */
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_ExtraLight_ExtraLight.otf') format('truetype');
+    font-weight: 100;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Light_Light.otf') format('truetype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Normal_Normal.otf') format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Regular.otf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Medium_Medium.otf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Bold.otf') format('truetype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'SiYuan_HeiTi';
+    src: url('/fonts/思源黑体/Source_Han_Sans_SC_Heavy_Heavy.otf') format('truetype');
+    font-weight: 700;
+}
+
+/* 霞鹜文楷 */
+@font-face {
+    font-family: 'LXGW WenKai Screen R';
+    src: url('./霞鹜文楷/LXGWWenKaiScreenR.ttf') format('truetype');
+    font-weight: 300;
+}
+
+
+
+
+
+
+
+
+
+
+mark{
+    margin: 0px 0px; 
+    padding: 2px 4px;
+    font-weight: var(--hightight-font-weight);
+    color: var(--highlight-color);
+    background: var(--highlight-background-color);
+    border-radius: var(--highlight-border-radius);
+}
+.markdown-body kbd{
+    position: relative;
+    margin: var(--kbd-margin);
+    padding: var(--kbd-padding);
+    line-height: 16px;
+    top: -2px;
+    /* vertical-align: baseline; */
+    font-family: var(--kbd-font-family);
+    font-size: var(--kbd-font-size);
+    /* font-weight: var(--kbd-font-weight); */
+    /* color: var(--kbd-color); */
+    /* background-color: #ffffff; */
+    /* border-radius: var(--kbd-border-radius); */
+    /* border: 2px solid #000000; */
+}
+
+/* 小标签 */
+font[title]{
+    display: inline;
+    text-align: center;
+    vertical-align: baseline;
+    margin: var(--note-margin);
+    padding: var(--note-padding);
+    font-family: var(--note-font-family);
+    font-size: var(--note-font-size);
+    font-weight: var(--note-font-weight);
+    line-height: var(--note-line-height);
+    color: var(--note-color);
+    background-color: var(--note-background-color-default);
+    border: var(--note-border);
+    border-radius: var(--note-border-radius);
+}
+font[title="red"] {
+    background-color: #fe5f58;
+    box-shadow: 0px 0px 7px 0.5px #fe7670;
+}
+font[title="yellow"] {
+    background-color: #ffc50a;
+    box-shadow: 0px 0px 7px 1px #ffc300;
+}
+font[title="green"] {
+    background-color: #8bc34a;
+    box-shadow: 0px 0px 7px 1px #94d14d;
+}
+font[title="blue"] {
+    background-color: #02aaf4;
+    box-shadow: 0px 0px 7px 1px #30c0ff;
+}
+font[title="gray"] {
+    background-color: #4c4c4c;
+    box-shadow: 0px 0px 7px 1px #9c9c9c;
+}
+font[title="purple"] {
+    background-color: #f759b5;
+    box-shadow: 0px 0px 7px 1px #ff6bbf;
+}
+font[title="orange"] {
+    background-color: #f78400;
+    box-shadow: 0px 0px 7px 1px #f78400;
+}
+
+/*  强调型文本  */
+span[alt]{
+    margin: var(-emp-margin);
+    padding: var(--emp-padding);
+    font-family: var(--emp-font-family);
+    font-size: var(--emp-font-size);
+    font-weight: var(--emp-font-weight);
+    line-height: var(--emp-line-height);
+}
+span[alt='solid'] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--emp-line-color);
+    text-decoration-style: solid;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+}
+span[alt='dashed'] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--emp-line-color);
+    text-decoration-style: dashed;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+}
+span[alt='dotted'] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--emp-line-color);
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 3px;
+    text-decoration-skip-ink: none;
+}
+span[alt='wavy'] {
+    text-decoration-line: underline;
+    text-decoration-color: var(--emp-line-color);
+    text-decoration-style: wavy;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+}
+span[alt='delete'] {
+    text-decoration-line: line-through;
+    text-decoration-color: var(--emp-line-color);
+    text-decoration-style: solid;
+    text-decoration-thickness: 2px;
+}
+span[alt='shadow']{
+    text-shadow: 1px 1px 2px #ebb90c;
+}
+/* 空心字特效 */
+span[alt="hollow"]{
+    color:white;
+    text-shadow:1px 1px black,-1px -1px black,1px -1px black,-1px 1px black;
+}
+
+/* 闪烁特效 */
+@keyframes blink-smooth{50%{color:transparent;}}
+span[alt="blink"]{
+  animation:0.5s blink-smooth infinite alternate linear;
+}
+
+/********************* 表格 ******************************/
+/* .table-container{ */
+/*     display: flex; */
+/*     justify-content: center; */
+/*     margin-left: auto; */
+/*     margin-right: auto; */
+/*     text-align: center; */
+/* } */
+/* .table-container table{ */
+/*     width: auto; */
+/* } */
+
+.markdown-body table{
+    display: table;
+}
+/* 三线表 */
+div[alt="three-table"]{
+    margin-left: auto;
+    margin-right: auto;
+}
+div[alt="three-table"] table tr {
+    border: none;  
+    background-color: #fff;
+    font-weight: var(--table-tr-font-weight); 
+}
+
+div[alt="three-table"] table tr th{
+    border: none;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    font-weight: var(--table-th-font-weight); 
+    font-size: var(--table-font-size);
+    background-color: #fff;
+}
+
+div[alt="three-table"] table tr td{
+    border: none;
+}
+div[alt="three-table"] table tr:nth-last-child(1){
+    border-bottom: 2px solid #000;
+}
+
+*[alt="center"]{
+    text-align: center;
+}
+*[alt="left"]{
+    text-align: left;
+}
+*[alt="right"]{
+    text-align: right;
+}
+/* ------------------------------------------------------------------------------------- */
+
+/*************************************** 引用 *************************/
+.markdown-body blockquote{
+  padding: 0.75rem;
+  border-left: 0.35rem solid;
+  border-radius: 0.25rem;
+  margin: 1.5rem 0;
+  color: var(--text-color);
+  transition: color 0.2s ease-in-out;
+  font-size: 0.9rem;
+  background-color: rgba(187,187,187,0.25);
+  border-color: #777;
+}
+.markdown-body blockquote a {
+  color: var(--text-color);
+  transition: color 0.2s ease-in-out;
+}
+.markdown-body blockquote *:last-child {
+  margin-bottom: 0;
+}
+
+
+:root{
+    --hightight-font-weight: 400;
+    --highlight-color: #000;
+    --highlight-background-color: #fbe598;
+    --highlight-border-radius: 2px;
+
+    /*KBD*/
+    --kbd-margin: 0px;
+    --kbd-padding: 4px 6px 3px 6px;
+    --kbd-font-family: 'JetBrainsMono Nerd Font';
+    --kbd-font-size: 0.8rem;
+    --kbd-font-weight: 200;
+    --kbd-color: #000;
+    --kbd-background-color: #fff;
+    --kbd-border-width: 2px;
+    --kbd-border-radius: 3px;
+    --kbd-border-color: #000;
+
+
+    /* 强调型文本-下划线, 着重号, 波浪线 */
+    --emp-margin: 0px;
+    --emp-padding: 0px;
+    --emp-font-family: 'LXGW WenKai Screen R';
+    --emp-font-size: 1.0rem;
+    --emp-font-weight: 400;
+    --emp-line-height: 1.5;
+    --emp-line-color: #d9534f;
+
+    /* 小标签 */
+    --note-margin: 0px;
+    --note-padding: 2px 4px;
+    --note-font-family: 'ZhanKu_YvYangTi';
+    --note-font-size: 0.87rem;
+    --note-font-weight: 400;
+    --note-line-height: 1.6;
+    --note-color: #fff;
+    --note-background-color-default: #6aaf7e;   /* 小标签的默认颜色 */
+    --note-border: none;
+    --note-border-radius: 2px;
+}
+
+.markdown-body blockquote a {
+    color: var(--post-link-color);
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   t="1695289003422"
+   class="icon"
+   viewBox="0 0 1024 1024"
+   version="1.1"
+   p-id="2278"
+   data-spm-anchor-id="a313x.collections_detail.0.i26.8e113a81cqCSJS"
+   width="200"
+   height="200"
+   id="svg12"
+   sodipodi:docname="Hudi.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="4.145"
+     inkscape:cx="100"
+     inkscape:cy="99.879373"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12" />
+  <path
+     d="M410.88 247.632L141.232 789.344h538.256L410.88 247.632z"
+     fill="#00435B"
+     p-id="2279"
+     id="path2" />
+  <path
+     d="M403.952 240.752L134.288 782.464h538.24L403.968 240.752z"
+     fill="#00B3FF"
+     p-id="2280"
+     id="path4" />
+  <path
+     d="M526.48 305.12L256.832 846.848h538.24L526.496 305.12z"
+     fill="#003773"
+     opacity=".79"
+     p-id="2281"
+     id="path6" />
+</svg>
